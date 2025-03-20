@@ -975,7 +975,7 @@ const MyComponent = () => {
     inputContainer.innerHTML = `
       <div className="mb-6">
         <div className="form-input-wrapper">
-          <label htmlFor="googleScriptUrl" className="form-label">https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec</label>
+          <label htmlFor="https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec" className="form-label"></label>
           <input
             type="text"
             id="googleScriptUrl"
