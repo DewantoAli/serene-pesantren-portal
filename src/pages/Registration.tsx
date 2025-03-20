@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { CheckCircle2, ChevronRight, Info } from 'lucide-react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
@@ -6,9 +5,12 @@ import PatternBackground from '@/components/ui/PatternBackground';
 import { toast } from '@/hooks/use-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import GoogleScriptSetupGuide from '@/components/GoogleScriptSetupGuide';
 
 const Registration: React.FC = () => {
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [googleScriptUrl, setGoogleScriptUrl] = useState('');
   const [formData, setFormData] = useState({
     // Personal Information
     firstName: '',
@@ -119,39 +121,100 @@ const Registration: React.FC = () => {
     return true;
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.agreeTerms) {
       toast({
-        title: "Agreement Required",
-        description: "Please agree to the terms and conditions.",
+        title: "Persetujuan Diperlukan",
+        description: "Mohon setujui syarat dan ketentuan.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!googleScriptUrl) {
+      toast({
+        title: "URL Google Script Diperlukan",
+        description: "Silakan masukkan URL Google Script untuk menyimpan data.",
         variant: "destructive",
       });
       return;
     }
     
-    // In a real application, you would submit the form data to a server here
-    console.log('Form submitted:', formData);
-    
-    // Show success toast
-    toast({
-      title: "Application Submitted!",
-      description: "Thank you for your application. We'll contact you soon.",
-    });
-    
-    // Move to success step
-    setStep(6);
-    window.scrollTo(0, 0);
+    try {
+      setIsSubmitting(true);
+      
+      // Transform formData into a format suitable for Google Sheets
+      const spreadsheetData = {
+        timestamp: new Date().toISOString(),
+        fullName: `${formData.firstName} ${formData.lastName}`,
+        gender: formData.gender,
+        dateOfBirth: formData.dateOfBirth,
+        placeOfBirth: formData.placeOfBirth || "N/A",
+        nationalId: formData.nationalId || "N/A",
+        email: formData.email,
+        phone: formData.phone,
+        address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.postalCode}`,
+        previousSchool: formData.previousSchool,
+        graduationYear: formData.graduationYear,
+        previousGrade: formData.previousGrade || "N/A",
+        program: formData.program === 'islamic-studies' ? 'Program Studi Islam' :
+                 formData.program === 'tahfidz' ? 'Program Tahfidz Quran' :
+                 formData.program === 'academic-islamic' ? 'Program Terpadu Akademik-Islam' :
+                 formData.program === 'leadership' ? 'Program Kepemimpinan Islam' : '',
+        parentName: formData.parentName,
+        parentRelation: formData.parentRelation,
+        parentPhone: formData.parentPhone,
+        parentEmail: formData.parentEmail || "N/A",
+        parentOccupation: formData.parentOccupation || "N/A",
+        healthConditions: formData.healthConditions || "Tidak Ada",
+        allergies: formData.allergies || "Tidak Ada",
+        medications: formData.medications || "Tidak Ada",
+        howDidYouHear: formData.howDidYouHear || "N/A",
+        additionalNotes: formData.additionalNotes || "N/A",
+      };
+      
+      // Send data to Google Sheets via Apps Script
+      const response = await fetch(googleScriptUrl, {
+        method: 'POST',
+        mode: 'no-cors', // Important for CORS issues
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(spreadsheetData),
+      });
+      
+      console.log('Form submitted to Google Sheets');
+      
+      // Show success toast
+      toast({
+        title: "Pendaftaran Terkirim!",
+        description: "Terima kasih atas pendaftaran Anda. Kami akan menghubungi Anda segera.",
+      });
+      
+      // Move to success step
+      setStep(6);
+      window.scrollTo(0, 0);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Terjadi Kesalahan",
+        description: "Gagal mengirim formulir. Silakan coba lagi nanti.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   // Stepper configuration
   const steps = [
-    { number: 1, title: 'Personal Information' },
-    { number: 2, title: 'Educational Background' },
-    { number: 3, title: 'Program Selection' },
-    { number: 4, title: 'Parent Information' },
-    { number: 5, title: 'Review & Submit' },
+    { number: 1, title: 'Informasi Pribadi' },
+    { number: 2, title: 'Latar Belakang Pendidikan' },
+    { number: 3, title: 'Pilihan Program' },
+    { number: 4, title: 'Informasi Wali' },
+    { number: 5, title: 'Tinjauan & Kirim' },
   ];
   
   return (
@@ -166,13 +229,13 @@ const Registration: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <AnimatedSectionWrapper className="text-center mb-8">
               <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-gold/20 text-islamic-cream text-sm font-medium">
-                Join Our Community
+                Bergabung dengan Komunitas Kami
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
-                Student Registration
+                Pendaftaran Santri
               </h1>
               <p className="text-islamic-cream/90 max-w-2xl mx-auto">
-                Complete the form below to apply for admission to Irsyadulhaq Islamic Boarding School.
+                Lengkapi formulir di bawah ini untuk mendaftar di Pondok Pesantren Islam Irsyadulhaq.
               </p>
             </AnimatedSectionWrapper>
           </div>
@@ -231,19 +294,19 @@ const Registration: React.FC = () => {
                     <CheckCircle2 size={40} className="text-islamic-teal" />
                   </div>
                   <h2 className="text-2xl font-display font-bold text-islamic-navy mb-4">
-                    Application Submitted Successfully!
+                    Pendaftaran Berhasil Dikirim!
                   </h2>
                   <p className="text-islamic-slate mb-8">
-                    Thank you for applying to Irsyadulhaq Islamic Boarding School. Your application has been received, and we will review it shortly. You will receive a confirmation email with further instructions.
+                    Terima kasih telah mendaftar di Pondok Pesantren Islam Irsyadulhaq. Pendaftaran Anda telah diterima dan akan segera kami tinjau. Anda akan menerima email konfirmasi dengan petunjuk lebih lanjut.
                   </p>
                   <div className="p-4 rounded-lg bg-islamic-teal/10 flex items-start mb-8">
                     <Info size={20} className="text-islamic-teal mt-0.5 mr-3 flex-shrink-0" />
                     <p className="text-sm text-islamic-slate">
-                      Your application ID is <span className="font-medium">IH-{Math.floor(Math.random() * 900000) + 100000}</span>. Please save this number for future reference. If you have any questions, please contact our admissions office.
+                      ID pendaftaran Anda adalah <span className="font-medium">IH-{Math.floor(Math.random() * 900000) + 100000}</span>. Harap simpan nomor ini untuk referensi di masa mendatang. Jika Anda memiliki pertanyaan, silakan hubungi kantor penerimaan kami.
                     </p>
                   </div>
                   <a href="/" className="btn-primary inline-flex items-center space-x-2">
-                    <span>Return to Homepage</span>
+                    <span>Kembali ke Beranda</span>
                     <ChevronRight size={18} />
                   </a>
                 </AnimatedSectionWrapper>
@@ -253,7 +316,7 @@ const Registration: React.FC = () => {
                   {step === 1 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Personal Information
+                        Informasi Pribadi
                       </h2>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -450,7 +513,7 @@ const Registration: React.FC = () => {
                   {step === 2 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Educational Background
+                        Latar Belakang Pendidikan
                       </h2>
                       
                       <div className="grid grid-cols-1 gap-6 mb-8">
@@ -529,7 +592,7 @@ const Registration: React.FC = () => {
                   {step === 3 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Program Selection
+                        Pilihan Program
                       </h2>
                       
                       <div className="mb-8">
@@ -541,22 +604,22 @@ const Registration: React.FC = () => {
                           {[
                             {
                               value: 'islamic-studies',
-                              title: 'Islamic Studies Program',
+                              title: 'Program Studi Islam',
                               description: 'Focus on Islamic knowledge, Quran, Hadith, and Fiqh.',
                             },
                             {
                               value: 'tahfidz',
-                              title: 'Tahfidz Quran Program',
+                              title: 'Program Tahfidz Quran',
                               description: 'Intensive Quran memorization program with supporting Islamic studies.',
                             },
                             {
                               value: 'academic-islamic',
-                              title: 'Academic-Islamic Integrated Program',
+                              title: 'Program Terpadu Akademik-Islam',
                               description: 'Balanced curriculum of academic subjects and Islamic studies.',
                             },
                             {
                               value: 'leadership',
-                              title: 'Islamic Leadership Program',
+                              title: 'Program Kepemimpinan Islam',
                               description: 'Focus on developing Islamic leadership skills alongside regular studies.',
                             },
                           ].map((programOption) => (
@@ -619,7 +682,7 @@ const Registration: React.FC = () => {
                   {step === 4 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Parent/Guardian Information
+                        Informasi Wali
                       </h2>
                       
                       <div className="grid grid-cols-1 gap-6 mb-8">
@@ -699,7 +762,7 @@ const Registration: React.FC = () => {
                       </div>
                       
                       <h3 className="text-lg font-display font-semibold text-islamic-navy mb-4">
-                        Health Information
+                        Informasi Kesehatan
                       </h3>
                       
                       <div className="grid grid-cols-1 gap-6 mb-8">
@@ -769,33 +832,35 @@ const Registration: React.FC = () => {
                   {step === 5 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Review & Submit
+                        Tinjauan & Kirim
                       </h2>
                       
                       <div className="mb-8">
                         <p className="text-islamic-slate mb-6">
-                          Please review your information before submitting your application. You can go back to previous steps to make changes if needed.
+                          Silakan tinjau informasi Anda sebelum mengirimkan pendaftaran. Anda dapat kembali ke langkah sebelumnya untuk melakukan perubahan jika diperlukan.
                         </p>
                         
                         <div className="space-y-6">
                           {/* Personal Information Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Personal Information</h3>
+                            <h3 className="font-medium text-islamic-navy mb-3">Informasi Pribadi</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
                               <div>
-                                <span className="text-islamic-slate">Full Name:</span>
+                                <span className="text-islamic-slate">Nama Lengkap:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.firstName} {formData.lastName}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Gender:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.gender}</span>
+                                <span className="text-islamic-slate">Jenis Kelamin:</span>
+                                <span className="ml-2 text-islamic-navy">
+                                  {formData.gender === 'male' ? 'Laki-laki' : formData.gender === 'female' ? 'Perempuan' : ''}
+                                </span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Date of Birth:</span>
+                                <span className="text-islamic-slate">Tanggal Lahir:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.dateOfBirth}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Place of Birth:</span>
+                                <span className="text-islamic-slate">Tempat Lahir:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.placeOfBirth || 'N/A'}</span>
                               </div>
                               <div>
@@ -803,11 +868,11 @@ const Registration: React.FC = () => {
                                 <span className="ml-2 text-islamic-navy">{formData.email}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Phone:</span>
+                                <span className="text-islamic-slate">Telepon:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.phone}</span>
                               </div>
                               <div className="md:col-span-2">
-                                <span className="text-islamic-slate">Address:</span>
+                                <span className="text-islamic-slate">Alamat:</span>
                                 <span className="ml-2 text-islamic-navy">
                                   {formData.address}, {formData.city}, {formData.province}, {formData.postalCode}
                                 </span>
@@ -817,18 +882,18 @@ const Registration: React.FC = () => {
                           
                           {/* Educational Background Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Educational Background</h3>
+                            <h3 className="font-medium text-islamic-navy mb-3">Latar Belakang Pendidikan</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
                               <div>
-                                <span className="text-islamic-slate">Previous School:</span>
+                                <span className="text-islamic-slate">Sekolah Sebelumnya:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.previousSchool}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Graduation Year:</span>
+                                <span className="text-islamic-slate">Tahun Kelulusan:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.graduationYear}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Previous Grade/GPA:</span>
+                                <span className="text-islamic-slate">Nilai/IPK Sebelumnya:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.previousGrade || 'N/A'}</span>
                               </div>
                             </div>
@@ -836,32 +901,37 @@ const Registration: React.FC = () => {
                           
                           {/* Program Selection Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Program Selection</h3>
+                            <h3 className="font-medium text-islamic-navy mb-3">Pilihan Program</h3>
                             <div className="text-sm">
-                              <span className="text-islamic-slate">Selected Program:</span>
+                              <span className="text-islamic-slate">Program Terpilih:</span>
                               <span className="ml-2 text-islamic-navy">
-                                {formData.program === 'islamic-studies' && 'Islamic Studies Program'}
-                                {formData.program === 'tahfidz' && 'Tahfidz Quran Program'}
-                                {formData.program === 'academic-islamic' && 'Academic-Islamic Integrated Program'}
-                                {formData.program === 'leadership' && 'Islamic Leadership Program'}
+                                {formData.program === 'islamic-studies' && 'Program Studi Islam'}
+                                {formData.program === 'tahfidz' && 'Program Tahfidz Quran'}
+                                {formData.program === 'academic-islamic' && 'Program Terpadu Akademik-Islam'}
+                                {formData.program === 'leadership' && 'Program Kepemimpinan Islam'}
                               </span>
                             </div>
                           </div>
                           
                           {/* Parent/Guardian Information Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Parent/Guardian Information</h3>
+                            <h3 className="font-medium text-islamic-navy mb-3">Informasi Wali</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
                               <div>
-                                <span className="text-islamic-slate">Name:</span>
+                                <span className="text-islamic-slate">Nama:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.parentName}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Relationship:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentRelation}</span>
+                                <span className="text-islamic-slate">Hubungan:</span>
+                                <span className="ml-2 text-islamic-navy">
+                                  {formData.parentRelation === 'father' ? 'Ayah' : 
+                                   formData.parentRelation === 'mother' ? 'Ibu' : 
+                                   formData.parentRelation === 'guardian' ? 'Wali' : 
+                                   formData.parentRelation === 'other' ? 'Lainnya' : ''}
+                                </span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Phone:</span>
+                                <span className="text-islamic-slate">Telepon:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.parentPhone}</span>
                               </div>
                               <div>
@@ -869,7 +939,7 @@ const Registration: React.FC = () => {
                                 <span className="ml-2 text-islamic-navy">{formData.parentEmail || 'N/A'}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Occupation:</span>
+                                <span className="text-islamic-slate">Pekerjaan:</span>
                                 <span className="ml-2 text-islamic-navy">{formData.parentOccupation || 'N/A'}</span>
                               </div>
                             </div>
@@ -877,23 +947,45 @@ const Registration: React.FC = () => {
                           
                           {/* Health Information Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Health Information</h3>
+                            <h3 className="font-medium text-islamic-navy mb-3">Informasi Kesehatan</h3>
                             <div className="grid grid-cols-1 gap-y-2 text-sm">
                               <div>
-                                <span className="text-islamic-slate">Health Conditions:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.healthConditions || 'None'}</span>
+                                <span className="text-islamic-slate">Kondisi Kesehatan:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.healthConditions || 'Tidak Ada'}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Allergies:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.allergies || 'None'}</span>
+                                <span className="text-islamic-slate">Alergi:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.allergies || 'Tidak Ada'}</span>
                               </div>
                               <div>
-                                <span className="text-islamic-slate">Medications:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.medications || 'None'}</span>
+                                <span className="text-islamic-slate">Obat-obatan:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.medications || 'Tidak Ada'}</span>
                               </div>
                             </div>
                           </div>
                         </div>
+                      </div>
+                      
+                      {/* Google Script URL Input */}
+                      <div className="mb-6">
+                        <div className="form-input-wrapper">
+                          <label htmlFor="googleScriptUrl" className="form-label">URL Google Script *</label>
+                          <input
+                            type="text"
+                            id="googleScriptUrl"
+                            value={googleScriptUrl}
+                            onChange={(e) => setGoogleScriptUrl(e.target.value)}
+                            className="form-input"
+                            placeholder="Masukkan URL Google Script untuk menyimpan data"
+                            required
+                          />
+                          <p className="text-xs text-islamic-slate mt-1">
+                            Masukkan URL Google Script yang telah Anda buat untuk menerima data pendaftaran.
+                          </p>
+                        </div>
+                        
+                        {/* Add Google Script Setup Guide */}
+                        <GoogleScriptSetupGuide />
                       </div>
                       
                       {/* Agreement */}
@@ -910,7 +1002,7 @@ const Registration: React.FC = () => {
                             />
                           </div>
                           <label htmlFor="agreeTerms" className="text-sm text-islamic-slate">
-                            I confirm that all the information provided is accurate and complete. I agree to the <a href="#" className="text-islamic-teal hover:underline">terms and conditions</a> and <a href="#" className="text-islamic-teal hover:underline">privacy policy</a> of Irsyadulhaq Islamic Boarding School.
+                            Saya menyatakan bahwa semua informasi yang diberikan adalah akurat dan lengkap. Saya menyetujui <a href="#" className="text-islamic-teal hover:underline">syarat dan ketentuan</a> serta <a href="#" className="text-islamic-teal hover:underline">kebijakan privasi</a> Pondok Pesantren Islam Irsyadulhaq.
                           </label>
                         </div>
                       </div>
@@ -921,13 +1013,21 @@ const Registration: React.FC = () => {
                           onClick={prevStep}
                           className="btn-outline"
                         >
-                          Previous Step
+                          Langkah Sebelumnya
                         </button>
                         <button
                           type="submit"
-                          className="btn-primary"
+                          className="btn-primary flex items-center space-x-2"
+                          disabled={isSubmitting}
                         >
-                          Submit Application
+                          {isSubmitting ? (
+                            <>
+                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                              <span>Mengirim...</span>
+                            </>
+                          ) : (
+                            <span>Kirim Pendaftaran</span>
+                          )}
                         </button>
                       </div>
                     </AnimatedSectionWrapper>
