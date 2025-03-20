@@ -16,11 +16,11 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-medium text-white">Irsyadulhaq</span>
-                <span className="text-xs text-islamic-sand/80 -mt-1">Islamic Boarding School</span>
+                <span className="text-xs text-islamic-sand/80 -mt-1">Pondok Pesantren</span>
               </div>
             </div>
             <p className="text-sm text-islamic-sand/80 mt-4">
-              Nurturing future leaders with Islamic values, academic excellence, and character development since 1985.
+              Membina pemimpin masa depan dengan nilai-nilai Islam, keunggulan akademik, dan pengembangan karakter sejak 1985.
             </p>
             <div className="flex space-x-4 pt-2">
               <a href="#" className="text-islamic-sand hover:text-islamic-gold transition-colors" aria-label="Facebook">
@@ -37,65 +37,65 @@ const Footer: React.FC = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Quick Links</h3>
+            <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Tautan Cepat</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Home</Link>
+                <Link to="/" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Beranda</Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">About Us</Link>
+                <Link to="/about" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Tentang Kami</Link>
               </li>
               <li>
-                <Link to="/registration" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Apply Now</Link>
+                <Link to="/registration" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Daftar Sekarang</Link>
               </li>
               <li>
-                <Link to="/organization" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Organization</Link>
+                <Link to="/organization" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Organisasi</Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">News & Events</a>
+                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Berita & Acara</a>
               </li>
               <li>
-                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Gallery</a>
+                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Galeri</a>
               </li>
             </ul>
           </div>
           
           {/* Programs */}
           <div>
-            <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Our Programs</h3>
+            <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Program Kami</h3>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Tahfidz Quran</a>
               </li>
               <li>
-                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Islamic Studies</a>
+                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Kajian Islam</a>
               </li>
               <li>
-                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Arabic Language</a>
+                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Bahasa Arab</a>
               </li>
               <li>
-                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">General Education</a>
+                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Pendidikan Umum</a>
               </li>
               <li>
-                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Character Building</a>
+                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Pembentukan Karakter</a>
               </li>
               <li>
-                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Extracurricular</a>
+                <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Ekstrakurikuler</a>
               </li>
             </ul>
           </div>
           
           {/* Contact */}
           <div>
-            <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Contact Us</h3>
+            <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Hubungi Kami</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={18} className="text-islamic-gold mr-2 mt-0.5" />
-                <span className="text-sm text-islamic-sand/80">123 Islamic Center Street, City, State 12345</span>
+                <span className="text-sm text-islamic-sand/80">Jl. Pesantren No. 123, Kota, Provinsi 12345</span>
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="text-islamic-gold mr-2" />
-                <span className="text-sm text-islamic-sand/80">+1 (123) 456-7890</span>
+                <span className="text-sm text-islamic-sand/80">+62 123 456 7890</span>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-islamic-gold mr-2" />
@@ -108,18 +108,18 @@ const Footer: React.FC = () => {
         <div className="border-t border-islamic-navy/40 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-islamic-sand/60">
-              &copy; {new Date().getFullYear()} Irsyadulhaq Islamic Boarding School. All rights reserved.
+              &copy; {new Date().getFullYear()} Pondok Pesantren Irsyadulhaq. Hak Cipta Dilindungi.
             </p>
             <div className="mt-4 md:mt-0">
               <ul className="flex space-x-6">
                 <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Privacy Policy</a>
+                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Kebijakan Privasi</a>
                 </li>
                 <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Terms of Service</a>
+                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Syarat Layanan</a>
                 </li>
                 <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Sitemap</a>
+                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Peta Situs</a>
                 </li>
               </ul>
             </div>

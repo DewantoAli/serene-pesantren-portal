@@ -25,10 +25,10 @@ const Header: React.FC = () => {
   }, [location.pathname]);
   
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Registration', path: '/registration' },
-    { name: 'Organization', path: '/organization' },
-    { name: 'About', path: '/about' },
+    { name: 'Beranda', path: '/' },
+    { name: 'Pendaftaran', path: '/registration' },
+    { name: 'Organisasi', path: '/organization' },
+    { name: 'Tentang', path: '/about' },
   ];
   
   const isActive = (path: string) => {
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
           </div>
           <div className="flex flex-col">
             <span className="font-display font-medium text-islamic-navy">Irsyadulhaq</span>
-            <span className="text-xs text-islamic-slate -mt-1">Islamic Boarding School</span>
+            <span className="text-xs text-islamic-slate -mt-1">Pondok Pesantren</span>
           </div>
         </Link>
         
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             to="/registration" 
             className="btn-primary text-sm px-5 py-2"
           >
-            Apply Now
+            Daftar Sekarang
           </Link>
         </nav>
         
@@ -108,7 +108,7 @@ const Header: React.FC = () => {
             to="/registration" 
             className="btn-primary text-center mt-4"
           >
-            Apply Now
+            Daftar Sekarang
           </Link>
         </nav>
       </div>
