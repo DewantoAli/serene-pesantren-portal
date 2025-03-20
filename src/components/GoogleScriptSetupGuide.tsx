@@ -2,7 +2,7 @@
 import React from 'react';
 import { Info, ArrowDown } from 'lucide-react';
 
-const GoogleScriptSetupGuide: React.FC = () => {
+const GoogleScriptSetupGuide: React.FC = (https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec) => {
   return (
     <div className="mt-4 p-4 bg-islamic-teal/10 rounded-lg text-islamic-slate">
       <h3 className="text-lg font-medium text-islamic-navy mb-2 flex items-center">
