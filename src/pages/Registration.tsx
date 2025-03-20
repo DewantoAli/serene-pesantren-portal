@@ -966,7 +966,7 @@ const Registration: React.FC = () => {
                         </div>
                       </div>
                       
-                      {/* Google Script URL Input */}
+                      {/* Google Script URL Input 
                       <div className="mb-6">
                         <div className="form-input-wrapper">
                           <label htmlFor="googleScriptUrl" className="form-label">URL Google Script *</label>
@@ -983,6 +983,8 @@ const Registration: React.FC = () => {
                             Masukkan URL Google Script yang telah Anda buat untuk menerima data pendaftaran.
                           </p>
                         </div>
+                        */}
+
                         
                         {/* Add Google Script Setup Guide */}
                         <GoogleScriptSetupGuide />
