@@ -970,7 +970,7 @@ import React, { useState } from 'react';
 
 const MyForm = () => {
   // Tetapkan URL Google Script secara langsung di sini
-  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec');
+  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/your-google-script-id/exec');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -980,7 +980,7 @@ const MyForm = () => {
     };
 
     try {
-      const response = await fetch(googleScriptUrl, {
+      const response = await fetch(https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
