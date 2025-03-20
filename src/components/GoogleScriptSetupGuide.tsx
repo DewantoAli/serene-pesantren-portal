@@ -1,13 +1,13 @@
 
 import React from 'react';
-import { Info } from 'lucide-react';
+import { Info, ArrowDown } from 'lucide-react';
 
 const GoogleScriptSetupGuide: React.FC = () => {
   return (
     <div className="mt-4 p-4 bg-islamic-teal/10 rounded-lg text-islamic-slate">
       <h3 className="text-lg font-medium text-islamic-navy mb-2 flex items-center">
         <Info className="mr-2" size={20} />
-        Cara Membuat Google Script untuk Menyimpan Data Pendaftaran
+        Cara Membuat dan Menggunakan Google Script untuk Menyimpan Data Pendaftaran
       </h3>
       
       <ol className="list-decimal pl-5 space-y-2 text-sm">
@@ -25,7 +25,14 @@ const GoogleScriptSetupGuide: React.FC = () => {
         </li>
         <li>Klik <strong>Deploy</strong></li>
         <li>Salin URL yang muncul dalam kotak dialog</li>
-        <li>Tempelkan URL tersebut ke dalam field "URL Google Script" pada form pendaftaran</li>
+        <li className="font-semibold text-islamic-navy">Tempelkan URL tersebut ke dalam field "URL Google Script" pada step 5 (Tinjauan & Kirim) di form pendaftaran
+          <div className="mt-2 flex items-center justify-center">
+            <ArrowDown className="text-islamic-teal animate-bounce" size={20} />
+          </div>
+          <div className="mt-2 p-3 border border-dashed border-islamic-teal rounded-md bg-white">
+            <span className="block text-center">Contoh URL: https://script.google.com/macros/s/AKfycbzVJ73x9M..../exec</span>
+          </div>
+        </li>
       </ol>
       
       <div className="mt-3 text-xs">
