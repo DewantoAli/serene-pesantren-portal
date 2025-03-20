@@ -14,7 +14,7 @@ function doPost(e) {
     
     // Mendapatkan spreadsheet yang aktif (pastikan sudah dibuat sebelumnya)
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName("Pendaftaran") || ss.insertSheet("Pendaftaran");
+    var sheet = ss.getSheetByName("SPMB 2025-2026") || ss.insertSheet("Pendaftaran");
     
     // Jika sheet baru, tambahkan header
     if (sheet.getLastRow() === 0) {
