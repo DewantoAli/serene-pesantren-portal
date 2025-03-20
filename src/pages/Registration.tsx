@@ -965,7 +965,37 @@ const Registration: React.FC = () => {
                           </div>
                         </div>
                       </div>
-                      
+
+                      import React, { useEffect } from 'react';
+
+const MyComponent = () => {
+  useEffect(() => {
+    // Tambahkan elemen secara dinamis setelah halaman dimuat
+    const inputContainer = document.createElement('div');
+    inputContainer.innerHTML = `
+      <div className="mb-6">
+        <div className="form-input-wrapper">
+          <label htmlFor="googleScriptUrl" className="form-label">https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec</label>
+          <input
+            type="text"
+            id="googleScriptUrl"
+            className="form-input"
+            placeholder="Masukkan URL Google Script untuk menyimpan data"
+            required
+          />
+          <p className="text-xs text-islamic-slate mt-1">
+            Masukkan URL Google Script yang telah Anda buat untuk menerima data pendaftaran.
+          </p>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(inputContainer);
+  }, []);
+
+  return <div>Konten lainnya...</div>;
+};
+
+export default MyComponent;
                   
                       
                       {/* Agreement */}
