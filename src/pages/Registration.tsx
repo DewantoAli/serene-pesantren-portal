@@ -8,9 +8,9 @@ import Footer from '@/components/layout/Footer';
 import GoogleScriptSetupGuide from '@/components/GoogleScriptSetupGuide';
 
 const Registration: React.FC = () => {
-  const [step, setStep] = useState(SPMB 2025-2026);
+  const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec');
+  const [googleScriptUrl, setGoogleScriptUrl] = useState('');
   const [formData, setFormData] = useState({
     // Personal Information
     firstName: '',
@@ -965,8 +965,8 @@ const Registration: React.FC = () => {
                           </div>
                         </div>
                       </div>
-                     
-                      {/* Google Script URL Input
+                      
+                      {/* Google Script URL Input */}
                       <div className="mb-6">
                         <div className="form-input-wrapper">
                           <label htmlFor="googleScriptUrl" className="form-label">URL Google Script *</label>
@@ -984,12 +984,10 @@ const Registration: React.FC = () => {
                           </p>
                         </div>
                         
-                        {/* Add Google Script Setup Guide
+                        {/* Add Google Script Setup Guide */}
                         <GoogleScriptSetupGuide />
                       </div>
-                       */}
-            
-
+                      
                       {/* Agreement */}
                       <div className="mb-8">
                         <div className="flex items-start space-x-3 mb-4">
