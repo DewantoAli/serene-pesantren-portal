@@ -1,4 +1,4 @@
-
+{/*
 import React from 'react';
 import { Info, ArrowDown } from 'lucide-react';
 
@@ -43,3 +43,6 @@ const GoogleScriptSetupGuide: React.FC = () => {
 };
 
 export default GoogleScriptSetupGuide;
+
+ */}
+
