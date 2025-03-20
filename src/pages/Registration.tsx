@@ -966,27 +966,7 @@ const Registration: React.FC = () => {
                         </div>
                       </div>
                       
-                      {/* Google Script URL Input */}
-                      <div className="mb-6">
-                        <div className="form-input-wrapper">
-                          <label htmlFor="googleScriptUrl" className="form-label">URL Google Script *</label>
-                          <input
-                            type="text"
-                            id="googleScriptUrl"
-                            value={googleScriptUrl}
-                            onChange={(e) => setGoogleScriptUrl(e.target.value)}
-                            className="form-input"
-                            placeholder="Masukkan URL Google Script untuk menyimpan data"
-                            required
-                          />
-                          <p className="text-xs text-islamic-slate mt-1">
-                            Masukkan URL Google Script yang telah Anda buat untuk menerima data pendaftaran.
-                          </p>
-                        </div>
-                        
-                        {/* Add Google Script Setup Guide */}
-                        <GoogleScriptSetupGuide />
-                      </div>
+                  
                       
                       {/* Agreement */}
                       <div className="mb-8">
