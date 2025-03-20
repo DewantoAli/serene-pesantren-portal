@@ -970,7 +970,7 @@ import React, { useState } from 'react';
 
 const MyForm = () => {
   // Tetapkan URL Google Script secara langsung di sini
-  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/your-google-script-id/exec');
+  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
