@@ -959,52 +959,6 @@ const Registration: React.FC = () => {
                           </div>
                         </div>
                       </div>
-
-import React, { useState } from 'react';
-
-const MyForm = () => {
-  // Tetapkan URL Google Script secara langsung di sini
-  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const data = {
-      // Data yang ingin Anda kirim
-    };
-
-    try {
-      const response = await fetch(googleScriptUrl, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        console.log('Data berhasil dikirim ke Google Script');
-      } else {
-        console.error('Gagal mengirim data ke Google Script');
-      }
-    } catch (error) {
-      console.error('Terjadi kesalahan:', error);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      {/* Form fields lainnya */}
-      <button type="submit" className="btn-primary">
-        Submit
-      </button>
-    </form>
-  );
-};
-
-export default MyForm;
-
-           
                       
                       {/* Agreement */}
                       <div className="mb-8">
