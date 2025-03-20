@@ -975,10 +975,10 @@ const MyComponent = () => {
     inputContainer.innerHTML = `
       <div className="mb-6">
         <div className="form-input-wrapper">
-          <label htmlFor="https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec" className="form-label"></label>
+          <label htmlFor="googleScriptUrl" className="form-label"></label>
           <input
             type="text"
-            id="googleScriptUrl"
+            id="https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec"
             className="form-input"
             placeholder="Masukkan URL Google Script untuk menyimpan data"
             required
