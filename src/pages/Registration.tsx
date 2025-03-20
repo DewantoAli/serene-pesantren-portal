@@ -5,7 +5,6 @@ import PatternBackground from '@/components/ui/PatternBackground';
 import { toast } from '@/hooks/use-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import GoogleScriptSetupGuide from '@/components/GoogleScriptSetupGuide';
 
 const Registration: React.FC = () => {
   const [step, setStep] = useState(1);
