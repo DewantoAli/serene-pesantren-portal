@@ -45,7 +45,7 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
-                      src="https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+                      src="https://images.unsplash.com/photo-1567922045116-2a00fae2ed03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
                       alt="Santri di Pondok Pesantren Irsyadulhaq" 
                       className="w-full h-full object-cover"
                     />
@@ -187,7 +187,7 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
-                      src="https://images.unsplash.com/photo-1585036156261-1e2b76f1af3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                      src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
                       alt="Gedung Pondok Pesantren Irsyadulhaq" 
                       className="w-full h-full object-cover"
                     />
