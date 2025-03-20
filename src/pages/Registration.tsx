@@ -965,8 +965,8 @@ const Registration: React.FC = () => {
                           </div>
                         </div>
                       </div>
-                      
-                      {/* Google Script URL Input */}
+                     
+                      {/* Google Script URL Input
                       <div className="mb-6">
                         <div className="form-input-wrapper">
                           <label htmlFor="googleScriptUrl" className="form-label">URL Google Script *</label>
@@ -984,10 +984,12 @@ const Registration: React.FC = () => {
                           </p>
                         </div>
                         
-                        {/* Add Google Script Setup Guide */}
+                        {/* Add Google Script Setup Guide
                         <GoogleScriptSetupGuide />
                       </div>
-                      
+                       */}
+            
+
                       {/* Agreement */}
                       <div className="mb-8">
                         <div className="flex items-start space-x-3 mb-4">
