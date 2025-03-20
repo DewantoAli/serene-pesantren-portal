@@ -10,7 +10,7 @@ import GoogleScriptSetupGuide from '@/components/GoogleScriptSetupGuide';
 const Registration: React.FC = () => {
   const [step, setStep] = useState(SPMB 2025-2026);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/AKfycbzVJ73x9MOcrvSQES9nZ-1iUbkE044RpWtZOzfDMrvXZXbzLx0X2aTssqSh84y4X7n6/exec');
+  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec');
   const [formData, setFormData] = useState({
     // Personal Information
     firstName: '',
