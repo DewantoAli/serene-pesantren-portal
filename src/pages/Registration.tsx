@@ -966,37 +966,51 @@ const Registration: React.FC = () => {
                         </div>
                       </div>
 
-                      import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 
-const MyComponent = () => {
-  useEffect(() => {
-    // Tambahkan elemen secara dinamis setelah halaman dimuat
-    const inputContainer = document.createElement('div');
-    inputContainer.innerHTML = `
-      <div className="mb-6">
-        <div className="form-input-wrapper">
-          <label htmlFor="googleScriptUrl" className="form-label"></label>
-          <input
-            type="text"
-            id="https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec"
-            className="form-input"
-            placeholder="Masukkan URL Google Script untuk menyimpan data"
-            required
-          />
-          <p className="text-xs text-islamic-slate mt-1">
-            Masukkan URL Google Script yang telah Anda buat untuk menerima data pendaftaran.
-          </p>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(inputContainer);
-  }, []);
+const MyForm = () => {
+  // Tetapkan URL Google Script secara langsung di sini
+  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec');
 
-  return <div>Konten lainnya...</div>;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      // Data yang ingin Anda kirim
+    };
+
+    try {
+      const response = await fetch(googleScriptUrl, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        console.log('Data berhasil dikirim ke Google Script');
+      } else {
+        console.error('Gagal mengirim data ke Google Script');
+      }
+    } catch (error) {
+      console.error('Terjadi kesalahan:', error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* Form fields lainnya */}
+      <button type="submit" className="btn-primary">
+        Submit
+      </button>
+    </form>
+  );
 };
 
-export default MyComponent;
-                  
+export default MyForm;
+
+           
                       
                       {/* Agreement */}
                       <div className="mb-8">
