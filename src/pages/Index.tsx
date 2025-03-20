@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, BookOpen, Users, GraduationCap, Calendar, ArrowRight } from 'lucide-react';
+import { ChevronRight, BookOpen, Users, GraduationCap, Calendar, ArrowRight, MapPin } from 'lucide-react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
