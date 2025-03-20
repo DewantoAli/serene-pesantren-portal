@@ -980,7 +980,7 @@ const MyForm = () => {
     };
 
     try {
-      const response = await fetch(https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec, {
+      const response = await fetch(googleScriptUrl, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
