@@ -70,7 +70,7 @@ const Header: React.FC = () => {
           ) : (
             <div className="flex items-center">
               <img 
-                src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
+                src="/lovable-uploads/logo non bg.png.png" 
                 alt="Irsyadulhaq Logo" 
                 className="h-14 w-auto object-contain"
                 style={{ objectFit: 'contain', objectPosition: 'center' }}
