@@ -20,12 +20,12 @@ const Footer: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-medium text-white">Irsyadulhaq</span>
+                <span className="font-display font-medium text-white">IRSYADUL HAQ MANADO</span>
                 <span className="text-xs text-islamic-sand/80 -mt-1">Pondok Pesantren</span>
               </div>
             </div>
             <p className="text-sm text-islamic-sand/80 mt-4">
-              Membina pemimpin masa depan dengan nilai-nilai Islam, keunggulan akademik, dan pengembangan karakter sejak 1985.
+              Membina pemimpin masa depan dengan nilai-nilai Islam, keunggulan akademik, dan pengembangan karakter.
             </p>
             <div className="flex space-x-4 pt-2">
               <a href="#" className="text-islamic-sand hover:text-islamic-gold transition-colors" aria-label="Facebook">
@@ -96,15 +96,15 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={18} className="text-islamic-gold mr-2 mt-0.5" />
-                <span className="text-sm text-islamic-sand/80">Jl. Pesantren No. 123, Kota, Provinsi 12345</span>
+                <span className="text-sm text-islamic-sand/80">Jl. Anggur 1, GPI, Paniki Bawah, Kec. Mapanget, Kota Manado, Sulawesi Utara 95256</span>
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="text-islamic-gold mr-2" />
-                <span className="text-sm text-islamic-sand/80">+62 123 456 7890</span>
+                <span className="text-sm text-islamic-sand/80">+62 812-4427-1126</span>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-islamic-gold mr-2" />
-                <span className="text-sm text-islamic-sand/80">info@irsyadulhaq.or.id</span>
+                <span className="text-sm text-islamic-sand/80">irsyadulhaq.manado@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-islamic-navy/40 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-islamic-sand/60">
-              &copy; {new Date().getFullYear()} Pondok Pesantren Irsyadulhaq. Hak Cipta Dilindungi.
+              &copy; {new Date().getFullYear()} Pondok Pesantren Irsyadul Haq. Hak Cipta Dilindungi.
             </p>
             <div className="mt-4 md:mt-0">
               <ul className="flex space-x-6">
