@@ -5,13 +5,11 @@ import PatternBackground from '@/components/ui/PatternBackground';
 import { toast } from '@/hooks/use-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import ImageUploader from '@/components/ui/ImageUploader';
 
 const Registration: React.FC = () => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec';
-  const [heroBackgroundImage, setHeroBackgroundImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     // Personal Information
     firstName: '',
@@ -209,18 +207,7 @@ const Registration: React.FC = () => {
       <Header />
       <main className="pt-28 pb-20">
         <section className="relative py-16 overflow-hidden">
-          {heroBackgroundImage ? (
-            <div className="absolute inset-0 z-[-15]">
-              <img 
-                src={heroBackgroundImage} 
-                alt="Hero background" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/50"></div>
-            </div>
-          ) : (
-            <div className="absolute inset-0 hero-gradient -z-10 opacity-90"></div>
-          )}
+          <div className="absolute inset-0 hero-gradient -z-10 opacity-90"></div>
           <PatternBackground className="absolute inset-0 -z-10 opacity-30" patternType="dots" patternColor="#ffffff" patternOpacity={0.1} />
           
           <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -234,18 +221,6 @@ const Registration: React.FC = () => {
               <p className="text-islamic-cream/90 max-w-2xl mx-auto mb-6">
                 Lengkapi formulir di bawah ini untuk mendaftar di Pondok Pesantren Islam Irsyadulhaq.
               </p>
-              
-              <div className="relative inline-block">
-                <ImageUploader
-                  id="hero-background"
-                  className="inline-block"
-                  height="h-10"
-                  width="w-40"
-                  storageKey="heroBackgroundImage"
-                  onImageChange={setHeroBackgroundImage}
-                  label="Upload Background"
-                />
-              </div>
             </AnimatedSectionWrapper>
           </div>
         </section>
@@ -916,84 +891,4 @@ const Registration: React.FC = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
                               <div>
                                 <span className="text-islamic-slate">Nama Wali:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentName}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Hubungan:</span>
-                                <span className="ml-2 text-islamic-navy">
-                                  {formData.parentRelation === 'father' ? 'Ayah' : 
-                                   formData.parentRelation === 'mother' ? 'Ibu' :
-                                   formData.parentRelation === 'guardian' ? 'Wali' : 
-                                   formData.parentRelation === 'other' ? 'Lainnya' : ''}
-                                </span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Telepon:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentPhone}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Email:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentEmail || 'N/A'}</span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div className="pt-4">
-                            <div className="flex items-start space-x-3">
-                              <input
-                                type="checkbox"
-                                id="agreeTerms"
-                                name="agreeTerms"
-                                checked={formData.agreeTerms}
-                                onChange={handleChange}
-                                className="mt-1"
-                                required
-                              />
-                              <label htmlFor="agreeTerms" className="text-sm text-islamic-slate">
-                                Saya menyatakan bahwa informasi yang diberikan adalah benar dan akurat. Saya setuju dengan syarat dan ketentuan pendaftaran Pondok Pesantren Islam Irsyadulhaq.
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <button
-                          type="button"
-                          onClick={prevStep}
-                          className="btn-outline"
-                        >
-                          Previous Step
-                        </button>
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="btn-primary inline-flex items-center space-x-2"
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <span>Mengirim...</span>
-                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                            </>
-                          ) : (
-                            <>
-                              <span>Kirim Pendaftaran</span>
-                              <ChevronRight size={18} />
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </AnimatedSectionWrapper>
-                  )}
-                </form>
-              )}
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
-};
-
-export default Registration;
+                                <span className="ml-2
