@@ -11,9 +11,9 @@ const About: React.FC = () => {
   // Milestones data
   const milestones = [
     {
-      year: "1985",
+      year: "2000",
       title: "Foundation",
-      description: "Irsyadulhaq Islamic Boarding School was founded by Sheikh Abdullah Hamid with just 20 students and 3 teachers."
+      description: "Irsyadul Haq Pondok Pesantren School was founded by Sheikh Abdullah Hamid with just 20 students and 3 teachers."
     },
     {
       year: "1995",
@@ -136,7 +136,7 @@ const About: React.FC = () => {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
-                      src="https://images.unsplash.com/photo-1621274147744-cfb5033bb95a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+                      src="https://ik.imagekit.io/uzuuvayyu/WhatsApp%20Image%202025-02-22%20at%209.56.40%20AM.jpeg?updatedAt=1742526180427" 
                       alt="Irsyadulhaq Islamic Boarding School Building" 
                       className="w-full h-full object-cover"
                     />
