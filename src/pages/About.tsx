@@ -191,21 +191,17 @@ const About: React.FC = () => {
                   </h3>
                 </div>
                 <p className="text-islamic-slate text-center mb-6">
-                  Menanamkan sifat Amanah dan Akhlakul karimah berdasarkan tuntunan syari’at Islam
-                  Menjalankan pendidikan yang berkelanjutan, aktif, tertib, disiplin dan efisien. 
-                  Membekali Ilmu Alat sebagai modal memahami Ilmu Ghoyah.
-                  Menciptakan Tempat Belajar yang sehat, aman dan menyenangkan.
-                  Memperkuat, mengembangkan serta mendakwahkan pemahaman islam berdasarkan Al Qur'an dan As Sunnah secara berkesinambungan.
-                  Membentuk Santri yang cinta dan bangga terhadap Negara Kesatuan Republik Indonesia. 
+                 
 .
                 </p>
                 <ul className="space-y-3">
                   {[
-                    "Deliver high-quality Islamic and academic education",
-                    "Develop strong Islamic character and identity in students",
-                    "Foster a supportive and nurturing learning environment",
-                    "Encourage critical thinking and problem-solving skills",
-                    "Promote community service and social responsibility"
+                    "Menanamkan sifat Amanah dan Akhlakul karimah berdasarkan tuntunan syari’at Islam",
+                    "Menjalankan pendidikan yang berkelanjutan, aktif, tertib, disiplin dan efisien",
+                    "Membekali Ilmu Alat sebagai modal memahami Ilmu Ghoyah",
+                    "Menciptakan Tempat Belajar yang sehat, aman dan menyenangkan",
+                    "Memperkuat, mengembangkan serta mendakwahkan pemahaman islam berdasarkan Al Qur'an dan As Sunnah secara berkesinambungan",
+                    "Membentuk Santri yang cinta dan bangga terhadap Negara Kesatuan Republik Indonesia"
                   ].map((item, index) => (
                     <li key={index} className="flex items-start">
                       <div className="w-5 h-5 rounded-full bg-islamic-teal/20 flex items-center justify-center mt-1 mr-3">
