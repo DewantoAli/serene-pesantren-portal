@@ -66,7 +66,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2 relative group">
           {logoImage ? (
-            <img src={https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703} alt="Logo" className="w-10 h-10 rounded-full object-cover" />
+            <img src={logo} alt="Logo" className="w-10 h-10 rounded-full object-cover" />
           ) : (
             <div className="w-10 h-10 rounded-full bg-islamic-navy flex items-center justify-center">
               <span className="text-white text-lg font-serif font-bold">IH</span>
