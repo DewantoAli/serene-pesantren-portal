@@ -45,7 +45,7 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
-                      src="https://unsplash.com/photos/29B35cCnnIY?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+                      src="https://unsplash.com/photos/289J2p0LZFs=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
                       alt="Santri di Pondok Pesantren Irsyadulhaq" 
                       className="w-full h-full object-cover"
                     />
