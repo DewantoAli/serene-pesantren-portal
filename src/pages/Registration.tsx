@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { CheckCircle2, ChevronRight, Info } from 'lucide-react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
@@ -6,12 +5,13 @@ import PatternBackground from '@/components/ui/PatternBackground';
 import { toast } from '@/hooks/use-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import ImageUploader from '@/components/ui/ImageUploader';
 
 const Registration: React.FC = () => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // Google Script URL is now embedded directly in the code for security
   const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec';
+  const [heroBackgroundImage, setHeroBackgroundImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     // Personal Information
     firstName: '',
@@ -137,7 +137,6 @@ const Registration: React.FC = () => {
     try {
       setIsSubmitting(true);
       
-      // Transform formData into a format suitable for Google Sheets
       const spreadsheetData = {
         timestamp: new Date().toISOString(),
         fullName: `${formData.firstName} ${formData.lastName}`,
@@ -167,10 +166,9 @@ const Registration: React.FC = () => {
         additionalNotes: formData.additionalNotes || "N/A",
       };
       
-      // Send data to Google Sheets via Apps Script
       const response = await fetch(googleScriptUrl, {
         method: 'POST',
-        mode: 'no-cors', // Important for CORS issues
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -179,13 +177,11 @@ const Registration: React.FC = () => {
       
       console.log('Form submitted to Google Sheets');
       
-      // Show success toast
       toast({
         title: "Pendaftaran Terkirim!",
         description: "Terima kasih atas pendaftaran Anda. Kami akan menghubungi Anda segera.",
       });
       
-      // Move to success step
       setStep(6);
       window.scrollTo(0, 0);
     } catch (error) {
@@ -200,7 +196,6 @@ const Registration: React.FC = () => {
     }
   };
   
-  // Stepper configuration
   const steps = [
     { number: 1, title: 'Informasi Pribadi' },
     { number: 2, title: 'Latar Belakang Pendidikan' },
@@ -213,9 +208,19 @@ const Registration: React.FC = () => {
     <>
       <Header />
       <main className="pt-28 pb-20">
-        {/* Hero Section */}
         <section className="relative py-16 overflow-hidden">
-          <div className="absolute inset-0 hero-gradient -z-10 opacity-90"></div>
+          {heroBackgroundImage ? (
+            <div className="absolute inset-0 z-[-15]">
+              <img 
+                src={heroBackgroundImage} 
+                alt="Hero background" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/50"></div>
+            </div>
+          ) : (
+            <div className="absolute inset-0 hero-gradient -z-10 opacity-90"></div>
+          )}
           <PatternBackground className="absolute inset-0 -z-10 opacity-30" patternType="dots" patternColor="#ffffff" patternOpacity={0.1} />
           
           <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -226,17 +231,27 @@ const Registration: React.FC = () => {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
                 Pendaftaran Santri
               </h1>
-              <p className="text-islamic-cream/90 max-w-2xl mx-auto">
+              <p className="text-islamic-cream/90 max-w-2xl mx-auto mb-6">
                 Lengkapi formulir di bawah ini untuk mendaftar di Pondok Pesantren Islam Irsyadulhaq.
               </p>
+              
+              <div className="relative inline-block">
+                <ImageUploader
+                  id="hero-background"
+                  className="inline-block"
+                  height="h-10"
+                  width="w-40"
+                  storageKey="heroBackgroundImage"
+                  onImageChange={setHeroBackgroundImage}
+                  label="Upload Background"
+                />
+              </div>
             </AnimatedSectionWrapper>
           </div>
         </section>
         
-        {/* Registration Form */}
         <section className="py-12">
           <div className="container mx-auto px-4 md:px-6">
-            {/* Stepper */}
             <div className="mb-12">
               <div className="hidden md:flex justify-between items-center max-w-3xl mx-auto mb-8">
                 {steps.map((s) => (
@@ -278,7 +293,6 @@ const Registration: React.FC = () => {
               </div>
             </div>
             
-            {/* Form Container */}
             <div className="max-w-3xl mx-auto">
               {step === 6 ? (
                 <AnimatedSectionWrapper animation="scale-in" className="glass-card p-8 rounded-lg text-center">
@@ -304,7 +318,6 @@ const Registration: React.FC = () => {
                 </AnimatedSectionWrapper>
               ) : (
                 <form onSubmit={handleSubmit} className="glass-card p-8 rounded-lg">
-                  {/* Step 1: Personal Information */}
                   {step === 1 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
@@ -501,7 +514,6 @@ const Registration: React.FC = () => {
                     </AnimatedSectionWrapper>
                   )}
                   
-                  {/* Step 2: Educational Background */}
                   {step === 2 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
@@ -580,7 +592,6 @@ const Registration: React.FC = () => {
                     </AnimatedSectionWrapper>
                   )}
                   
-                  {/* Step 3: Program Selection */}
                   {step === 3 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
@@ -670,7 +681,6 @@ const Registration: React.FC = () => {
                     </AnimatedSectionWrapper>
                   )}
                   
-                  {/* Step 4: Parent/Guardian Information */}
                   {step === 4 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
@@ -820,7 +830,6 @@ const Registration: React.FC = () => {
                     </AnimatedSectionWrapper>
                   )}
                   
-                  {/* Step 5: Review & Submit */}
                   {step === 5 && (
                     <AnimatedSectionWrapper animation="fade-in">
                       <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
@@ -833,7 +842,6 @@ const Registration: React.FC = () => {
                         </p>
                         
                         <div className="space-y-6">
-                          {/* Personal Information Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
                             <h3 className="font-medium text-islamic-navy mb-3">Informasi Pribadi</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
@@ -872,7 +880,6 @@ const Registration: React.FC = () => {
                             </div>
                           </div>
                           
-                          {/* Educational Background Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
                             <h3 className="font-medium text-islamic-navy mb-3">Latar Belakang Pendidikan</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
@@ -891,7 +898,6 @@ const Registration: React.FC = () => {
                             </div>
                           </div>
                           
-                          {/* Program Selection Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
                             <h3 className="font-medium text-islamic-navy mb-3">Pilihan Program</h3>
                             <div className="text-sm">
@@ -905,7 +911,6 @@ const Registration: React.FC = () => {
                             </div>
                           </div>
                           
-                          {/* Parent Information Review */}
                           <div className="p-4 rounded-lg border border-gray-200">
                             <h3 className="font-medium text-islamic-navy mb-3">Informasi Wali</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
@@ -933,7 +938,6 @@ const Registration: React.FC = () => {
                             </div>
                           </div>
                           
-                          {/* Agreement */}
                           <div className="pt-4">
                             <div className="flex items-start space-x-3">
                               <input

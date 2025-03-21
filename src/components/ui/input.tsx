@@ -1,9 +1,31 @@
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  wrapperClassName?: string;
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, wrapperClassName, ...props }, ref) => {
+    // For file inputs, we'll handle differently
+    if (type === "file") {
+      return (
+        <div className={cn("relative", wrapperClassName)}>
+          <input
+            type={type}
+            className={cn(
+              "absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10",
+              className
+            )}
+            ref={ref}
+            {...props}
+          />
+        </div>
+      )
+    }
+
     return (
       <input
         type={type}
