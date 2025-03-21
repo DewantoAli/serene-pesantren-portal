@@ -187,7 +187,7 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
-                      src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+                      src="https://media-hosting.imagekit.io//a1c3b444c804407f/1709315665487.jpg?Expires=1837133719&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=oTq6oWR6Mq6iRX~9qHz7c5f1b2bnFbQCzUrgpnEd6oQasM16p9-u2KGO9p4pIBNuhsbXOmSymzNuNn7NgrJG-0pYcTXODFYp3f9vdiFaj0T79IBA0lAkttWU2lGwMi5uEGALayoGGAvTh3OZ2Y9IKWk9gkios6jHRgwtIG~CLNVr1EUT~aSeXWjYlKvgKv3YfjVpmyjWGogHBzxYT2NgdXAlnvR0xuHcuaB-u2SEVIDZ-emeGg4o0Qxgo807pvHVx5M3sVlN8f~~~7PDOBAIc5E9Cvhwa7huoAE1xMv-6BBcoCYzmYnNYajv3IbGX8X-A0fF7kZ8Jm-10O5g4AF5Ew__" 
                       alt="Gedung Pondok Pesantren Irsyadulhaq" 
                       className="w-full h-full object-cover"
                     />
