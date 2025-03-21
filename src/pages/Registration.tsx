@@ -9,7 +9,8 @@ import Footer from '@/components/layout/Footer';
 const Registration: React.FC = () => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [googleScriptUrl, setGoogleScriptUrl] = useState('https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec');
+  // Google Script URL is now embedded directly in the code for security
+  const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzVJ73x9MOcrvSQES9nZ-1iUbkE044RpWtZOzfDMrvXZXbzLx0X2aTssqSh84y4X7n6/exec';
   const [formData, setFormData] = useState({
     // Personal Information
     firstName: '',
@@ -130,9 +131,6 @@ const Registration: React.FC = () => {
         variant: "destructive",
       });
       return;
-    }
-
-    
     }
     
     try {
@@ -899,119 +897,4 @@ const Registration: React.FC = () => {
                               <span className="text-islamic-slate">Program Terpilih:</span>
                               <span className="ml-2 text-islamic-navy">
                                 {formData.program === 'islamic-studies' && 'Program Studi Islam'}
-                                {formData.program === 'tahfidz' && 'Program Tahfidz Quran'}
-                                {formData.program === 'academic-islamic' && 'Program Terpadu Akademik-Islam'}
-                                {formData.program === 'leadership' && 'Program Kepemimpinan Islam'}
-                              </span>
-                            </div>
-                          </div>
-                          
-                          {/* Parent/Guardian Information Review */}
-                          <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Informasi Wali</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                              <div>
-                                <span className="text-islamic-slate">Nama:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentName}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Hubungan:</span>
-                                <span className="ml-2 text-islamic-navy">
-                                  {formData.parentRelation === 'father' ? 'Ayah' : 
-                                   formData.parentRelation === 'mother' ? 'Ibu' : 
-                                   formData.parentRelation === 'guardian' ? 'Wali' : 
-                                   formData.parentRelation === 'other' ? 'Lainnya' : ''}
-                                </span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Telepon:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentPhone}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Email:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentEmail || 'N/A'}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Pekerjaan:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentOccupation || 'N/A'}</span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          {/* Health Information Review */}
-                          <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Informasi Kesehatan</h3>
-                            <div className="grid grid-cols-1 gap-y-2 text-sm">
-                              <div>
-                                <span className="text-islamic-slate">Kondisi Kesehatan:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.healthConditions || 'Tidak Ada'}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Alergi:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.allergies || 'Tidak Ada'}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Obat-obatan:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.medications || 'Tidak Ada'}</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Agreement */}
-                      <div className="mb-8">
-                        <div className="flex items-start space-x-3 mb-4">
-                          <div className="flex h-6 items-center">
-                            <input
-                              id="agreeTerms"
-                              name="agreeTerms"
-                              type="checkbox"
-                              checked={formData.agreeTerms}
-                              onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
-                              className="h-4 w-4 rounded border-gray-300 text-islamic-teal focus:ring-islamic-teal/30"
-                            />
-                          </div>
-                          <label htmlFor="agreeTerms" className="text-sm text-islamic-slate">
-                            Saya menyatakan bahwa semua informasi yang diberikan adalah akurat dan lengkap. Saya menyetujui <a href="#" className="text-islamic-teal hover:underline">syarat dan ketentuan</a> serta <a href="#" className="text-islamic-teal hover:underline">kebijakan privasi</a> Pondok Pesantren Islam Irsyadulhaq.
-                          </label>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between">
-                        <button
-                          type="button"
-                          onClick={prevStep}
-                          className="btn-outline"
-                        >
-                          Langkah Sebelumnya
-                        </button>
-                        <button
-                          type="submit"
-                          className="btn-primary flex items-center space-x-2"
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                              <span>Mengirim...</span>
-                            </>
-                          ) : (
-                            <span>Kirim Pendaftaran</span>
-                          )}
-                        </button>
-                      </div>
-                    </AnimatedSectionWrapper>
-                  )}
-                </form>
-              )}
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
-};
-
-export default Registration;
+                                {formData.program === 'tah
