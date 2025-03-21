@@ -191,7 +191,13 @@ const About: React.FC = () => {
                   </h3>
                 </div>
                 <p className="text-islamic-slate text-center mb-6">
-                  To provide a comprehensive Islamic education that nurtures students intellectually, spiritually, and morally, preparing them to be exemplary Muslims who contribute positively to society and uphold Islamic values in all aspects of life.
+                  Menanamkan sifat Amanah dan Akhlakul karimah berdasarkan tuntunan syari’at Islam
+ Menjalankan pendidikan yang berkelanjutan, aktif, tertib, disiplin dan efisien.
+ Membekali Ilmu Alat sebagai modal memahami Ilmu Ghoyah.
+Menciptakan Tempat Belajar yang sehat, aman dan menyenangkan. 
+Memperkuat, mengembangkan serta mendakwahkan pemahaman islam berdasarkan Al Qur'an dan As Sunnah secara berkesinambungan.
+Membentuk Santri yang cinta dan bangga terhadap Negara Kesatuan Republik Indonesia. 
+.
                 </p>
                 <ul className="space-y-3">
                   {[
