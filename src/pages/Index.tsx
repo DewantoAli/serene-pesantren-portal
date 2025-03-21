@@ -45,7 +45,7 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
-                      src="https://imgur.com/v0s5ynb=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+                      src="https://media-hosting.imagekit.io//868a48dd554b4deb/1708919328443.jpg?Expires=1837133361&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=dP8NWI~s-q2F0Jo3167GA0sCPJ2c9sN4IWDzPmJFOkGYgVu4jsHOA~V5wGz4ZOBPALivcg0RwVbnglo~fJi3XLzulmjMJqhqiHwTapbsMGnz5v6GgkwB5yRK7~ugvZ4iNMrRpZtW3~L9uYJ2ZdLbl5vL0Dd9KQ5txZH3X3kSbxrGQ2o~B-8NBCHJtnh0oPBPstqOi9fYzSR4hIBGSRPPmDMt8LDN9Q3gC-O9rE7bn1MLk8TMYoFJ6h1ukOmBp1DuMhPfeSoj4l-Fbi3uDZpRhEi4thk0~GL-MGmVQQZROpV~Olzg3bgswSkyGwv0FEUxeQ~3XQ8DKPCuknD3OyMVGA__=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
                       alt="Santri di Pondok Pesantren Irsyadulhaq" 
                       className="w-full h-full object-cover"
                     />
