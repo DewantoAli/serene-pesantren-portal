@@ -78,7 +78,7 @@ const Header: React.FC = () => {
             </div>
           )}
           <div className="flex flex-col">
-            <span className="font-display font-medium text-islamic-navy">Irsyadulhaq</span>
+            <span className="font-display font-medium text-islamic-navy">IRSYADUL HAQ MANADO</span>
             <span className="text-xs text-islamic-slate -mt-1">Pondok Pesantren</span>
           </div>
           
