@@ -11,11 +11,14 @@ const Footer: React.FC = () => {
           {/* Logo and About */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img 
-                src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
-                alt="Irsyadulhaq Logo" 
-                className="h-14 w-auto"
-              />
+              <div className="flex items-center">
+                <img 
+                  src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
+                  alt="Irsyadulhaq Logo" 
+                  className="h-14 w-auto"
+                  style={{ objectFit: 'contain', objectPosition: 'center' }}
+                />
+              </div>
               <div className="flex flex-col">
                 <span className="font-display font-medium text-white">Irsyadulhaq</span>
                 <span className="text-xs text-islamic-sand/80 -mt-1">Pondok Pesantren</span>

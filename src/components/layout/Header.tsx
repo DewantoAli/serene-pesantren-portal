@@ -68,11 +68,14 @@ const Header: React.FC = () => {
           {logoImage ? (
             <img src={logoImage} alt="Logo" className="w-10 h-10 rounded-full object-cover" />
           ) : (
-            <img 
-              src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
-              alt="Irsyadulhaq Logo" 
-              className="h-14 w-auto"
-            />
+            <div className="flex items-center">
+              <img 
+                src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
+                alt="Irsyadulhaq Logo" 
+                className="h-14 w-auto object-contain"
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
           )}
           <div className="flex flex-col">
             <span className="font-display font-medium text-islamic-navy">Irsyadulhaq</span>
