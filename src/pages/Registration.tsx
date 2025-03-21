@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { CheckCircle2, ChevronRight, Info } from 'lucide-react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
@@ -891,4 +892,84 @@ const Registration: React.FC = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
                               <div>
                                 <span className="text-islamic-slate">Nama Wali:</span>
-                                <span className="ml-2
+                                <span className="ml-2 text-islamic-navy">{formData.parentName}</span>
+                              </div>
+                              <div>
+                                <span className="text-islamic-slate">Hubungan:</span>
+                                <span className="ml-2 text-islamic-navy">
+                                  {formData.parentRelation === 'father' ? 'Ayah' : 
+                                   formData.parentRelation === 'mother' ? 'Ibu' :
+                                   formData.parentRelation === 'guardian' ? 'Wali Hukum' :
+                                   formData.parentRelation === 'other' ? 'Lainnya' : ''}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-islamic-slate">Telepon:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.parentPhone}</span>
+                              </div>
+                              <div>
+                                <span className="text-islamic-slate">Email:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.parentEmail || 'N/A'}</span>
+                              </div>
+                              <div>
+                                <span className="text-islamic-slate">Pekerjaan:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.parentOccupation || 'N/A'}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="mt-8 mb-6">
+                          <div className="flex items-start">
+                            <input
+                              type="checkbox"
+                              id="agreeTerms"
+                              name="agreeTerms"
+                              checked={formData.agreeTerms}
+                              onChange={(e) => setFormData({...formData, agreeTerms: e.target.checked})}
+                              className="mt-1 mr-3"
+                            />
+                            <label htmlFor="agreeTerms" className="text-sm text-islamic-slate">
+                              Saya menyatakan bahwa semua informasi di atas benar dan setuju untuk mematuhi semua peraturan dan ketentuan Pondok Pesantren Islam Irsyadulhaq. Saya memahami bahwa informasi yang salah dapat menyebabkan penolakan pendaftaran atau pembatalan penerimaan.
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between">
+                        <button
+                          type="button"
+                          onClick={prevStep}
+                          className="btn-outline"
+                        >
+                          Previous Step
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="btn-primary inline-flex items-center space-x-2"
+                        >
+                          {isSubmitting ? (
+                            <span>Submitting...</span>
+                          ) : (
+                            <>
+                              <span>Submit Application</span>
+                              <ChevronRight size={18} />
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </AnimatedSectionWrapper>
+                  )}
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+export default Registration;
