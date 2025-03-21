@@ -190,10 +190,7 @@ const About: React.FC = () => {
                     Our Mission
                   </h3>
                 </div>
-                <p className="text-islamic-slate text-center mb-6">
-                 
-.
-                </p>
+               
                 <ul className="space-y-3">
                   {[
                     "Menanamkan sifat Amanah dan Akhlakul karimah berdasarkan tuntunan syari’at Islam",
