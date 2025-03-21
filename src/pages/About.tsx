@@ -227,7 +227,7 @@ const About: React.FC = () => {
                   </h3>
                 </div>
                 <p className="text-islamic-slate text-center mb-6">
-                  To be a leading Islamic educational institution recognized for its excellence in integrating traditional Islamic knowledge with modern education, producing graduates who are confident in their faith, academically accomplished, and ready to make meaningful contributions to the global community.
+                 Mencetak generasi Rabbani dan Beraqidah lurus yang berlandaskan Al Qur'an dan As sunnah sebagaimana Pemahaman Salafush Shalih
                 </p>
                 <ul className="space-y-3">
                   {[
