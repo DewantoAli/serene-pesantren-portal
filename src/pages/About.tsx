@@ -96,7 +96,7 @@ const About: React.FC = () => {
                 Our Story
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
-                About Irsyadulhaq
+                About Irsyadul Haq Manado
               </h1>
               <p className="text-islamic-cream/90 max-w-2xl mx-auto">
                 Learn about our journey, mission, and vision in providing exceptional Islamic education.
@@ -118,7 +118,7 @@ const About: React.FC = () => {
                 </h2>
                 <div className="geometric-divider"></div>
                 <p className="text-islamic-slate mb-4">
-                  Irsyadulhaq Islamic Boarding School was founded in 1985 by Sheikh Abdullah Hamid, a respected Islamic scholar with a vision to create an educational institution that would nurture both the intellectual and spiritual development of Muslim youth.
+                  Irsyadul Haq Islamic Boarding School was founded in 1985 by Sheikh Abdullah Hamid, a respected Islamic scholar with a vision to create an educational institution that would nurture both the intellectual and spiritual development of Muslim youth.
                 </p>
                 <p className="text-islamic-slate mb-6">
                   Starting with just 20 students and 3 teachers in a modest building, our school has grown into a renowned institution with over 1,000 students, modern facilities, and a comprehensive curriculum that balances Islamic studies with academic excellence.
@@ -192,11 +192,11 @@ const About: React.FC = () => {
                 </div>
                 <p className="text-islamic-slate text-center mb-6">
                   Menanamkan sifat Amanah dan Akhlakul karimah berdasarkan tuntunan syari’at Islam
- Menjalankan pendidikan yang berkelanjutan, aktif, tertib, disiplin dan efisien.
- Membekali Ilmu Alat sebagai modal memahami Ilmu Ghoyah.
-Menciptakan Tempat Belajar yang sehat, aman dan menyenangkan. 
-Memperkuat, mengembangkan serta mendakwahkan pemahaman islam berdasarkan Al Qur'an dan As Sunnah secara berkesinambungan.
-Membentuk Santri yang cinta dan bangga terhadap Negara Kesatuan Republik Indonesia. 
+                  Menjalankan pendidikan yang berkelanjutan, aktif, tertib, disiplin dan efisien. 
+                  Membekali Ilmu Alat sebagai modal memahami Ilmu Ghoyah.
+                  Menciptakan Tempat Belajar yang sehat, aman dan menyenangkan.
+                  Memperkuat, mengembangkan serta mendakwahkan pemahaman islam berdasarkan Al Qur'an dan As Sunnah secara berkesinambungan.
+                  Membentuk Santri yang cinta dan bangga terhadap Negara Kesatuan Republik Indonesia. 
 .
                 </p>
                 <ul className="space-y-3">
@@ -348,7 +348,7 @@ Membentuk Santri yang cinta dan bangga terhadap Negara Kesatuan Republik Indones
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Hear from our students, parents, and alumni about their experiences at Irsyadulhaq.
+                Hear from our students, parents, and alumni about their experiences at Irsyadul Haq.
               </p>
             </AnimatedSectionWrapper>
             
