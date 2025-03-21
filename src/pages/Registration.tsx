@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { CheckCircle2, ChevronRight, Info } from 'lucide-react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
@@ -897,4 +898,98 @@ const Registration: React.FC = () => {
                               <span className="text-islamic-slate">Program Terpilih:</span>
                               <span className="ml-2 text-islamic-navy">
                                 {formData.program === 'islamic-studies' && 'Program Studi Islam'}
-                                {formData.program === 'tah
+                                {formData.program === 'tahfidz' && 'Program Tahfidz Quran'}
+                                {formData.program === 'academic-islamic' && 'Program Terpadu Akademik-Islam'}
+                                {formData.program === 'leadership' && 'Program Kepemimpinan Islam'}
+                              </span>
+                            </div>
+                          </div>
+                          
+                          {/* Parent Information Review */}
+                          <div className="p-4 rounded-lg border border-gray-200">
+                            <h3 className="font-medium text-islamic-navy mb-3">Informasi Wali</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                              <div>
+                                <span className="text-islamic-slate">Nama Wali:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.parentName}</span>
+                              </div>
+                              <div>
+                                <span className="text-islamic-slate">Hubungan:</span>
+                                <span className="ml-2 text-islamic-navy">
+                                  {formData.parentRelation === 'father' ? 'Ayah' : 
+                                   formData.parentRelation === 'mother' ? 'Ibu' :
+                                   formData.parentRelation === 'guardian' ? 'Wali' : 
+                                   formData.parentRelation === 'other' ? 'Lainnya' : ''}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-islamic-slate">Telepon:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.parentPhone}</span>
+                              </div>
+                              <div>
+                                <span className="text-islamic-slate">Email:</span>
+                                <span className="ml-2 text-islamic-navy">{formData.parentEmail || 'N/A'}</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Agreement */}
+                          <div className="pt-4">
+                            <div className="flex items-start space-x-3">
+                              <input
+                                type="checkbox"
+                                id="agreeTerms"
+                                name="agreeTerms"
+                                checked={formData.agreeTerms}
+                                onChange={handleChange}
+                                className="mt-1"
+                                required
+                              />
+                              <label htmlFor="agreeTerms" className="text-sm text-islamic-slate">
+                                Saya menyatakan bahwa informasi yang diberikan adalah benar dan akurat. Saya setuju dengan syarat dan ketentuan pendaftaran Pondok Pesantren Islam Irsyadulhaq.
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <button
+                          type="button"
+                          onClick={prevStep}
+                          className="btn-outline"
+                        >
+                          Previous Step
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="btn-primary inline-flex items-center space-x-2"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <span>Mengirim...</span>
+                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            </>
+                          ) : (
+                            <>
+                              <span>Kirim Pendaftaran</span>
+                              <ChevronRight size={18} />
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </AnimatedSectionWrapper>
+                  )}
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+export default Registration;
