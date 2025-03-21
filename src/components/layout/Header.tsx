@@ -66,11 +66,13 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2 relative group">
           {logoImage ? (
-            <img src={logo} alt="Logo" className="w-10 h-10 rounded-full object-cover" />
+            <img src={logoImage} alt="Logo" className="w-10 h-10 rounded-full object-cover" />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-islamic-navy flex items-center justify-center">
-              <span className="text-white text-lg font-serif font-bold">IH</span>
-            </div>
+            <img 
+              src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
+              alt="Irsyadulhaq Logo" 
+              className="h-14 w-auto"
+            />
           )}
           <div className="flex flex-col">
             <span className="font-display font-medium text-islamic-navy">Irsyadulhaq</span>

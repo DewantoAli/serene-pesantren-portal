@@ -11,9 +11,11 @@ const Footer: React.FC = () => {
           {/* Logo and About */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-full bg-islamic-gold flex items-center justify-center">
-                <span className="text-islamic-navy text-lg font-serif font-bold">IH</span>
-              </div>
+              <img 
+                src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
+                alt="Irsyadulhaq Logo" 
+                className="h-14 w-auto"
+              />
               <div className="flex flex-col">
                 <span className="font-display font-medium text-white">Irsyadulhaq</span>
                 <span className="text-xs text-islamic-sand/80 -mt-1">Pondok Pesantren</span>
