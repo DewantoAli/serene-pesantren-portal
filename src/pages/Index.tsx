@@ -31,7 +31,7 @@ const Index: React.FC = () => {
                   <span className="text-islamic-sand">Untuk Masa Depan Cerah</span>
                 </h1>
                 <p className="text-islamic-cream/90 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-                  Pondok Pesantren Irsyadul Haq menggabungkan nilai-nilai Islam tradisional dengan pendidikan modern untuk mengembangkan individu yang utuh.
+                  Pondok Pesantren Irsyadul Haq Mencetak generasi Rabbani dan Beraqidah lurus yang berlandaskan Al Qur'an dan As sunnah sebagaimana Pemahaman Salafush Shalih.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Link to="/registration" className="btn-accent">
