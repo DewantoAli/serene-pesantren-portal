@@ -193,11 +193,7 @@ const Index: React.FC = () => {
                     />
                   </div>
                   
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full flex items-center justify-center bg-islamic-navy/30 backdrop-blur-sm border border-white/20">
-                    <div className="w-24 h-24 rounded-full bg-islamic-navy flex items-center justify-center">
-                      <span className="font-serif text-lg text-white">Sejak<br/>1985</span>
-                    </div>
-                  </div>
+                  
                 </div>
               </AnimatedSectionWrapper>
             </div>
