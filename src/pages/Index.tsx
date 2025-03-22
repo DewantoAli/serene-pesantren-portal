@@ -48,7 +48,7 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
-                      src="https://media-hosting.imagekit.io//868a48dd554b4deb/1708919328443.jpg?Expires=1837133361&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=dP8NWI~s-q2F0Jo3167GA0sCPJ2c9sN4IWDzPmJFOkGYgVu4jsHOA~V5wGz4ZOBPALivcg0RwVbnglo~fJi3XLzulmjMJqhqiHwTapbsMGnz5v6GgkwB5yRK7~ugvZ4iNMrRpZtW3~L9uYJ2ZdLbl5vL0Dd9KQ5txZH3X3kSbxrGQ2o~B-8NBCHJtnh0oPBPstqOi9fYzSR4hIBGSRPPmDMt8LDN9Q3gC-O9rE7bn1MLk8TMYoFJ6h1ukOmBp1DuMhPfeSoj4l-Fbi3uDZpRhEi4thk0~GL-MGmVQQZROpV~Olzg3bgswSkyGwv0FEUxeQ~3XQ8DKPCuknD3OyMVGA__" 
+                      src="https://ik.imagekit.io/uzuuvayyu/building_LixplpNC1?updatedAt=1742674414873" 
                       alt="Santri di Pondok Pesantren Irsyadul Haq" 
                       className="w-full h-full object-cover"
                     />
