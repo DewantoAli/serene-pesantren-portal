@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { CheckCircle2, ChevronRight, Info, CalendarIcon } from 'lucide-react';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -194,8 +193,8 @@ const Registration: React.FC = () => {
         timestamp: new Date().toISOString(),
         fullName: data.fullName,
         gender: data.gender === 'male' ? 'Laki-laki' : 'Perempuan',
-        dateOfBirth: format(data.dateOfBirth, 'dd/MM/yyyy'),
-        placeOfBirth: data.placeOfBirth,
+        dateOfBirth: data.dateOfBirth,
+        placeOfBirth: data.placeOfBirth || "",
         email: data.email,
         phone: data.phone,
         nisn: data.nisn,
@@ -206,7 +205,10 @@ const Registration: React.FC = () => {
         province: data.province,
         postalCode: data.postalCode,
         previousSchool: data.previousSchool,
-        schoolAddress: `${data.schoolAddress}, ${data.schoolDistrict}, ${data.schoolCity}, ${data.schoolProvince}`,
+        schoolAddress: data.schoolAddress,
+        schoolDistrict: data.schoolDistrict,
+        schoolCity: data.schoolCity,
+        schoolProvince: data.schoolProvince,
         graduationYear: data.graduationYear,
         program: data.program === 'islamic-studies' ? 'Program Studi Islam' :
                  data.program === 'tahfidz' ? 'Program Tahfidz Quran' :
@@ -229,8 +231,8 @@ const Registration: React.FC = () => {
         healthConditions: data.healthConditions || "Tidak Ada",
         allergies: data.allergies || "Tidak Ada",
         medications: data.medications || "Tidak Ada",
-        howDidYouHear: data.howDidYouHear || "N/A",
-        additionalNotes: data.additionalNotes || "N/A",
+        howDidYouHear: data.howDidYouHear || "",
+        additionalNotes: data.additionalNotes || ""
       };
       
       const response = await fetch(googleScriptUrl, {
