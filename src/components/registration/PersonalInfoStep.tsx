@@ -1,7 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
@@ -12,19 +12,47 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
+import { Button } from "@/components/ui/button";
 
 import { useFormContext } from '@/contexts/FormContext';
 import StepNavigation from './StepNavigation';
 
 const PersonalInfoStep: React.FC = () => {
   const { form } = useFormContext();
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [dateInputValue, setDateInputValue] = useState("");
+  
   if (!form) return null;
+  
+  const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>, onChange: (date: Date) => void) => {
+    const value = e.target.value;
+    setDateInputValue(value);
+    
+    // Try to parse the date
+    try {
+      // Attempt to parse with different formats (dd/MM/yyyy or yyyy-MM-dd)
+      let parsedDate: Date | null = null;
+      
+      if (value.includes('/')) {
+        parsedDate = parse(value, 'dd/MM/yyyy', new Date());
+      } else if (value.includes('-')) {
+        parsedDate = parse(value, 'yyyy-MM-dd', new Date());
+      }
+      
+      if (parsedDate && !isNaN(parsedDate.getTime())) {
+        onChange(parsedDate);
+      }
+    } catch (error) {
+      // Invalid date format, just update the input value
+    }
+  };
   
   return (
     <AnimatedSectionWrapper animation="fade-in">
@@ -81,37 +109,52 @@ const PersonalInfoStep: React.FC = () => {
             render={({ field }) => (
               <FormItem className="flex flex-col">
                 <FormLabel>Tanggal Lahir (Sesuai Ijazah) *</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <button
-                        className={cn(
-                          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-                          !field.value && "text-muted-foreground"
-                        )}
-                      >
-                        {field.value ? (
-                          format(field.value, "dd MMMM yyyy")
-                        ) : (
-                          <span>Pilih tanggal</span>
-                        )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={field.value}
-                      onSelect={field.onChange}
-                      disabled={(date) =>
-                        date > new Date() || date < new Date("1900-01-01")
-                      }
-                      initialFocus
-                      className={cn("p-3 pointer-events-auto")}
+                
+                <div className="flex flex-col space-y-2">
+                  {/* Direct date input */}
+                  <FormControl>
+                    <Input 
+                      placeholder="DD/MM/YYYY atau YYYY-MM-DD" 
+                      value={dateInputValue || (field.value ? format(field.value, 'dd/MM/yyyy') : '')}
+                      onChange={(e) => handleDateInputChange(e, field.onChange)}
                     />
-                  </PopoverContent>
-                </Popover>
+                  </FormControl>
+                  
+                  {/* Calendar picker option */}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        type="button"
+                        className="flex items-center justify-center w-full"
+                      >
+                        <CalendarIcon className="h-4 w-4 mr-2" />
+                        <span>Atau pilih dari kalender</span>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={(date) => {
+                          field.onChange(date);
+                          if (date) {
+                            setDateInputValue(format(date, 'dd/MM/yyyy'));
+                          }
+                        }}
+                        disabled={(date) =>
+                          date > new Date() || date < new Date("1900-01-01")
+                        }
+                        initialFocus
+                        className={cn("p-3 pointer-events-auto")}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                
+                <FormDescription>
+                  Format: DD/MM/YYYY atau YYYY-MM-DD
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -168,7 +211,7 @@ const PersonalInfoStep: React.FC = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email Address *</FormLabel>
+                <FormLabel>Email Address (Opsional)</FormLabel>
                 <FormControl>
                   <Input placeholder="Masukkan alamat email" {...field} />
                 </FormControl>
