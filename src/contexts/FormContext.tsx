@@ -7,7 +7,7 @@ import { formSchema } from '@/schemas/registrationSchema';
 type FormValues = z.infer<typeof formSchema>;
 
 interface FormContextType {
-  form: UseFormReturn<FormValues> | null;
+  form: UseFormReturn<FormValues>;
   setForm: (form: UseFormReturn<FormValues>) => void;
   step: number;
   setStep: (step: number) => void;
@@ -20,15 +20,22 @@ interface FormContextType {
   };
 }
 
-const FormContext = createContext<FormContextType | undefined>(undefined);
+// Create a context with a default value that matches our interface structure
+const FormContext = createContext<FormContextType | null>(null);
 
 export const FormProvider: React.FC<{
   children: ReactNode;
   initialStep?: number;
-}> = ({ children, initialStep = 1 }) => {
-  const [form, setForm] = useState<UseFormReturn<FormValues> | null>(null);
+  form: UseFormReturn<FormValues>;
+}> = ({ children, initialStep = 1, form }) => {
+  const [formState, setFormState] = useState<UseFormReturn<FormValues>>(form);
   const [step, setStep] = useState(initialStep);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Update internal form state if the provided form changes
+  useEffect(() => {
+    setFormState(form);
+  }, [form]);
 
   const fieldsByStep = {
     1: ['fullName', 'gender', 'dateOfBirth', 'placeOfBirth', 'email', 'phone', 'nisn', 'nik', 'address', 'district', 'city', 'province', 'postalCode'] as const,
@@ -38,14 +45,10 @@ export const FormProvider: React.FC<{
   };
 
   const nextStep = () => {
-    if (!form) return;
-    
-    form.trigger(fieldsByStep[step as keyof typeof fieldsByStep]).then((valid) => {
+    formState.trigger(fieldsByStep[step as keyof typeof fieldsByStep]).then((valid) => {
       if (valid) {
         setStep(step + 1);
         window.scrollTo(0, 0);
-      } else {
-        // This will be handled in the Registration component
       }
     });
   };
@@ -58,8 +61,8 @@ export const FormProvider: React.FC<{
   return (
     <FormContext.Provider
       value={{
-        form,
-        setForm,
+        form: formState,
+        setForm: setFormState,
         step,
         setStep,
         isSubmitting,
@@ -76,7 +79,7 @@ export const FormProvider: React.FC<{
 
 export const useFormContext = () => {
   const context = useContext(FormContext);
-  if (context === undefined) {
+  if (context === null) {
     throw new Error('useFormContext must be used within a FormProvider');
   }
   return context;
