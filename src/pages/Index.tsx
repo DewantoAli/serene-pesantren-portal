@@ -71,7 +71,7 @@ const Index: React.FC = () => {
                       </div>
                       <div>
                         <p className="text-islamic-navy font-medium">Al-Quran</p>
-                        <<p className="text-islamic-navy font-medium">As-Sunnah</p>
+                        <p className="text-islamic-navy font-medium">As-Sunnah</p>
                       </div>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-1.5">
