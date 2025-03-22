@@ -1,73 +1,175 @@
 
 import React, { useState } from 'react';
-import { CheckCircle2, ChevronRight, Info } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Info, CalendarIcon } from 'lucide-react';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { format } from "date-fns";
+
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
 import { toast } from '@/hooks/use-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
+import { Label } from "@/components/ui/label";
+
+const formSchema = z.object({
+  // Personal Information
+  fullName: z.string().min(1, "Nama lengkap diperlukan"),
+  gender: z.enum(["male", "female"], {
+    required_error: "Pilih jenis kelamin",
+  }),
+  dateOfBirth: z.date({
+    required_error: "Tanggal lahir diperlukan",
+  }),
+  placeOfBirth: z.string().min(1, "Tempat lahir diperlukan"),
+  email: z.string().email("Alamat email tidak valid"),
+  phone: z.string().min(1, "Nomor HP/WhatsApp diperlukan"),
+  nisn: z.string().min(1, "NISN diperlukan"),
+  nik: z.string().min(1, "NIK diperlukan"),
+  address: z.string().min(1, "Alamat lengkap diperlukan"),
+  district: z.string().min(1, "Kecamatan diperlukan"),
+  city: z.string().min(1, "Kabupaten/Kota diperlukan"),
+  province: z.string().min(1, "Provinsi diperlukan"),
+  postalCode: z.string().min(1, "Kode pos diperlukan"),
+  
+  // Educational Background
+  previousSchool: z.string().min(1, "Nama sekolah asal diperlukan"),
+  schoolAddress: z.string().min(1, "Alamat sekolah asal diperlukan"),
+  schoolDistrict: z.string().min(1, "Kecamatan sekolah diperlukan"),
+  schoolCity: z.string().min(1, "Kabupaten sekolah diperlukan"),
+  schoolProvince: z.string().min(1, "Provinsi sekolah diperlukan"),
+  graduationYear: z.string().min(1, "Tahun kelulusan diperlukan"),
+  
+  // Program Selection
+  program: z.enum(["islamic-studies", "tahfidz", "academic-islamic", "leadership"], {
+    required_error: "Pilih program",
+  }),
+  
+  // Family Information
+  familyCardNumber: z.string().min(1, "Nomor Kartu Keluarga diperlukan"),
+  
+  // Father Information
+  fatherName: z.string().min(1, "Nama ayah diperlukan"),
+  fatherStatus: z.enum(["alive", "deceased"], {
+    required_error: "Pilih status hidup ayah",
+  }),
+  fatherNik: z.string().min(1, "NIK ayah diperlukan"),
+  fatherOccupation: z.string().min(1, "Pekerjaan ayah diperlukan"),
+  
+  // Mother Information
+  motherName: z.string().min(1, "Nama ibu diperlukan"),
+  motherStatus: z.enum(["alive", "deceased"], {
+    required_error: "Pilih status hidup ibu",
+  }),
+  motherNik: z.string().min(1, "NIK ibu diperlukan"),
+  motherEducation: z.string().min(1, "Pendidikan ibu diperlukan"),
+  
+  // Parents Income
+  parentsIncome: z.enum(["below_1M", "1M_3M", "3M_5M", "5M_10M", "above_10M"], {
+    required_error: "Pilih penghasilan orang tua",
+  }),
+  
+  // Additional Information
+  healthConditions: z.string().optional(),
+  allergies: z.string().optional(),
+  medications: z.string().optional(),
+  
+  // Additional Information
+  howDidYouHear: z.string().optional(),
+  additionalNotes: z.string().optional(),
+  
+  // Agreement
+  agreeTerms: z.boolean().refine(value => value === true, {
+    message: "Anda harus menyetujui syarat dan ketentuan",
+  }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
 const Registration: React.FC = () => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxEzSJ7GkECBJ_hFe4EGhcmqe9pmCTfgPCvvYB0cEC8oVr8BHjnnz0hKJXCUAxYL5MFbQ/exec';
-  const [formData, setFormData] = useState({
-    // Personal Information
-    firstName: '',
-    lastName: '',
-    gender: '',
-    dateOfBirth: '',
-    placeOfBirth: '',
-    nationalId: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
-    province: '',
-    postalCode: '',
-    
-    // Educational Background
-    previousSchool: '',
-    graduationYear: '',
-    previousGrade: '',
-    
-    // Program Selection
-    program: '',
-    
-    // Parent/Guardian Information
-    parentName: '',
-    parentRelation: '',
-    parentPhone: '',
-    parentEmail: '',
-    parentOccupation: '',
-    
-    // Health Information
-    healthConditions: '',
-    allergies: '',
-    medications: '',
-    
-    // Additional Information
-    howDidYouHear: '',
-    additionalNotes: '',
-    
-    // Agreement
-    agreeTerms: false,
+  
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      fullName: "",
+      gender: undefined,
+      dateOfBirth: undefined,
+      placeOfBirth: "",
+      email: "",
+      phone: "",
+      nisn: "",
+      nik: "",
+      address: "",
+      district: "",
+      city: "",
+      province: "",
+      postalCode: "",
+      previousSchool: "",
+      schoolAddress: "",
+      schoolDistrict: "",
+      schoolCity: "",
+      schoolProvince: "",
+      graduationYear: "",
+      program: undefined,
+      familyCardNumber: "",
+      fatherName: "",
+      fatherStatus: undefined,
+      fatherNik: "",
+      fatherOccupation: "",
+      motherName: "",
+      motherStatus: undefined,
+      motherNik: "",
+      motherEducation: "",
+      parentsIncome: undefined,
+      healthConditions: "",
+      allergies: "",
+      medications: "",
+      howDidYouHear: "",
+      additionalNotes: "",
+      agreeTerms: false,
+    },
   });
   
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
-    });
-  };
-  
   const nextStep = () => {
-    if (validateCurrentStep()) {
-      setStep(step + 1);
-      window.scrollTo(0, 0);
-    }
+    const fieldsByStep = {
+      1: ['fullName', 'gender', 'dateOfBirth', 'placeOfBirth', 'email', 'phone', 'nisn', 'nik', 'address', 'district', 'city', 'province', 'postalCode'],
+      2: ['previousSchool', 'schoolAddress', 'schoolDistrict', 'schoolCity', 'schoolProvince', 'graduationYear'],
+      3: ['program'],
+      4: ['familyCardNumber', 'fatherName', 'fatherStatus', 'fatherNik', 'fatherOccupation', 'motherName', 'motherStatus', 'motherNik', 'motherEducation', 'parentsIncome'],
+    };
+
+    form.trigger(fieldsByStep[step as keyof typeof fieldsByStep]).then((valid) => {
+      if (valid) {
+        setStep(step + 1);
+        window.scrollTo(0, 0);
+      } else {
+        toast({
+          title: "Data Tidak Lengkap",
+          description: "Mohon lengkapi semua field yang diperlukan.",
+          variant: "destructive",
+        });
+      }
+    });
   };
   
   const prevStep = () => {
@@ -75,56 +177,8 @@ const Registration: React.FC = () => {
     window.scrollTo(0, 0);
   };
   
-  const validateCurrentStep = () => {
-    switch (step) {
-      case 1: // Personal Information
-        if (!formData.firstName || !formData.lastName || !formData.dateOfBirth || !formData.email || !formData.phone) {
-          toast({
-            title: "Missing Information",
-            description: "Please fill in all required fields.",
-            variant: "destructive",
-          });
-          return false;
-        }
-        break;
-      case 2: // Educational Background
-        if (!formData.previousSchool || !formData.graduationYear) {
-          toast({
-            title: "Missing Information",
-            description: "Please fill in all required fields.",
-            variant: "destructive",
-          });
-          return false;
-        }
-        break;
-      case 3: // Program Selection
-        if (!formData.program) {
-          toast({
-            title: "Missing Information",
-            description: "Please select a program.",
-            variant: "destructive",
-          });
-          return false;
-        }
-        break;
-      case 4: // Parent/Guardian Information
-        if (!formData.parentName || !formData.parentPhone) {
-          toast({
-            title: "Missing Information",
-            description: "Please fill in all required fields.",
-            variant: "destructive",
-          });
-          return false;
-        }
-        break;
-    }
-    return true;
-  };
-  
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.agreeTerms) {
+  const onSubmit = async (data: FormValues) => {
+    if (!data.agreeTerms) {
       toast({
         title: "Persetujuan Diperlukan",
         description: "Mohon setujui syarat dan ketentuan.",
@@ -138,31 +192,45 @@ const Registration: React.FC = () => {
       
       const spreadsheetData = {
         timestamp: new Date().toISOString(),
-        fullName: `${formData.firstName} ${formData.lastName}`,
-        gender: formData.gender,
-        dateOfBirth: formData.dateOfBirth,
-        placeOfBirth: formData.placeOfBirth || "N/A",
-        nationalId: formData.nationalId || "N/A",
-        email: formData.email,
-        phone: formData.phone,
-        address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.postalCode}`,
-        previousSchool: formData.previousSchool,
-        graduationYear: formData.graduationYear,
-        previousGrade: formData.previousGrade || "N/A",
-        program: formData.program === 'islamic-studies' ? 'Program Studi Islam' :
-                 formData.program === 'tahfidz' ? 'Program Tahfidz Quran' :
-                 formData.program === 'academic-islamic' ? 'Program Terpadu Akademik-Islam' :
-                 formData.program === 'leadership' ? 'Program Kepemimpinan Islam' : '',
-        parentName: formData.parentName,
-        parentRelation: formData.parentRelation,
-        parentPhone: formData.parentPhone,
-        parentEmail: formData.parentEmail || "N/A",
-        parentOccupation: formData.parentOccupation || "N/A",
-        healthConditions: formData.healthConditions || "Tidak Ada",
-        allergies: formData.allergies || "Tidak Ada",
-        medications: formData.medications || "Tidak Ada",
-        howDidYouHear: formData.howDidYouHear || "N/A",
-        additionalNotes: formData.additionalNotes || "N/A",
+        fullName: data.fullName,
+        gender: data.gender === 'male' ? 'Laki-laki' : 'Perempuan',
+        dateOfBirth: format(data.dateOfBirth, 'dd/MM/yyyy'),
+        placeOfBirth: data.placeOfBirth,
+        email: data.email,
+        phone: data.phone,
+        nisn: data.nisn,
+        nik: data.nik,
+        address: data.address,
+        district: data.district,
+        city: data.city,
+        province: data.province,
+        postalCode: data.postalCode,
+        previousSchool: data.previousSchool,
+        schoolAddress: `${data.schoolAddress}, ${data.schoolDistrict}, ${data.schoolCity}, ${data.schoolProvince}`,
+        graduationYear: data.graduationYear,
+        program: data.program === 'islamic-studies' ? 'Program Studi Islam' :
+                 data.program === 'tahfidz' ? 'Program Tahfidz Quran' :
+                 data.program === 'academic-islamic' ? 'Program Terpadu Akademik-Islam' :
+                 data.program === 'leadership' ? 'Program Kepemimpinan Islam' : '',
+        familyCardNumber: data.familyCardNumber,
+        fatherName: data.fatherName,
+        fatherStatus: data.fatherStatus === 'alive' ? 'Hidup' : 'Meninggal',
+        fatherNik: data.fatherNik,
+        fatherOccupation: data.fatherOccupation,
+        motherName: data.motherName,
+        motherStatus: data.motherStatus === 'alive' ? 'Hidup' : 'Meninggal',
+        motherNik: data.motherNik,
+        motherEducation: data.motherEducation,
+        parentsIncome: data.parentsIncome === 'below_1M' ? 'Di bawah 1 juta' :
+                      data.parentsIncome === '1M_3M' ? '1 juta - 3 juta' :
+                      data.parentsIncome === '3M_5M' ? '3 juta - 5 juta' :
+                      data.parentsIncome === '5M_10M' ? '5 juta - 10 juta' :
+                      data.parentsIncome === 'above_10M' ? 'Di atas 10 juta' : '',
+        healthConditions: data.healthConditions || "Tidak Ada",
+        allergies: data.allergies || "Tidak Ada",
+        medications: data.medications || "Tidak Ada",
+        howDidYouHear: data.howDidYouHear || "N/A",
+        additionalNotes: data.additionalNotes || "N/A",
       };
       
       const response = await fetch(googleScriptUrl, {
@@ -199,7 +267,7 @@ const Registration: React.FC = () => {
     { number: 1, title: 'Informasi Pribadi' },
     { number: 2, title: 'Latar Belakang Pendidikan' },
     { number: 3, title: 'Pilihan Program' },
-    { number: 4, title: 'Informasi Wali' },
+    { number: 4, title: 'Informasi Keluarga' },
     { number: 5, title: 'Tinjauan & Kirim' },
   ];
   
@@ -293,675 +361,912 @@ const Registration: React.FC = () => {
                   </a>
                 </AnimatedSectionWrapper>
               ) : (
-                <form onSubmit={handleSubmit} className="glass-card p-8 rounded-lg">
-                  {step === 1 && (
-                    <AnimatedSectionWrapper animation="fade-in">
-                      <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Informasi Pribadi
-                      </h2>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div className="form-input-wrapper">
-                          <label htmlFor="firstName" className="form-label">First Name *</label>
-                          <input
-                            type="text"
-                            id="firstName"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter your first name"
-                            required
-                          />
-                        </div>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="glass-card p-8 rounded-lg">
+                    {step === 1 && (
+                      <AnimatedSectionWrapper animation="fade-in">
+                        <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
+                          Informasi Pribadi
+                        </h2>
                         
-                        <div className="form-input-wrapper">
-                          <label htmlFor="lastName" className="form-label">Last Name *</label>
-                          <input
-                            type="text"
-                            id="lastName"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter your last name"
-                            required
+                        <div className="grid grid-cols-1 gap-6 mb-8">
+                          <FormField
+                            control={form.control}
+                            name="fullName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Nama Calon Santri (Sesuai Ijazah) *</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Masukkan nama lengkap" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </div>
-                        
-                        <div className="form-input-wrapper">
-                          <label htmlFor="gender" className="form-label">Gender *</label>
-                          <select
-                            id="gender"
+                          
+                          <FormField
+                            control={form.control}
                             name="gender"
-                            value={formData.gender}
-                            onChange={handleChange}
-                            className="form-input"
-                            required
-                          >
-                            <option value="">Select gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                          </select>
-                        </div>
-                        
-                        <div className="form-input-wrapper">
-                          <label htmlFor="dateOfBirth" className="form-label">Date of Birth *</label>
-                          <input
-                            type="date"
-                            id="dateOfBirth"
-                            name="dateOfBirth"
-                            value={formData.dateOfBirth}
-                            onChange={handleChange}
-                            className="form-input"
-                            required
+                            render={({ field }) => (
+                              <FormItem className="space-y-3">
+                                <FormLabel>Jenis Kelamin *</FormLabel>
+                                <FormControl>
+                                  <RadioGroup
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                    className="flex flex-col space-y-1"
+                                  >
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="male" id="male" />
+                                      <Label htmlFor="male">Laki-laki</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="female" id="female" />
+                                      <Label htmlFor="female">Perempuan</Label>
+                                    </div>
+                                  </RadioGroup>
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </div>
-                        
-                        <div className="form-input-wrapper">
-                          <label htmlFor="placeOfBirth" className="form-label">Place of Birth</label>
-                          <input
-                            type="text"
-                            id="placeOfBirth"
-                            name="placeOfBirth"
-                            value={formData.placeOfBirth}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter your place of birth"
-                          />
-                        </div>
-                        
-                        <div className="form-input-wrapper">
-                          <label htmlFor="nationalId" className="form-label">National ID</label>
-                          <input
-                            type="text"
-                            id="nationalId"
-                            name="nationalId"
-                            value={formData.nationalId}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter your national ID"
-                          />
-                        </div>
-                        
-                        <div className="form-input-wrapper">
-                          <label htmlFor="email" className="form-label">Email Address *</label>
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter your email address"
-                            required
-                          />
-                        </div>
-                        
-                        <div className="form-input-wrapper">
-                          <label htmlFor="phone" className="form-label">Phone Number *</label>
-                          <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter your phone number"
-                            required
-                          />
-                        </div>
-                      </div>
-                      
-                      <h3 className="text-lg font-display font-semibold text-islamic-navy mb-4">
-                        Address Information
-                      </h3>
-                      
-                      <div className="grid grid-cols-1 gap-6 mb-8">
-                        <div className="form-input-wrapper">
-                          <label htmlFor="address" className="form-label">Street Address *</label>
-                          <input
-                            type="text"
-                            id="address"
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <FormField
+                              control={form.control}
+                              name="dateOfBirth"
+                              render={({ field }) => (
+                                <FormItem className="flex flex-col">
+                                  <FormLabel>Tanggal Lahir (Sesuai Ijazah) *</FormLabel>
+                                  <Popover>
+                                    <PopoverTrigger asChild>
+                                      <FormControl>
+                                        <button
+                                          className={cn(
+                                            "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                                            !field.value && "text-muted-foreground"
+                                          )}
+                                        >
+                                          {field.value ? (
+                                            format(field.value, "dd MMMM yyyy")
+                                          ) : (
+                                            <span>Pilih tanggal</span>
+                                          )}
+                                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                        </button>
+                                      </FormControl>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0" align="start">
+                                      <Calendar
+                                        mode="single"
+                                        selected={field.value}
+                                        onSelect={field.onChange}
+                                        disabled={(date) =>
+                                          date > new Date() || date < new Date("1900-01-01")
+                                        }
+                                        initialFocus
+                                        className={cn("p-3 pointer-events-auto")}
+                                      />
+                                    </PopoverContent>
+                                  </Popover>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="placeOfBirth"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Tempat Lahir *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan tempat lahir" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <FormField
+                              control={form.control}
+                              name="nisn"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>NISN (Sesuai Ijazah) *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan NISN" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="nik"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>NIK Calon Santri (Sesuai Kartu Keluarga) *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan NIK" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <FormField
+                              control={form.control}
+                              name="email"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Email Address *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan alamat email" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="phone"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Nomor HP / Nomor WhatsApp *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan nomor HP/WhatsApp" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <h3 className="text-lg font-display font-semibold text-islamic-navy mt-4 mb-2">
+                            Alamat Lengkap
+                          </h3>
+                          
+                          <FormField
+                            control={form.control}
                             name="address"
-                            value={formData.address}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter your street address"
-                            required
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Alamat *</FormLabel>
+                                <FormControl>
+                                  <Textarea placeholder="Masukkan alamat lengkap" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="form-input-wrapper">
-                            <label htmlFor="city" className="form-label">City *</label>
-                            <input
-                              type="text"
-                              id="city"
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <FormField
+                              control={form.control}
+                              name="district"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Kecamatan *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan kecamatan" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
                               name="city"
-                              value={formData.city}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="Enter your city"
-                              required
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Kabupaten/Kota *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan kabupaten/kota" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
                             />
-                          </div>
-                          
-                          <div className="form-input-wrapper">
-                            <label htmlFor="province" className="form-label">Province/State *</label>
-                            <input
-                              type="text"
-                              id="province"
+                            
+                            <FormField
+                              control={form.control}
                               name="province"
-                              value={formData.province}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="Enter your province/state"
-                              required
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Provinsi *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan provinsi" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
                             />
-                          </div>
-                          
-                          <div className="form-input-wrapper">
-                            <label htmlFor="postalCode" className="form-label">Postal Code *</label>
-                            <input
-                              type="text"
-                              id="postalCode"
+                            
+                            <FormField
+                              control={form.control}
                               name="postalCode"
-                              value={formData.postalCode}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="Enter your postal code"
-                              required
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Kode Pos *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan kode pos" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
                             />
                           </div>
                         </div>
-                      </div>
-                      
-                      <div className="flex justify-end">
-                        <button
-                          type="button"
-                          onClick={nextStep}
-                          className="btn-primary inline-flex items-center space-x-2"
-                        >
-                          <span>Next Step</span>
-                          <ChevronRight size={18} />
-                        </button>
-                      </div>
-                    </AnimatedSectionWrapper>
-                  )}
-                  
-                  {step === 2 && (
-                    <AnimatedSectionWrapper animation="fade-in">
-                      <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Latar Belakang Pendidikan
-                      </h2>
-                      
-                      <div className="grid grid-cols-1 gap-6 mb-8">
-                        <div className="form-input-wrapper">
-                          <label htmlFor="previousSchool" className="form-label">Previous School *</label>
-                          <input
-                            type="text"
-                            id="previousSchool"
+                        
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            onClick={nextStep}
+                            className="btn-primary inline-flex items-center space-x-2"
+                          >
+                            <span>Langkah Selanjutnya</span>
+                            <ChevronRight size={18} />
+                          </button>
+                        </div>
+                      </AnimatedSectionWrapper>
+                    )}
+                    
+                    {step === 2 && (
+                      <AnimatedSectionWrapper animation="fade-in">
+                        <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
+                          Latar Belakang Pendidikan
+                        </h2>
+                        
+                        <div className="grid grid-cols-1 gap-6 mb-8">
+                          <FormField
+                            control={form.control}
                             name="previousSchool"
-                            value={formData.previousSchool}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter your previous school name"
-                            required
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Nama Sekolah Asal (harus jelas dan lengkap) *</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Masukkan nama sekolah asal" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          
+                          <FormField
+                            control={form.control}
+                            name="schoolAddress"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Alamat Sekolah Asal *</FormLabel>
+                                <FormControl>
+                                  <Textarea placeholder="Masukkan alamat sekolah asal" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <FormField
+                              control={form.control}
+                              name="schoolDistrict"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Kecamatan *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan kecamatan" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="schoolCity"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Kabupaten *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan kabupaten" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="schoolProvince"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Provinsi *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan provinsi" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <FormField
+                            control={form.control}
+                            name="graduationYear"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Tahun Kelulusan *</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Masukkan tahun kelulusan" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          
+                          <div className="p-4 rounded-lg bg-islamic-teal/10 flex items-start">
+                            <Info size={20} className="text-islamic-teal mt-0.5 mr-3 flex-shrink-0" />
+                            <p className="text-sm text-islamic-slate">
+                              Harap siapkan berkas transkrip akademik dan ijazah dari sekolah asal Anda untuk proses verifikasi pada tahap selanjutnya.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-between">
+                          <button
+                            type="button"
+                            onClick={prevStep}
+                            className="btn-outline"
+                          >
+                            Langkah Sebelumnya
+                          </button>
+                          <button
+                            type="button"
+                            onClick={nextStep}
+                            className="btn-primary inline-flex items-center space-x-2"
+                          >
+                            <span>Langkah Selanjutnya</span>
+                            <ChevronRight size={18} />
+                          </button>
+                        </div>
+                      </AnimatedSectionWrapper>
+                    )}
+                    
+                    {step === 3 && (
+                      <AnimatedSectionWrapper animation="fade-in">
+                        <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
+                          Pilihan Program
+                        </h2>
+                        
+                        <div className="mb-8">
+                          <p className="text-islamic-slate mb-6">
+                            Silakan pilih program yang ingin Anda ikuti. Setiap program memiliki kurikulum dan fokus yang berbeda.
+                          </p>
+                          
+                          <FormField
+                            control={form.control}
+                            name="program"
+                            render={({ field }) => (
+                              <FormItem className="space-y-3">
+                                <FormControl>
+                                  <RadioGroup
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                    className="space-y-4"
+                                  >
+                                    {[
+                                      {
+                                        value: 'islamic-studies',
+                                        title: 'Program Studi Islam',
+                                        description: 'Fokus pada ilmu keislaman, Al-Quran, Hadits, dan Fiqih.',
+                                      },
+                                      {
+                                        value: 'tahfidz',
+                                        title: 'Program Tahfidz Quran',
+                                        description: 'Program intensif menghafal Al-Quran dengan pendampingan studi Islam pendukung.',
+                                      },
+                                      {
+                                        value: 'academic-islamic',
+                                        title: 'Program Terpadu Akademik-Islam',
+                                        description: 'Kurikulum seimbang antara mata pelajaran akademik dan studi Islam.',
+                                      },
+                                      {
+                                        value: 'leadership',
+                                        title: 'Program Kepemimpinan Islam',
+                                        description: 'Fokus pada pengembangan keterampilan kepemimpinan Islami bersama studi reguler.',
+                                      },
+                                    ].map((programOption) => (
+                                      <div 
+                                        key={programOption.value}
+                                        className={`p-4 border rounded-lg transition-all duration-300 ${
+                                          field.value === programOption.value 
+                                            ? 'border-islamic-teal bg-islamic-teal/5' 
+                                            : 'border-gray-200 hover:border-islamic-teal/50'
+                                        }`}
+                                      >
+                                        <div className="flex items-start">
+                                          <RadioGroupItem value={programOption.value} id={programOption.value} className="mt-1 mr-3" />
+                                          <div>
+                                            <Label htmlFor={programOption.value} className="font-medium text-islamic-navy">
+                                              {programOption.title}
+                                            </Label>
+                                            <p className="text-sm text-islamic-slate mt-1">
+                                              {programOption.description}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </RadioGroup>
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
                         </div>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="form-input-wrapper">
-                            <label htmlFor="graduationYear" className="form-label">Graduation Year *</label>
-                            <input
-                              type="text"
-                              id="graduationYear"
-                              name="graduationYear"
-                              value={formData.graduationYear}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="Enter your graduation year"
-                              required
+                        <div className="flex justify-between">
+                          <button
+                            type="button"
+                            onClick={prevStep}
+                            className="btn-outline"
+                          >
+                            Langkah Sebelumnya
+                          </button>
+                          <button
+                            type="button"
+                            onClick={nextStep}
+                            className="btn-primary inline-flex items-center space-x-2"
+                          >
+                            <span>Langkah Selanjutnya</span>
+                            <ChevronRight size={18} />
+                          </button>
+                        </div>
+                      </AnimatedSectionWrapper>
+                    )}
+                    
+                    {step === 4 && (
+                      <AnimatedSectionWrapper animation="fade-in">
+                        <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
+                          Informasi Keluarga
+                        </h2>
+                        
+                        <div className="grid grid-cols-1 gap-6 mb-8">
+                          <FormField
+                            control={form.control}
+                            name="familyCardNumber"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Nomor Kartu Keluarga *</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Masukkan nomor kartu keluarga" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          
+                          <h3 className="text-lg font-display font-semibold text-islamic-navy mt-4 mb-2">
+                            Data Ayah
+                          </h3>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <FormField
+                              control={form.control}
+                              name="fatherName"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Nama Ayah *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan nama ayah" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="fatherStatus"
+                              render={({ field }) => (
+                                <FormItem className="space-y-3">
+                                  <FormLabel>Status Hidup *</FormLabel>
+                                  <FormControl>
+                                    <RadioGroup
+                                      onValueChange={field.onChange}
+                                      defaultValue={field.value}
+                                      className="flex space-x-4"
+                                    >
+                                      <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="alive" id="father-alive" />
+                                        <Label htmlFor="father-alive">Masih Hidup</Label>
+                                      </div>
+                                      <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="deceased" id="father-deceased" />
+                                        <Label htmlFor="father-deceased">Sudah Meninggal</Label>
+                                      </div>
+                                    </RadioGroup>
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="fatherNik"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Nomor KTP/NIK Ayah *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan nomor KTP/NIK ayah" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="fatherOccupation"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Pekerjaan Ayah *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan pekerjaan ayah" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
                             />
                           </div>
                           
-                          <div className="form-input-wrapper">
-                            <label htmlFor="previousGrade" className="form-label">Previous Grade/GPA</label>
-                            <input
-                              type="text"
-                              id="previousGrade"
-                              name="previousGrade"
-                              value={formData.previousGrade}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="Enter your previous grade or GPA"
+                          <h3 className="text-lg font-display font-semibold text-islamic-navy mt-4 mb-2">
+                            Data Ibu
+                          </h3>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <FormField
+                              control={form.control}
+                              name="motherName"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Nama Ibu *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan nama ibu" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="motherStatus"
+                              render={({ field }) => (
+                                <FormItem className="space-y-3">
+                                  <FormLabel>Status Hidup *</FormLabel>
+                                  <FormControl>
+                                    <RadioGroup
+                                      onValueChange={field.onChange}
+                                      defaultValue={field.value}
+                                      className="flex space-x-4"
+                                    >
+                                      <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="alive" id="mother-alive" />
+                                        <Label htmlFor="mother-alive">Masih Hidup</Label>
+                                      </div>
+                                      <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="deceased" id="mother-deceased" />
+                                        <Label htmlFor="mother-deceased">Sudah Meninggal</Label>
+                                      </div>
+                                    </RadioGroup>
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="motherNik"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Nomor KTP/NIK Ibu *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan nomor KTP/NIK ibu" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="motherEducation"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Pendidikan Ibu *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Masukkan pendidikan terakhir ibu" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
                             />
                           </div>
+                          
+                          <FormField
+                            control={form.control}
+                            name="parentsIncome"
+                            render={({ field }) => (
+                              <FormItem className="space-y-3">
+                                <FormLabel>Penghasilan Orang Tua (per bulan) *</FormLabel>
+                                <FormControl>
+                                  <RadioGroup
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                    className="space-y-2"
+                                  >
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="below_1M" id="income-below-1m" />
+                                      <Label htmlFor="income-below-1m">Di bawah 1 juta rupiah</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="1M_3M" id="income-1m-3m" />
+                                      <Label htmlFor="income-1m-3m">1 juta - 3 juta rupiah</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="3M_5M" id="income-3m-5m" />
+                                      <Label htmlFor="income-3m-5m">3 juta - 5 juta rupiah</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="5M_10M" id="income-5m-10m" />
+                                      <Label htmlFor="income-5m-10m">5 juta - 10 juta rupiah</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="above_10M" id="income-above-10m" />
+                                      <Label htmlFor="income-above-10m">Di atas 10 juta rupiah</Label>
+                                    </div>
+                                  </RadioGroup>
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
                         </div>
                         
-                        <div className="p-4 rounded-lg bg-islamic-teal/10 flex items-start">
-                          <Info size={20} className="text-islamic-teal mt-0.5 mr-3 flex-shrink-0" />
-                          <p className="text-sm text-islamic-slate">
-                            Please be prepared to provide academic transcripts and certificates from your previous school when requested during the admission process.
+                        <div className="flex justify-between">
+                          <button
+                            type="button"
+                            onClick={prevStep}
+                            className="btn-outline"
+                          >
+                            Langkah Sebelumnya
+                          </button>
+                          <button
+                            type="button"
+                            onClick={nextStep}
+                            className="btn-primary inline-flex items-center space-x-2"
+                          >
+                            <span>Langkah Selanjutnya</span>
+                            <ChevronRight size={18} />
+                          </button>
+                        </div>
+                      </AnimatedSectionWrapper>
+                    )}
+                    
+                    {step === 5 && (
+                      <AnimatedSectionWrapper animation="fade-in">
+                        <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
+                          Tinjauan & Kirim
+                        </h2>
+                        
+                        <div className="mb-8">
+                          <p className="text-islamic-slate mb-6">
+                            Silakan tinjau informasi Anda sebelum mengirimkan pendaftaran. Anda dapat kembali ke langkah sebelumnya untuk melakukan perubahan jika diperlukan.
                           </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between">
-                        <button
-                          type="button"
-                          onClick={prevStep}
-                          className="btn-outline"
-                        >
-                          Previous Step
-                        </button>
-                        <button
-                          type="button"
-                          onClick={nextStep}
-                          className="btn-primary inline-flex items-center space-x-2"
-                        >
-                          <span>Next Step</span>
-                          <ChevronRight size={18} />
-                        </button>
-                      </div>
-                    </AnimatedSectionWrapper>
-                  )}
-                  
-                  {step === 3 && (
-                    <AnimatedSectionWrapper animation="fade-in">
-                      <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Pilihan Program
-                      </h2>
-                      
-                      <div className="mb-8">
-                        <p className="text-islamic-slate mb-6">
-                          Please select the program you wish to apply for. Each program has different requirements and curriculum focus.
-                        </p>
-                        
-                        <div className="space-y-4">
-                          {[
-                            {
-                              value: 'islamic-studies',
-                              title: 'Program Studi Islam',
-                              description: 'Focus on Islamic knowledge, Quran, Hadith, and Fiqh.',
-                            },
-                            {
-                              value: 'tahfidz',
-                              title: 'Program Tahfidz Quran',
-                              description: 'Intensive Quran memorization program with supporting Islamic studies.',
-                            },
-                            {
-                              value: 'academic-islamic',
-                              title: 'Program Terpadu Akademik-Islam',
-                              description: 'Balanced curriculum of academic subjects and Islamic studies.',
-                            },
-                            {
-                              value: 'leadership',
-                              title: 'Program Kepemimpinan Islam',
-                              description: 'Focus on developing Islamic leadership skills alongside regular studies.',
-                            },
-                          ].map((programOption) => (
-                            <div 
-                              key={programOption.value}
-                              className={`p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
-                                formData.program === programOption.value 
-                                  ? 'border-islamic-teal bg-islamic-teal/5' 
-                                  : 'border-gray-200 hover:border-islamic-teal/50'
-                              }`}
-                              onClick={() => setFormData({ ...formData, program: programOption.value })}
-                            >
-                              <div className="flex items-start">
-                                <div 
-                                  className={`w-5 h-5 rounded-full border flex-shrink-0 mt-0.5 mr-3 flex items-center justify-center ${
-                                    formData.program === programOption.value 
-                                      ? 'border-islamic-teal' 
-                                      : 'border-gray-300'
-                                  }`}
-                                >
-                                  {formData.program === programOption.value && (
-                                    <div className="w-3 h-3 rounded-full bg-islamic-teal"></div>
-                                  )}
+                          
+                          <div className="space-y-6">
+                            <div className="p-4 rounded-lg border border-gray-200">
+                              <h3 className="font-medium text-islamic-navy mb-3">Informasi Pribadi</h3>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <div>
+                                  <span className="text-islamic-slate">Nama Lengkap:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("fullName")}</span>
                                 </div>
                                 <div>
-                                  <h3 className="font-medium text-islamic-navy">
-                                    {programOption.title}
-                                  </h3>
-                                  <p className="text-sm text-islamic-slate mt-1">
-                                    {programOption.description}
-                                  </p>
+                                  <span className="text-islamic-slate">Jenis Kelamin:</span>
+                                  <span className="ml-2 text-islamic-navy">
+                                    {form.getValues("gender") === 'male' ? 'Laki-laki' : form.getValues("gender") === 'female' ? 'Perempuan' : ''}
+                                  </span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Tanggal Lahir:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("dateOfBirth") ? format(form.getValues("dateOfBirth"), 'dd MMMM yyyy') : ''}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Tempat Lahir:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("placeOfBirth")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Email:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("email")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Telepon:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("phone")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">NISN:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("nisn")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">NIK:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("nik")}</span>
+                                </div>
+                                <div className="md:col-span-2">
+                                  <span className="text-islamic-slate">Alamat:</span>
+                                  <span className="ml-2 text-islamic-navy">
+                                    {form.getValues("address")}, {form.getValues("district")}, {form.getValues("city")}, {form.getValues("province")}, {form.getValues("postalCode")}
+                                  </span>
                                 </div>
                               </div>
                             </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between">
-                        <button
-                          type="button"
-                          onClick={prevStep}
-                          className="btn-outline"
-                        >
-                          Previous Step
-                        </button>
-                        <button
-                          type="button"
-                          onClick={nextStep}
-                          className="btn-primary inline-flex items-center space-x-2"
-                        >
-                          <span>Next Step</span>
-                          <ChevronRight size={18} />
-                        </button>
-                      </div>
-                    </AnimatedSectionWrapper>
-                  )}
-                  
-                  {step === 4 && (
-                    <AnimatedSectionWrapper animation="fade-in">
-                      <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Informasi Wali
-                      </h2>
-                      
-                      <div className="grid grid-cols-1 gap-6 mb-8">
-                        <div className="form-input-wrapper">
-                          <label htmlFor="parentName" className="form-label">Parent/Guardian Name *</label>
-                          <input
-                            type="text"
-                            id="parentName"
-                            name="parentName"
-                            value={formData.parentName}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="Enter parent/guardian full name"
-                            required
-                          />
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="form-input-wrapper">
-                            <label htmlFor="parentRelation" className="form-label">Relationship to Student *</label>
-                            <select
-                              id="parentRelation"
-                              name="parentRelation"
-                              value={formData.parentRelation}
-                              onChange={handleChange}
-                              className="form-input"
-                              required
-                            >
-                              <option value="">Select relationship</option>
-                              <option value="father">Father</option>
-                              <option value="mother">Mother</option>
-                              <option value="guardian">Legal Guardian</option>
-                              <option value="other">Other</option>
-                            </select>
-                          </div>
-                          
-                          <div className="form-input-wrapper">
-                            <label htmlFor="parentPhone" className="form-label">Phone Number *</label>
-                            <input
-                              type="tel"
-                              id="parentPhone"
-                              name="parentPhone"
-                              value={formData.parentPhone}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="Enter parent/guardian phone number"
-                              required
-                            />
-                          </div>
-                          
-                          <div className="form-input-wrapper">
-                            <label htmlFor="parentEmail" className="form-label">Email Address</label>
-                            <input
-                              type="email"
-                              id="parentEmail"
-                              name="parentEmail"
-                              value={formData.parentEmail}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="Enter parent/guardian email address"
-                            />
-                          </div>
-                          
-                          <div className="form-input-wrapper">
-                            <label htmlFor="parentOccupation" className="form-label">Occupation</label>
-                            <input
-                              type="text"
-                              id="parentOccupation"
-                              name="parentOccupation"
-                              value={formData.parentOccupation}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="Enter parent/guardian occupation"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <h3 className="text-lg font-display font-semibold text-islamic-navy mb-4">
-                        Informasi Kesehatan
-                      </h3>
-                      
-                      <div className="grid grid-cols-1 gap-6 mb-8">
-                        <div className="form-input-wrapper">
-                          <label htmlFor="healthConditions" className="form-label">Health Conditions</label>
-                          <textarea
-                            id="healthConditions"
-                            name="healthConditions"
-                            value={formData.healthConditions}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="List any health conditions we should be aware of"
-                            rows={3}
-                          ></textarea>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="form-input-wrapper">
-                            <label htmlFor="allergies" className="form-label">Allergies</label>
-                            <input
-                              type="text"
-                              id="allergies"
-                              name="allergies"
-                              value={formData.allergies}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="List any allergies"
-                            />
-                          </div>
-                          
-                          <div className="form-input-wrapper">
-                            <label htmlFor="medications" className="form-label">Current Medications</label>
-                            <input
-                              type="text"
-                              id="medications"
-                              name="medications"
-                              value={formData.medications}
-                              onChange={handleChange}
-                              className="form-input"
-                              placeholder="List any medications you are taking"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between">
-                        <button
-                          type="button"
-                          onClick={prevStep}
-                          className="btn-outline"
-                        >
-                          Previous Step
-                        </button>
-                        <button
-                          type="button"
-                          onClick={nextStep}
-                          className="btn-primary inline-flex items-center space-x-2"
-                        >
-                          <span>Next Step</span>
-                          <ChevronRight size={18} />
-                        </button>
-                      </div>
-                    </AnimatedSectionWrapper>
-                  )}
-                  
-                  {step === 5 && (
-                    <AnimatedSectionWrapper animation="fade-in">
-                      <h2 className="text-2xl font-display font-bold text-islamic-navy mb-6">
-                        Tinjauan & Kirim
-                      </h2>
-                      
-                      <div className="mb-8">
-                        <p className="text-islamic-slate mb-6">
-                          Silakan tinjau informasi Anda sebelum mengirimkan pendaftaran. Anda dapat kembali ke langkah sebelumnya untuk melakukan perubahan jika diperlukan.
-                        </p>
-                        
-                        <div className="space-y-6">
-                          <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Informasi Pribadi</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                              <div>
-                                <span className="text-islamic-slate">Nama Lengkap:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.firstName} {formData.lastName}</span>
+                            
+                            <div className="p-4 rounded-lg border border-gray-200">
+                              <h3 className="font-medium text-islamic-navy mb-3">Latar Belakang Pendidikan</h3>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <div>
+                                  <span className="text-islamic-slate">Sekolah Sebelumnya:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("previousSchool")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Tahun Kelulusan:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("graduationYear")}</span>
+                                </div>
+                                <div className="md:col-span-2">
+                                  <span className="text-islamic-slate">Alamat Sekolah:</span>
+                                  <span className="ml-2 text-islamic-navy">
+                                    {form.getValues("schoolAddress")}, {form.getValues("schoolDistrict")}, {form.getValues("schoolCity")}, {form.getValues("schoolProvince")}
+                                  </span>
+                                </div>
                               </div>
-                              <div>
-                                <span className="text-islamic-slate">Jenis Kelamin:</span>
+                            </div>
+                            
+                            <div className="p-4 rounded-lg border border-gray-200">
+                              <h3 className="font-medium text-islamic-navy mb-3">Pilihan Program</h3>
+                              <div className="text-sm">
+                                <span className="text-islamic-slate">Program Terpilih:</span>
                                 <span className="ml-2 text-islamic-navy">
-                                  {formData.gender === 'male' ? 'Laki-laki' : formData.gender === 'female' ? 'Perempuan' : ''}
-                                </span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Tanggal Lahir:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.dateOfBirth}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Tempat Lahir:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.placeOfBirth || 'N/A'}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Email:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.email}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Telepon:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.phone}</span>
-                              </div>
-                              <div className="md:col-span-2">
-                                <span className="text-islamic-slate">Alamat:</span>
-                                <span className="ml-2 text-islamic-navy">
-                                  {formData.address}, {formData.city}, {formData.province}, {formData.postalCode}
+                                  {form.getValues("program") === 'islamic-studies' && 'Program Studi Islam'}
+                                  {form.getValues("program") === 'tahfidz' && 'Program Tahfidz Quran'}
+                                  {form.getValues("program") === 'academic-islamic' && 'Program Terpadu Akademik-Islam'}
+                                  {form.getValues("program") === 'leadership' && 'Program Kepemimpinan Islam'}
                                 </span>
                               </div>
                             </div>
-                          </div>
-                          
-                          <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Latar Belakang Pendidikan</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                              <div>
-                                <span className="text-islamic-slate">Sekolah Sebelumnya:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.previousSchool}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Tahun Kelulusan:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.graduationYear}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Nilai/IPK Sebelumnya:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.previousGrade || 'N/A'}</span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Pilihan Program</h3>
-                            <div className="text-sm">
-                              <span className="text-islamic-slate">Program Terpilih:</span>
-                              <span className="ml-2 text-islamic-navy">
-                                {formData.program === 'islamic-studies' && 'Program Studi Islam'}
-                                {formData.program === 'tahfidz' && 'Program Tahfidz Quran'}
-                                {formData.program === 'academic-islamic' && 'Program Terpadu Akademik-Islam'}
-                                {formData.program === 'leadership' && 'Program Kepemimpinan Islam'}
-                              </span>
-                            </div>
-                          </div>
-                          
-                          <div className="p-4 rounded-lg border border-gray-200">
-                            <h3 className="font-medium text-islamic-navy mb-3">Informasi Wali</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                              <div>
-                                <span className="text-islamic-slate">Nama Wali:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentName}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Hubungan:</span>
-                                <span className="ml-2 text-islamic-navy">
-                                  {formData.parentRelation === 'father' ? 'Ayah' : 
-                                   formData.parentRelation === 'mother' ? 'Ibu' :
-                                   formData.parentRelation === 'guardian' ? 'Wali Hukum' :
-                                   formData.parentRelation === 'other' ? 'Lainnya' : ''}
-                                </span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Telepon:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentPhone}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Email:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentEmail || 'N/A'}</span>
-                              </div>
-                              <div>
-                                <span className="text-islamic-slate">Pekerjaan:</span>
-                                <span className="ml-2 text-islamic-navy">{formData.parentOccupation || 'N/A'}</span>
+                            
+                            <div className="p-4 rounded-lg border border-gray-200">
+                              <h3 className="font-medium text-islamic-navy mb-3">Informasi Keluarga</h3>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <div>
+                                  <span className="text-islamic-slate">Nomor Kartu Keluarga:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("familyCardNumber")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Nama Ayah:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("fatherName")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Status Ayah:</span>
+                                  <span className="ml-2 text-islamic-navy">
+                                    {form.getValues("fatherStatus") === 'alive' ? 'Masih Hidup' : 
+                                     form.getValues("fatherStatus") === 'deceased' ? 'Sudah Meninggal' : ''}
+                                  </span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">NIK Ayah:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("fatherNik")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Pekerjaan Ayah:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("fatherOccupation")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Nama Ibu:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("motherName")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Status Ibu:</span>
+                                  <span className="ml-2 text-islamic-navy">
+                                    {form.getValues("motherStatus") === 'alive' ? 'Masih Hidup' : 
+                                     form.getValues("motherStatus") === 'deceased' ? 'Sudah Meninggal' : ''}
+                                  </span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">NIK Ibu:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("motherNik")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Pendidikan Ibu:</span>
+                                  <span className="ml-2 text-islamic-navy">{form.getValues("motherEducation")}</span>
+                                </div>
+                                <div>
+                                  <span className="text-islamic-slate">Penghasilan Orang Tua:</span>
+                                  <span className="ml-2 text-islamic-navy">
+                                    {form.getValues("parentsIncome") === 'below_1M' ? 'Di bawah 1 juta rupiah' :
+                                     form.getValues("parentsIncome") === '1M_3M' ? '1 juta - 3 juta rupiah' :
+                                     form.getValues("parentsIncome") === '3M_5M' ? '3 juta - 5 juta rupiah' :
+                                     form.getValues("parentsIncome") === '5M_10M' ? '5 juta - 10 juta rupiah' :
+                                     form.getValues("parentsIncome") === 'above_10M' ? 'Di atas 10 juta rupiah' : ''}
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        
-                        <div className="mt-8 mb-6">
-                          <div className="flex items-start">
-                            <input
-                              type="checkbox"
-                              id="agreeTerms"
+                          
+                          <div className="mt-8 mb-6">
+                            <FormField
+                              control={form.control}
                               name="agreeTerms"
-                              checked={formData.agreeTerms}
-                              onChange={(e) => setFormData({...formData, agreeTerms: e.target.checked})}
-                              className="mt-1 mr-3"
+                              render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                  <FormControl>
+                                    <input
+                                      type="checkbox"
+                                      checked={field.value}
+                                      onChange={field.onChange}
+                                      className="mt-1"
+                                    />
+                                  </FormControl>
+                                  <div className="space-y-1 leading-none">
+                                    <FormLabel>
+                                      Saya menyatakan bahwa semua informasi di atas benar dan setuju untuk mematuhi semua peraturan dan ketentuan Pondok Pesantren Islam Irsyadulhaq. Saya memahami bahwa informasi yang salah dapat menyebabkan penolakan pendaftaran atau pembatalan penerimaan.
+                                    </FormLabel>
+                                    <FormMessage />
+                                  </div>
+                                </FormItem>
+                              )}
                             />
-                            <label htmlFor="agreeTerms" className="text-sm text-islamic-slate">
-                              Saya menyatakan bahwa semua informasi di atas benar dan setuju untuk mematuhi semua peraturan dan ketentuan Pondok Pesantren Islam Irsyadulhaq. Saya memahami bahwa informasi yang salah dapat menyebabkan penolakan pendaftaran atau pembatalan penerimaan.
-                            </label>
                           </div>
                         </div>
-                      </div>
-                      
-                      <div className="flex justify-between">
-                        <button
-                          type="button"
-                          onClick={prevStep}
-                          className="btn-outline"
-                        >
-                          Previous Step
-                        </button>
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="btn-primary inline-flex items-center space-x-2"
-                        >
-                          {isSubmitting ? (
-                            <span>Submitting...</span>
-                          ) : (
-                            <>
-                              <span>Submit Application</span>
-                              <ChevronRight size={18} />
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </AnimatedSectionWrapper>
-                  )}
-                </form>
+                        
+                        <div className="flex justify-between">
+                          <button
+                            type="button"
+                            onClick={prevStep}
+                            className="btn-outline"
+                          >
+                            Langkah Sebelumnya
+                          </button>
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="btn-primary inline-flex items-center space-x-2"
+                          >
+                            {isSubmitting ? (
+                              <span>Mengirim...</span>
+                            ) : (
+                              <>
+                                <span>Kirim Pendaftaran</span>
+                                <ChevronRight size={18} />
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </AnimatedSectionWrapper>
+                    )}
+                  </form>
+                </Form>
               )}
             </div>
           </div>
