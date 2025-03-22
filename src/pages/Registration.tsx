@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -127,8 +126,8 @@ const Registration: React.FC = () => {
         
         <section className="py-12">
           <div className="container mx-auto px-4 md:px-6">
-            <StepsIndicator />
             <FormProvider initialStep={initialStep}>
+              <StepsIndicator />
               <RegistrationForm />
             </FormProvider>
           </div>
