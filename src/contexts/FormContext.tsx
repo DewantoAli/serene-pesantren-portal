@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
 import { formSchema } from '@/schemas/registrationSchema';
@@ -23,7 +23,7 @@ interface FormContextType {
 const FormContext = createContext<FormContextType | undefined>(undefined);
 
 export const FormProvider: React.FC<{
-  children: React.ReactNode;
+  children: ReactNode;
   initialStep?: number;
 }> = ({ children, initialStep = 1 }) => {
   const [form, setForm] = useState<UseFormReturn<FormValues> | null>(null);

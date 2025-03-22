@@ -119,23 +119,6 @@ const Registration: React.FC = () => {
     },
   });
   
-  const FormContextProvider = () => {
-    const [formState, setFormState] = useState(form);
-    
-    return (
-      <FormProvider initialStep={initialStep}>
-        {({ setForm }) => {
-          // Set the form on initial render
-          React.useEffect(() => {
-            setForm(form);
-          }, [form, setForm]);
-          
-          return <RegistrationForm />;
-        }}
-      </FormProvider>
-    );
-  };
-  
   return (
     <>
       <Header />
@@ -145,7 +128,9 @@ const Registration: React.FC = () => {
         <section className="py-12">
           <div className="container mx-auto px-4 md:px-6">
             <StepsIndicator />
-            <FormContextProvider />
+            <FormProvider initialStep={initialStep}>
+              <RegistrationForm />
+            </FormProvider>
           </div>
         </section>
       </main>
