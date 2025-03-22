@@ -66,7 +66,7 @@ const Index: React.FC = () => {
                       <div className="bg-islamic-emerald h-1.5 rounded-full w-[85%]"></div>
                     </div>
                   </div>
-                  <div className="absolute -top-4 -right-8 glass-card p-5 rounded-lg max-w-[260px]">
+                  <div className="absolute -top-8 -left-8 glass-card p-5 rounded-lg max-w-[260px]">
                     <div className="flex items-center space-x-3 mb-3">
                       <div className="w-12 h-12 rounded-full bg-islamic-gold flex items-center justify-center">
                         <BookOpen size={24} className="text-islamic-navy" />
