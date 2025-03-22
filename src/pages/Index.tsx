@@ -28,7 +28,7 @@ const Index: React.FC = () => {
                   <span className="text-islamic-sand">Untuk Masa Depan Cerah</span>
                 </h1>
                 <p className="text-islamic-cream/90 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-                  Pondok Pesantren Irsyadulhaq menggabungkan nilai-nilai Islam tradisional dengan pendidikan modern untuk mengembangkan individu yang utuh.
+                  Pondok Pesantren Irsyadul Haq menggabungkan nilai-nilai Islam tradisional dengan pendidikan modern untuk mengembangkan individu yang utuh.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Link to="/registration" className="btn-accent">
@@ -46,7 +46,7 @@ const Index: React.FC = () => {
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
                       src="https://media-hosting.imagekit.io//868a48dd554b4deb/1708919328443.jpg?Expires=1837133361&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=dP8NWI~s-q2F0Jo3167GA0sCPJ2c9sN4IWDzPmJFOkGYgVu4jsHOA~V5wGz4ZOBPALivcg0RwVbnglo~fJi3XLzulmjMJqhqiHwTapbsMGnz5v6GgkwB5yRK7~ugvZ4iNMrRpZtW3~L9uYJ2ZdLbl5vL0Dd9KQ5txZH3X3kSbxrGQ2o~B-8NBCHJtnh0oPBPstqOi9fYzSR4hIBGSRPPmDMt8LDN9Q3gC-O9rE7bn1MLk8TMYoFJ6h1ukOmBp1DuMhPfeSoj4l-Fbi3uDZpRhEi4thk0~GL-MGmVQQZROpV~Olzg3bgswSkyGwv0FEUxeQ~3XQ8DKPCuknD3OyMVGA__" 
-                      alt="Santri di Pondok Pesantren Irsyadulhaq" 
+                      alt="Santri di Pondok Pesantren Irsyadul Haq" 
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -161,7 +161,7 @@ const Index: React.FC = () => {
                 </h2>
                 <div className="geometric-divider"></div>
                 <p className="text-islamic-slate mb-6">
-                  Didirikan pada tahun 1985, Pondok Pesantren Irsyadulhaq telah berdedikasi menyediakan pendidikan Islam berkualitas selama lebih dari tiga dekade. Institusi kami menggabungkan pengajaran Islam tradisional dengan pendekatan pendidikan modern.
+                  Didirikan pada tahun 2000, Pondok Pesantren Irsyadul Haq telah berdedikasi menyediakan pendidikan Islam berkualitas selama lebih dari tiga dekade. Institusi kami menggabungkan pengajaran Islam tradisional dengan pendekatan pendidikan modern.
                 </p>
                 <ul className="space-y-3 mb-8">
                   {[
@@ -188,7 +188,7 @@ const Index: React.FC = () => {
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img 
                       src="https://media-hosting.imagekit.io//a1c3b444c804407f/1709315665487.jpg?Expires=1837133719&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=oTq6oWR6Mq6iRX~9qHz7c5f1b2bnFbQCzUrgpnEd6oQasM16p9-u2KGO9p4pIBNuhsbXOmSymzNuNn7NgrJG-0pYcTXODFYp3f9vdiFaj0T79IBA0lAkttWU2lGwMi5uEGALayoGGAvTh3OZ2Y9IKWk9gkios6jHRgwtIG~CLNVr1EUT~aSeXWjYlKvgKv3YfjVpmyjWGogHBzxYT2NgdXAlnvR0xuHcuaB-u2SEVIDZ-emeGg4o0Qxgo807pvHVx5M3sVlN8f~~~7PDOBAIc5E9Cvhwa7huoAE1xMv-6BBcoCYzmYnNYajv3IbGX8X-A0fF7kZ8Jm-10O5g4AF5Ew__" 
-                      alt="Gedung Pondok Pesantren Irsyadulhaq" 
+                      alt="Gedung Pondok Pesantren Irsyadul Haq" 
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -211,7 +211,7 @@ const Index: React.FC = () => {
                 Pendaftaran Dibuka
               </span>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
-                Mulai Perjalanan Anda dengan Irsyadulhaq Hari Ini
+                Mulai Perjalanan Anda dengan Irsyadul Haq Hari Ini
               </h2>
               <div className="geometric-divider bg-islamic-gold mx-auto"></div>
               <p className="text-islamic-cream/90 mb-8 max-w-2xl mx-auto">
