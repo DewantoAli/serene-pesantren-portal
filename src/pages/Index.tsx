@@ -56,8 +56,8 @@ const Index: React.FC = () => {
                         <Users size={24} className="text-white" />
                       </div>
                       <div>
-                        <p className="text-islamic-navy font-medium">Menghapal</p>
-                        <p className="text-sm text-islamic-navy/70">Hadits</p>
+                        <p className="text-islamic-navy font-medium">Hapalan</p>
+                        <p className="text-sm text-islamic-navy/70">Santri</p>
                       </div>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-1.5">
@@ -70,8 +70,8 @@ const Index: React.FC = () => {
                         <BookOpen size={24} className="text-islamic-navy" />
                       </div>
                       <div>
-                        <p className="text-islamic-navy font-medium">Menghapal</p>
-                        <p className="text-sm text-islamic-navy/70">Al-Qur'an</p>
+                        <p className="text-islamic-navy font-medium">Al-Qur'an</p>
+                        <p className="text-sm text-islamic-navy/70">Hadits</p>
                       </div>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-1.5">
