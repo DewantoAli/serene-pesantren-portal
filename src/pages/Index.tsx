@@ -69,11 +69,12 @@ const Index: React.FC = () => {
                   <div className="absolute -top-8 -left-8 glass-card p-5 rounded-lg max-w-[260px]">
                     <div className="flex items-center space-x-3 mb-3">
                       <div className="w-12 h-12 rounded-full bg-islamic-gold flex items-center justify-center">
-                        <BookOpen size={24} className="text-islamic-navy" />
+                    
                       </div>
                       <div>
-                        <p className="text-islamic-navy font-medium">Al-Quran</p>
-                        <p className="text-islamic-navy font-medium">As-Sunnah</p>
+                       src="https://ik.imagekit.io/uzuuvayyu/SPMB%20Irsyadul%20Haq%2025-26.png?updatedAt=1742604257380" 
+                      alt="Santri di Pondok Pesantren Irsyadul Haq" 
+                      className="w-full h-full object-cover"
                       </div>
                     </div>
 
