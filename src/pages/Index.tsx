@@ -1,11 +1,14 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, BookOpen, Users, GraduationCap, Calendar, ArrowRight, MapPin } from 'lucide-react';
+import { ChevronRight, BookOpen, Users, GraduationCap, Calendar, ArrowRight, MapPin, Info } from 'lucide-react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const Index: React.FC = () => {
   return (
@@ -59,12 +62,7 @@ const Index: React.FC = () => {
                         <p className="text-islamic-navy font-medium">Hapalan</p>
                         <p className="text-sm text-islamic-navy/70">Santri</p>
                       </div>
-                    </div>
-                    
-
-
-
-                    
+                    </div>                    
                     <div className="w-full bg-gray-200 rounded-full h-1.5">
                       <div className="bg-islamic-emerald h-1.5 rounded-full w-[85%]"></div>
                     </div>
@@ -89,6 +87,64 @@ const Index: React.FC = () => {
           </div>
           
           <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
+        </section>
+        
+        {/* Promotion Flyer Section */}
+        <section className="py-12 md:py-16 bg-islamic-cream/5">
+          <div className="container mx-auto px-4 md:px-6">
+            <AnimatedSectionWrapper className="text-center mb-8">
+              <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-teal/10 text-islamic-teal text-sm font-medium">
+                Pengumuman Penting
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-islamic-navy mb-4">
+                Penerimaan Murid Baru 2025/2026
+              </h2>
+              <div className="geometric-divider mx-auto"></div>
+              <p className="text-islamic-slate max-w-2xl mx-auto">
+                Sistem Penerimaan Murid Baru (SPMB) Pondok Pesantren Irsyadul Haq untuk tahun ajaran 2025/2026 telah dibuka.
+              </p>
+            </AnimatedSectionWrapper>
+            
+            <AnimatedSectionWrapper animation="scale-in" delay={100} className="max-w-4xl mx-auto">
+              <div className="bg-white/30 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-elegant">
+                <Carousel opts={{ loop: true }} className="w-full">
+                  <CarouselContent>
+                    <CarouselItem>
+                      <div className="p-1">
+                        <Card>
+                          <CardContent className="flex items-center justify-center p-2 md:p-4">
+                            <div className="overflow-hidden rounded-lg shadow-lg">
+                              <img 
+                                src="/public/lovable-uploads/df6366a9-1018-4237-bffb-263beadecc59.png" 
+                                alt="Sistem Penerimaan Murid Baru 2025/2026" 
+                                className="w-full h-auto"
+                              />
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  </CarouselContent>
+                  <CarouselPrevious className="hidden md:flex -left-6 border-islamic-teal/30 bg-white/80 text-islamic-teal hover:bg-islamic-teal hover:text-white" />
+                  <CarouselNext className="hidden md:flex -right-6 border-islamic-teal/30 bg-white/80 text-islamic-teal hover:bg-islamic-teal hover:text-white" />
+                </Carousel>
+                
+                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Button className="bg-islamic-teal hover:bg-islamic-teal/90 text-white w-full sm:w-auto flex items-center gap-2">
+                    <Info size={18} />
+                    <Link to="/registration" className="w-full">
+                      Informasi Lengkap
+                    </Link>
+                  </Button>
+                  <Button variant="outline" className="border-islamic-teal/30 text-islamic-teal hover:bg-islamic-teal/10 w-full sm:w-auto">
+                    <Link to="/registration" className="w-full">
+                      Daftar Sekarang
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </AnimatedSectionWrapper>
+          </div>
         </section>
         
         {/* Services Section */}
