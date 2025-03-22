@@ -86,7 +86,7 @@ const Registration: React.FC = () => {
       gender: undefined,
       dateOfBirth: undefined,
       placeOfBirth: "",
-      email: "",
+      email: undefined,
       phone: "",
       nisn: "",
       nik: "",
