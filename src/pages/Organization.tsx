@@ -32,6 +32,14 @@ const Organization: React.FC = () => {
       education: "M.Sc. in Psychology, International Islamic University",
       experience: "12+ years in student counseling",
       bio: "Ustadzah Fatima leads student affairs, ensuring the well-being and development of all students through mentorship and guidance programs."
+    },
+    {
+      name: "Ustadzah Fatima Rahman",
+      position: "Student Affairs Director",
+      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
+      education: "M.Sc. in Psychology, International Islamic University",
+      experience: "12+ years in student counseling",
+      bio: "Ustadzah Fatima leads student affairs, ensuring the well-being and development of all students through mentorship and guidance programs."
     }
   ];
   
