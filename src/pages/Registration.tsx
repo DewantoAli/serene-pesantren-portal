@@ -84,7 +84,7 @@ const Registration: React.FC = () => {
     defaultValues: {
       fullName: "",
       gender: undefined,
-      dateOfBirth: undefined,
+      dateOfBirth: "",
       placeOfBirth: "",
       email: undefined, // Email sekarang tidak wajib
       phone: "",
