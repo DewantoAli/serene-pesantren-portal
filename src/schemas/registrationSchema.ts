@@ -1,4 +1,3 @@
-
 import * as z from "zod";
 
 export const formSchema = z.object({
@@ -11,7 +10,7 @@ export const formSchema = z.object({
     required_error: "Tanggal lahir diperlukan",
   }),
   placeOfBirth: z.string().min(1, "Tempat lahir diperlukan"),
-  email: z.string().email("Alamat email tidak valid").Opsional(),
+  email: z.string().email("Alamat email tidak valid").optional(),
   phone: z.string().min(1, "Nomor HP/WhatsApp diperlukan"),
   nisn: z.string().min(1, "NISN diperlukan"),
   nik: z.string().min(1, "NIK diperlukan"),
