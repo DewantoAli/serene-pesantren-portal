@@ -114,7 +114,7 @@ const Organization: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                Leadership Team
+                Pengasuh Pondok Pesanten Irsyadul Haq
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
