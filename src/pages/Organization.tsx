@@ -10,52 +10,52 @@ const Organization: React.FC = () => {
   // Organization Structure Data
   const leadershipTeam = [
     {
-      name: "Dr. Ahmad Fadhil",
-      position: "Director",
+      name: "Andi Frans Maramis (Abu Surya)",
+      position: "Ketua Yayasan",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "Ph.D. in Islamic Studies, Al-Azhar University",
       experience: "20+ years in Islamic education",
-      bio: "Dr. Ahmad Fadhil has dedicated his life to Islamic education and has been leading Irsyadulhaq since 2005. Under his guidance, the school has expanded its programs and gained recognition for academic excellence."
+      bio: "Tauhid"
     },
     {
-      name: "Ustadz Mahmoud Hassan",
-      position: "Academic Director",
+      name: "Ustadz Sofyan Chalid bin Idham Ruray, Lc Hafizhahullah",
+      position: "Pembina Pondok",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "M.A. in Education, University of Jordan",
       experience: "15+ years in curriculum development",
-      bio: "Ustadz Mahmoud oversees all academic programs and ensures that our curriculum meets both national standards and Islamic educational principles."
+      bio: "Tauhid"
     },
     {
-      name: "Ustadzah Fatima Rahman",
-      position: "Student Affairs Director",
+      name: "Ustadz Sofyan Ahmad Madiu, Hafizhahullah",
+      position: "Pembina Pondok",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "M.Sc. in Psychology, International Islamic University",
       experience: "12+ years in student counseling",
-      bio: "Ustadzah Fatima leads student affairs, ensuring the well-being and development of all students through mentorship and guidance programs."
+      bio: "Tauhid"
     },
     {
-      name: "Ustadzah Fatima Rahman",
-      position: "Student Affairs Director",
+      name: "Ustadz Rosihan Anwar, SP.d",
+      position: "Mudir Pondok",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "M.Sc. in Psychology, International Islamic University",
       experience: "12+ years in student counseling",
-      bio: "Ustadzah Fatima leads student affairs, ensuring the well-being and development of all students through mentorship and guidance programs."
+      bio: "Tauhid"
     },
     {
-      name: "Ustadzah Fatima Rahman",
-      position: "Student Affairs Director",
+      name: "Hadi Supriyanto, SE",
+      position: "Kepala Madrasah",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "M.Sc. in Psychology, International Islamic University",
       experience: "12+ years in student counseling",
-      bio: "Ustadzah Fatima leads student affairs, ensuring the well-being and development of all students through mentorship and guidance programs."
+      bio: "Tauhid"
     },
     {
-      name: "Ustadzah Fatima Rahman",
-      position: "Student Affairs Director",
+      name: "Ustadz Abu Sa'id Hafizhahullah",
+      position: "Pengasuh Santri",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "M.Sc. in Psychology, International Islamic University",
       experience: "12+ years in student counseling",
-      bio: "Ustadzah Fatima leads student affairs, ensuring the well-being and development of all students through mentorship and guidance programs."
+      bio: "Tauhid"
     }
   ];
   
