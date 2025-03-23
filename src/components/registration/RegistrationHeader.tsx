@@ -21,6 +21,32 @@ const RegistrationHeader: React.FC = () => {
             Formulir Pendaftaran Online pondok Pesantren Irsyadul Haq T.A 2025 - 2026
            </p>
                SYARAT PENDAFTARAN :
+          
+                const administrationTeam = [
+    {
+      name: "Administration & Finance",
+      head: "Mrs. Layla Zubair",
+      positions: ["Financial Manager", "Administrative Assistants", "HR Staff", "Accounting Team"]
+    },
+    {
+      name: "Facilities & Maintenance",
+      head: "Mr. Rizwan Ahmed",
+      positions: ["Maintenance Supervisors", "Security Team", "Cleaning Staff", "Gardeners"]
+    },
+    {
+      name: "Student Services",
+      head: "Mrs. Samira Malik",
+      positions: ["Health Services", "Dining Services", "Dormitory Supervisors", "Transportation Coordinators"]
+    },
+    {
+      name: "Community Relations",
+      head: "Mr. Hassan Ibrahim",
+      positions: ["Parent Coordinators", "Alumni Relations", "Event Organizers", "Media Team"]
+    }
+  ];
+
+
+          
                  <ul className="space-y-3 mb-8">
                   
                     "Membayar Biaya Pendaftaran",
