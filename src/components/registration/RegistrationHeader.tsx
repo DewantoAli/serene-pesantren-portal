@@ -21,27 +21,25 @@ const RegistrationHeader: React.FC = () => {
             Formulir Pendaftaran Online pondok Pesantren Irsyadul Haq T.A 2025 - 2026
            </p>
                SYARAT PENDAFTARAN :
-            <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Membayar Biaya Pendaftaran</a>
-                </li>
-                <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors"> Mengisi Formulir Pendaftaran</a>
-                </li>
-                <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Foto Copy Kartu Keluarga (KK) satu Lembar</a>
-                </li>
-              <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar</a>
-                </li>
-          <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors"> Foto Copy Akte Kelahiran satu lembar</a>
-                </li>
-          <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)</a>
-                </li>
-          <li>
-                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)</a>
-                </li>
+                 <ul className="space-y-3 mb-8">
+                  {[
+                    "Membayar Biaya Pendaftaran",
+                    "Mengisi Formulir Pendaftaran",
+                    "Foto Copy Kartu Keluarga (KK) satu Lembar",
+                    "Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar"
+                    "Foto Copy Akte Kelahiran satu lembar"
+                    "Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)"
+                    "Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)"
+                                   
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <div className="w-5 h-5 rounded-full bg-islamic-teal/20 flex items-center justify-center mt-1 mr-3">
+                        <div className="w-2 h-2 rounded-full bg-islamic-teal"></div>
+                      </div>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               
         
               Kontak Informasi :
