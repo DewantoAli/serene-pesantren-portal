@@ -31,10 +31,6 @@ const RegistrationHeader: React.FC = () => {
                     "Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)"
                     "Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)"
                                    
-                       <div className="w-5 h-5 rounded-full bg-islamic-teal/20 flex items-center justify-center mt-1 mr-3">
-                        <div className="w-2 h-2 rounded-full bg-islamic-teal"></div>
-                      </div>
-              
                 </ul>
               
         
