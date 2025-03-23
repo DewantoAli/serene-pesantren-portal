@@ -30,18 +30,21 @@ const RegistrationHeader: React.FC = () => {
                 <li>
                   <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Foto Copy Kartu Keluarga (KK) satu Lembar</a>
                 </li>
-
-          
+              <li>
+                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar</a>
+                </li>
+          <li>
+                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors"> Foto Copy Akte Kelahiran satu lembar</a>
+                </li>
+          <li>
+                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)</a>
+                </li>
+          <li>
+                  <a href="#" className="text-xs text-islamic-sand/60 hover:text-islamic-gold transition-colors">Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)</a>
+                </li>
+              
         
-         
-        
-         
-        Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar
-        Foto Copy Akte Kelahiran satu lembar
-        Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)
-       Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)
-  
-  Kontak Informasi :
+              Kontak Informasi :
               0822-9006-6969 (Rosihan Anwar, S.Pd.)
               0812-4427-1126 (Hadi Supriyanto, SE)
           
