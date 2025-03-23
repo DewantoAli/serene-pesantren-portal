@@ -1,9 +1,6 @@
-
 import React, { useState } from 'react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import { format, parse } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 
 import {
@@ -17,16 +14,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { Button } from "@/components/ui/button";
 
 import { useFormContext } from '@/contexts/FormContext';
 import StepNavigation from './StepNavigation';
 
 const PersonalInfoStep: React.FC = () => {
   const { form } = useFormContext();
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const [dateInputValue, setDateInputValue] = useState("");
   
   if (!form) return null;
@@ -110,47 +103,13 @@ const PersonalInfoStep: React.FC = () => {
               <FormItem className="flex flex-col">
                 <FormLabel>Tanggal Lahir (Sesuai Ijazah) *</FormLabel>
                 
-                <div className="flex flex-col space-y-2">
-                  {/* Direct date input */}
-                  <FormControl>
-                    <Input 
-                      placeholder="DD/MM/YYYY atau YYYY-MM-DD" 
-                      value={dateInputValue || (field.value ? format(field.value, 'dd/MM/yyyy') : '')}
-                      onChange={(e) => handleDateInputChange(e, field.onChange)}
-                    />
-                  </FormControl>
-                  
-                  {/* Calendar picker option */}
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button 
-                        variant="outline" 
-                        type="button"
-                        className="flex items-center justify-center w-full"
-                      >
-                        <CalendarIcon className="h-4 w-4 mr-2" />
-                        <span>Atau pilih dari kalender</span>
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={(date) => {
-                          field.onChange(date);
-                          if (date) {
-                            setDateInputValue(format(date, 'dd/MM/yyyy'));
-                          }
-                        }}
-                        disabled={(date) =>
-                          date > new Date() || date < new Date("1900-01-01")
-                        }
-                        initialFocus
-                        className={cn("p-3 pointer-events-auto")}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
+                <FormControl>
+                  <Input 
+                    placeholder="DD/MM/YYYY atau YYYY-MM-DD" 
+                    value={dateInputValue || (field.value ? format(field.value, 'dd/MM/yyyy') : '')}
+                    onChange={(e) => handleDateInputChange(e, field.onChange)}
+                  />
+                </FormControl>
                 
                 <FormDescription>
                   Format: DD/MM/YYYY atau YYYY-MM-DD
