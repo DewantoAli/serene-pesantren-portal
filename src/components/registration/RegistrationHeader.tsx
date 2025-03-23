@@ -22,7 +22,7 @@ const RegistrationHeader: React.FC = () => {
            </p>
                SYARAT PENDAFTARAN :
                  <ul className="space-y-3 mb-8">
-                  {[
+                  
                     "Membayar Biaya Pendaftaran",
                     "Mengisi Formulir Pendaftaran",
                     "Foto Copy Kartu Keluarga (KK) satu Lembar",
@@ -34,8 +34,7 @@ const RegistrationHeader: React.FC = () => {
                        <div className="w-5 h-5 rounded-full bg-islamic-teal/20 flex items-center justify-center mt-1 mr-3">
                         <div className="w-2 h-2 rounded-full bg-islamic-teal"></div>
                       </div>
-                   
-                  ]}
+              
                 </ul>
               
         
