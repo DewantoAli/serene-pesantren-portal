@@ -21,7 +21,7 @@ const RegistrationHeader: React.FC = () => {
             Formulir Pendaftaran Online pondok Pesantren Irsyadul Haq T.A 2025 - 2026
            </p>
                SYARAT PENDAFTARAN :
-       
+       <h4>
                     "Membayar Biaya Pendaftaran",
                     "Mengisi Formulir Pendaftaran",
                     "Foto Copy Kartu Keluarga (KK) satu Lembar",
@@ -29,11 +29,16 @@ const RegistrationHeader: React.FC = () => {
                     "Foto Copy Akte Kelahiran satu lembar"
                     "Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)"
                     "Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)"
+         </h4>
                <div>           
                    
               Kontak Informasi :
+                 </div>>
+          <div>
               0822-9006-6969 (Rosihan Anwar, S.Pd.)
-              0812-4427-1126 (Hadi Supriyanto, SE)
+            </div>
+          <div>
+          0812-4427-1126 (Hadi Supriyanto, SE)
           </div>
         </AnimatedSectionWrapper>
       </div>
