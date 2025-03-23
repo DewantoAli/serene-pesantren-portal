@@ -67,7 +67,14 @@ const Organization: React.FC = () => {
       head: "Ustadz Khalid Omar",
       description: "Organizes sports, arts, and other extracurricular activities.",
       programs: ["Sports Activities", "Arts & Crafts", "Debate Club", "Science Competitions"]
+    },
+    {
+      name: "Extracurricular Department",
+      head: "Ustadz Khalid Omar",
+      description: "Organizes sports, arts, and other extracurricular activities.",
+      programs: ["Sports Activities", "Arts & Crafts", "Debate Club", "Science Competitions"]
     }
+    
   ];
   
   const administrationTeam = [
