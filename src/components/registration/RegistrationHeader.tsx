@@ -20,6 +20,15 @@ const RegistrationHeader: React.FC = () => {
           <p className="text-islamic-cream/90 max-w-2xl mx-auto mb-6">
             Formulir Pendaftaran Online pondok Pesantren Irsyadul Haq T.A 2025 - 2026
            </p>
+          
+          ul li::before {
+            content: "*";
+            color: #e74c3c;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em
+          }
     <h1>Persyaratan Pendaftaran :</h1>
     <ul>
         <li>Membayar Biaya Pendaftaran</li>
