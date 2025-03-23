@@ -111,9 +111,7 @@ const PersonalInfoStep: React.FC = () => {
                   />
                 </FormControl>
                 
-                <FormDescription>
-                  Format: DD/MM/YYYY atau YYYY-MM-DD
-                </FormDescription>
+                
                 <FormMessage />
               </FormItem>
             )}
