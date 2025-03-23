@@ -12,7 +12,7 @@ const Organization: React.FC = () => {
     {
       name: "Dr. Ahmad Fadhil",
       position: "Director",
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "Ph.D. in Islamic Studies, Al-Azhar University",
       experience: "20+ years in Islamic education",
       bio: "Dr. Ahmad Fadhil has dedicated his life to Islamic education and has been leading Irsyadulhaq since 2005. Under his guidance, the school has expanded its programs and gained recognition for academic excellence."
@@ -20,7 +20,7 @@ const Organization: React.FC = () => {
     {
       name: "Ustadz Mahmoud Hassan",
       position: "Academic Director",
-      photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "M.A. in Education, University of Jordan",
       experience: "15+ years in curriculum development",
       bio: "Ustadz Mahmoud oversees all academic programs and ensures that our curriculum meets both national standards and Islamic educational principles."
@@ -28,7 +28,7 @@ const Organization: React.FC = () => {
     {
       name: "Ustadzah Fatima Rahman",
       position: "Student Affairs Director",
-      photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80",
+      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
       education: "M.Sc. in Psychology, International Islamic University",
       experience: "12+ years in student counseling",
       bio: "Ustadzah Fatima leads student affairs, ensuring the well-being and development of all students through mentorship and guidance programs."
