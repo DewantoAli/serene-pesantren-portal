@@ -15,10 +15,21 @@ const RegistrationHeader: React.FC = () => {
             Bergabung dengan Komunitas Kami
           </span>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
-            Pendaftaran Santri
+            SPMB Online Ponpes Irsyadul Haq
           </h1>
           <p className="text-islamic-cream/90 max-w-2xl mx-auto mb-6">
-            Lengkapi formulir di bawah ini untuk mendaftar di Pondok Pesantren Islam Irsyadulhaq.
+            Formulir Pendaftaran Online pondok Pesantren Irsyadul Haq T.A 2025 - 2026
+           SYARAT PENDAFTARAN :
+              Membayar Biaya Pendaftaran
+              Mengisi Formulir Pendaftaran
+              Foto Copy Kartu Keluarga (KK) satu Lembar
+              Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar
+              Foto Copy Akte Kelahiran satu lembar
+              Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)
+              Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)
+              Kontak Informasi :
+              0822-9006-6969 (Rosihan Anwar, S.Pd.)
+              0812-4427-1126 (Hadi Supriyanto, SE)
           </p>
         </AnimatedSectionWrapper>
       </div>
