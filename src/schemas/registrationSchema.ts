@@ -6,7 +6,7 @@ export const formSchema = z.object({
   gender: z.enum(["male", "female"], {
     required_error: "Pilih jenis kelamin",
   }),
-  dateOfBirth: z.date({
+  ({
     required_error: "Tanggal lahir diperlukan",
   }),
   placeOfBirth: z.string().min(1, "Tempat lahir diperlukan"),
