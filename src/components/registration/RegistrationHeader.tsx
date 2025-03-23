@@ -33,7 +33,7 @@ const RegistrationHeader: React.FC = () => {
                <div>           
                    
               Kontak Informasi :
-                 </div>>
+                 </div>
           <div>
               0822-9006-6969 (Rosihan Anwar, S.Pd.)
             </div>
