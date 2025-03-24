@@ -2,6 +2,7 @@
 import React from 'react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
+import { ChevronRight, Users, BookOpen, Calendar, MapPin } from 'lucide-react';
 
 const RegistrationHeader: React.FC = () => {
   return (
