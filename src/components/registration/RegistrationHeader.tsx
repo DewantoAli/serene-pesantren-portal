@@ -25,9 +25,9 @@ const RegistrationHeader: React.FC = () => {
           <div className="grid grid-cols-1 gap-8">
             <div>
               <div className="flex items-start mb-2">
-              <div className="text-islamic-gold mr-2" />
+              <MapPin className="text-islamic-gold mr-2" />
                 <h3 className="font-medium text-islamic-cream">Persyaratan Pendaftaran :</h3>
-              </div>
+              
               </div>
               <ul className="list-disc pl-6 text-islamic-cream/90 text-left">
                 <li>Membayar Biaya Pendaftaran</li>
