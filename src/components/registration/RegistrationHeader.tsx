@@ -22,32 +22,28 @@ const RegistrationHeader: React.FC = () => {
             Formulir Pendaftaran Online pondok Pesantren Irsyadul Haq T.A 2025 - 2026
            </p>
            
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: <MapPin className="text-islamic-gold" />,
-                  title: "Persyaratan Pendaftaran :",
-                  items: [
-                    "Membayar Biaya Pendaftaran",
-                    "Mengisi Formulir Pendaftaran",
-                    "Foto Copy Kartu Keluarga (KK) satu Lembar",
-                    "Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar",
-                    "Foto Copy Akte Kelahiran satu lembar"
-                    "Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)"
-                    "Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)"
-                  ]
-                }
-         </div>
-  
-               <div>           
-                   
-              Kontak Informasi :
-                 </div>
-          <div>
-              0822-9006-6969 (Rosihan Anwar, S.Pd.)
+          <div className="grid grid-cols-1 gap-8">
+            <div>
+              <div className="flex items-start mb-2">
+                <MapPin className="text-islamic-gold mr-2" />
+                <h3 className="font-medium text-islamic-cream">Persyaratan Pendaftaran :</h3>
+              </div>
+              <ul className="list-disc pl-6 text-islamic-cream/90 text-left">
+                <li>Membayar Biaya Pendaftaran</li>
+                <li>Mengisi Formulir Pendaftaran</li>
+                <li>Foto Copy Kartu Keluarga (KK) satu Lembar</li>
+                <li>Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar</li>
+                <li>Foto Copy Akte Kelahiran satu lembar</li>
+                <li>Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)</li>
+                <li>Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)</li>
+              </ul>
             </div>
-          <div>
-          0812-4427-1126 (Hadi Supriyanto, SE)
+            
+            <div className="text-islamic-cream/90">
+              <h3 className="font-medium text-islamic-cream mb-2">Kontak Informasi :</h3>
+              <p>0822-9006-6969 (Rosihan Anwar, S.Pd.)</p>
+              <p>0812-4427-1126 (Hadi Supriyanto, SE)</p>
+            </div>
           </div>
         </AnimatedSectionWrapper>
       </div>

@@ -1,3 +1,4 @@
+
 import * as z from "zod";
 
 export const formSchema = z.object({
@@ -6,7 +7,7 @@ export const formSchema = z.object({
   gender: z.enum(["male", "female"], {
     required_error: "Pilih jenis kelamin",
   }),
-    
+  dateOfBirth: z.string().min(1, "Tanggal lahir diperlukan"),
   placeOfBirth: z.string().min(1, "Tempat lahir diperlukan"),
   email: z.string().email("Alamat email tidak valid").optional(),
   phone: z.string().min(1, "Nomor HP/WhatsApp diperlukan"),

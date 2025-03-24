@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
-import { format, parse } from "date-fns";
 import { Label } from "@/components/ui/label";
 
 import {
@@ -9,7 +9,6 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,32 +19,8 @@ import StepNavigation from './StepNavigation';
 
 const PersonalInfoStep: React.FC = () => {
   const { form } = useFormContext();
-  const [dateInputValue, setDateInputValue] = useState("");
   
   if (!form) return null;
-  
-  const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>, onChange: (date: Date) => void) => {
-    const value = e.target.value;
-    setDateInputValue(value);
-    
-    // Try to parse the date
-    try {
-      // Attempt to parse with different formats (dd/MM/yyyy or yyyy-MM-dd)
-      let parsedDate: Date | null = null;
-      
-      if (value.includes('/')) {
-        parsedDate = parse(value, 'dd/MM/yyyy', new Date());
-      } else if (value.includes('-')) {
-        parsedDate = parse(value, 'yyyy-MM-dd', new Date());
-      }
-      
-      if (parsedDate && !isNaN(parsedDate.getTime())) {
-        onChange(parsedDate);
-      }
-    } catch (error) {
-      // Invalid date format, just update the input value
-    }
-  };
   
   return (
     <AnimatedSectionWrapper animation="fade-in">
@@ -102,16 +77,12 @@ const PersonalInfoStep: React.FC = () => {
             render={({ field }) => (
               <FormItem className="flex flex-col">
                 <FormLabel>Tanggal Lahir (Sesuai Ijazah) *</FormLabel>
-                
                 <FormControl>
                   <Input 
                     placeholder="DD/MM/YYYY atau YYYY-MM-DD" 
-                    value={dateInputValue || (field.value ? format(field.value, 'dd/MM/yyyy') : '')}
-                    onChange={(e) => handleDateInputChange(e, field.onChange)}
+                    {...field}
                   />
                 </FormControl>
-                
-                
                 <FormMessage />
               </FormItem>
             )}

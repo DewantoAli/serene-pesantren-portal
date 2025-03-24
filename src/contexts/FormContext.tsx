@@ -16,7 +16,7 @@ interface FormContextType {
   nextStep: () => void;
   prevStep: () => void;
   fieldsByStep: {
-    [key: number]: readonly string[];
+    [key: number]: (keyof FormValues)[];
   };
 }
 
@@ -37,11 +37,11 @@ export const FormProvider: React.FC<{
     setFormState(form);
   }, [form]);
 
-  const fieldsByStep = {
-    1: ['fullName', 'gender', 'dateOfBirth', 'placeOfBirth', 'email', 'phone', 'nisn', 'nik', 'address', 'district', 'city', 'province', 'postalCode'] as const,
-    2: ['previousSchool', 'schoolAddress', 'schoolDistrict', 'schoolCity', 'schoolProvince', 'graduationYear'] as const,
-    3: ['program'] as const,
-    4: ['familyCardNumber', 'fatherName', 'fatherStatus', 'fatherNik', 'fatherOccupation', 'motherName', 'motherStatus', 'motherNik', 'motherEducation', 'parentsIncome'] as const,
+  const fieldsByStep: {[key: number]: (keyof FormValues)[]} = {
+    1: ['fullName', 'gender', 'dateOfBirth', 'placeOfBirth', 'email', 'phone', 'nisn', 'nik', 'address', 'district', 'city', 'province', 'postalCode'],
+    2: ['previousSchool', 'schoolAddress', 'schoolDistrict', 'schoolCity', 'schoolProvince', 'graduationYear'],
+    3: ['program'],
+    4: ['familyCardNumber', 'fatherName', 'fatherStatus', 'fatherNik', 'fatherOccupation', 'motherName', 'motherStatus', 'motherNik', 'motherEducation', 'parentsIncome'],
   };
 
   const nextStep = () => {
