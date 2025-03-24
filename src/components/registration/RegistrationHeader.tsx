@@ -20,25 +20,24 @@ const RegistrationHeader: React.FC = () => {
           <p className="text-islamic-cream/90 max-w-2xl mx-auto mb-6">
             Formulir Pendaftaran Online pondok Pesantren Irsyadul Haq T.A 2025 - 2026
            </p>
-          
-          ul li::before {
-            content: "*";
-            color: #e74c3c;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em
-          }
-    <h1>Persyaratan Pendaftaran :</h1>
-    <ul>
-        <li>Membayar Biaya Pendaftaran</li>
-        <li>Mengisi Formulir Pendaftaran</li>
-        <li>Foto Copy Kartu Keluarga (KK) satu Lembar</li>
-        <li>Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar</li>
-        <li>Foto Copy Akte Kelahiran satu lembar</li>
-        <li>Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)</li>
-        <li>Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)</li>
-    </ul>
+           
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: <MapPin className="text-islamic-gold" />,
+                  title: "Persyaratan Pendaftaran :",
+                  items: [
+                    "Membayar Biaya Pendaftaran",
+                    "Mengisi Formulir Pendaftaran",
+                    "Foto Copy Kartu Keluarga (KK) satu Lembar",
+                    "Foto Copy Kartu Tanda Penduduk (KTP) Ayah dan Ibu @ satu lembar",
+                    "Foto Copy Akte Kelahiran satu lembar"
+                    "Foto Copy Ijazah Terakhir/SKL yang dilegalisir (3 lembar)"
+                    "Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)"
+                  ]
+                }
+   
+  
                <div>           
                    
               Kontak Informasi :
