@@ -36,7 +36,7 @@ const RegistrationHeader: React.FC = () => {
                     "Pas Foto Berwarna 2x3 (3 lembar) dan 3x4 (3 lembar)"
                   ]
                 }
-   
+         </div>
   
                <div>           
                    
