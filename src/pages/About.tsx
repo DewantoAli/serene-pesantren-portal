@@ -7,47 +7,7 @@ import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-const About: React.FC = () => {
-  // Milestones data
-  const milestones = [
-    {
-      year: "2000",
-      title: "Foundation",
-      description: "Irsyadul Haq Pondok Pesantren School was founded by Sheikh Abdullah Hamid with just 20 students and 3 teachers."
-    },
-    {
-      year: "1995",
-      title: "Expansion",
-      description: "The school expanded its campus, adding new facilities and increasing enrollment to 200 students."
-    },
-    {
-      year: "2000",
-      title: "Curriculum Development",
-      description: "Implemented integrated curriculum combining Islamic studies with modern academic subjects."
-    },
-    {
-      year: "2008",
-      title: "New Campus",
-      description: "Moved to the current, larger campus with modern facilities including a grand mosque, dormitories, and sports complex."
-    },
-    {
-      year: "2015",
-      title: "National Recognition",
-      description: "Received national recognition for academic excellence and Islamic education quality."
-    },
-    {
-      year: "2020",
-      title: "Digital Transformation",
-      description: "Launched digital learning initiatives and modernized educational technology infrastructure."
-    },
-    {
-      year: "Present",
-      title: "Continuing Excellence",
-      description: "Continuing to provide quality Islamic education to over 1,000 students from diverse backgrounds."
-    }
-  ];
-
-  // Core values data
+// Core values data
   const coreValues = [
     {
       icon: <BookOpen className="text-islamic-navy" />,
@@ -81,6 +41,7 @@ const About: React.FC = () => {
     }
   ];
 
+
   return (
     <>
       <Header />
@@ -104,6 +65,24 @@ const About: React.FC = () => {
             </AnimatedSectionWrapper>
           </div>
         </section>
+
+         {/* Our Journey Timeline */}
+        <section className="py-16 bg-islamic-navy relative">
+          <PatternBackground className="absolute inset-0" patternType="dots" patternColor="#ffffff" patternOpacity={0.05} />
+          
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <AnimatedSectionWrapper className="text-center mb-16">
+              <h2 className="text-3xl font-serif font-bold text-white mb-4">
+                Our Journey
+              </h2>
+              <div className="geometric-divider bg-islamic-gold mx-auto"></div>
+              <p className="text-islamic-cream/90 max-w-2xl mx-auto">
+                Key milestones in the development of Irsyadulhaq Islamic Boarding School.
+              </p>
+            </AnimatedSectionWrapper>
+
+
+
         
         {/* Our Story Section */}
         <section className="py-16">
