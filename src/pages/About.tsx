@@ -285,20 +285,7 @@ const About: React.FC = () => {
           </div>
         </section>
         
-        {/* Our Journey Timeline */}
-        <section className="py-16 bg-islamic-navy relative">
-          <PatternBackground className="absolute inset-0" patternType="dots" patternColor="#ffffff" patternOpacity={0.05} />
-          
-          <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <AnimatedSectionWrapper className="text-center mb-16">
-              <h2 className="text-3xl font-serif font-bold text-white mb-4">
-                Our Journey
-              </h2>
-              <div className="geometric-divider bg-islamic-gold mx-auto"></div>
-              <p className="text-islamic-cream/90 max-w-2xl mx-auto">
-                Key milestones in the development of Irsyadulhaq Islamic Boarding School.
-              </p>
-            </AnimatedSectionWrapper>
+       
             
             <div className="relative flex flex-col items-center">
               {/* Timeline Line */}
