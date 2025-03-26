@@ -42,35 +42,6 @@ const About: React.FC = () => {
     }
   ];
 
-  // Define milestones data
-  const milestones = [
-    {
-      year: "1985",
-      title: "Founding",
-      description: "Establishment of Irsyadulhaq Islamic Boarding School with 20 students and 3 teachers."
-    },
-    {
-      year: "1990",
-      title: "First Campus Expansion",
-      description: "Added new classrooms and dormitories to accommodate 100 students."
-    },
-    {
-      year: "2000",
-      title: "Curriculum Development",
-      description: "Integrated modern academic subjects with traditional Islamic studies."
-    },
-    {
-      year: "2010",
-      title: "Technology Integration",
-      description: "Introduced computer labs and digital learning resources."
-    },
-    {
-      year: "2020",
-      title: "International Recognition",
-      description: "Received accreditation and recognition for excellence in Islamic education."
-    }
-  ];
-
   return (
     <>
       <Header />
@@ -92,50 +63,6 @@ const About: React.FC = () => {
                 Learn about our journey, mission, and vision in providing exceptional Islamic education.
               </p>
             </AnimatedSectionWrapper>
-          </div>
-        </section>
-
-        {/* Our Journey Timeline */}
-        <section className="py-16 bg-islamic-navy relative">
-          <PatternBackground className="absolute inset-0" patternType="dots" patternColor="#ffffff" patternOpacity={0.05} />
-          
-          <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <AnimatedSectionWrapper className="text-center mb-16">
-              <h2 className="text-3xl font-serif font-bold text-white mb-4">
-                Our Journey
-              </h2>
-              <div className="geometric-divider bg-islamic-gold mx-auto"></div>
-              <p className="text-islamic-cream/90 max-w-2xl mx-auto">
-                Key milestones in the development of Irsyadulhaq Islamic Boarding School.
-              </p>
-            </AnimatedSectionWrapper>
-            
-            <div className="relative flex flex-col items-center">
-              {/* Timeline Line */}
-              <div className="absolute h-full w-0.5 bg-islamic-gold/50 left-0 md:left-1/2 transform md:-translate-x-1/2 top-0"></div>
-              
-              {/* Timeline Items */}
-              {milestones.map((milestone, index) => (
-                <AnimatedSectionWrapper 
-                  key={index} 
-                  animation={index % 2 === 0 ? "fade-in-left" : "fade-in-right"}
-                  delay={index * 100}
-                  className={`relative mb-12 w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:self-end' : 'md:pl-8 md:self-start'}`}
-                >
-                  <div className={`absolute top-0 ${index % 2 === 0 ? 'left-0 md:-left-5' : 'left-0 md:-left-5'} md:transform md:translate-x-1/2 w-10 h-10 rounded-full bg-islamic-gold flex items-center justify-center z-10`}>
-                    <span className="text-islamic-navy font-medium">{index + 1}</span>
-                  </div>
-                  
-                  <div className={`ml-14 md:ml-0 p-5 rounded-lg glass-card ${index % 2 === 0 ? 'md:text-right' : ''}`}>
-                    <div className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded inline-block text-islamic-cream mb-3">
-                      {milestone.year}
-                    </div>
-                    <h3 className="text-xl font-display font-semibold text-white mb-2">{milestone.title}</h3>
-                    <p className="text-islamic-cream/80">{milestone.description}</p>
-                  </div>
-                </AnimatedSectionWrapper>
-              ))}
-            </div>
           </div>
         </section>
         
