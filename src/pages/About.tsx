@@ -1,13 +1,14 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, BookOpen, Users, GraduationCap, Clock, ArrowRight, Award, Target } from 'lucide-react';
+import { ChevronRight, BookOpen, Users, GraduationCap, Clock, ArrowRight, Award, Target, MapPin } from 'lucide-react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-// Core values data
+const About: React.FC = () => {
+  // Core values data
   const coreValues = [
     {
       icon: <BookOpen className="text-islamic-navy" />,
@@ -41,6 +42,34 @@ import Footer from '@/components/layout/Footer';
     }
   ];
 
+  // Define milestones data
+  const milestones = [
+    {
+      year: "1985",
+      title: "Founding",
+      description: "Establishment of Irsyadulhaq Islamic Boarding School with 20 students and 3 teachers."
+    },
+    {
+      year: "1990",
+      title: "First Campus Expansion",
+      description: "Added new classrooms and dormitories to accommodate 100 students."
+    },
+    {
+      year: "2000",
+      title: "Curriculum Development",
+      description: "Integrated modern academic subjects with traditional Islamic studies."
+    },
+    {
+      year: "2010",
+      title: "Technology Integration",
+      description: "Introduced computer labs and digital learning resources."
+    },
+    {
+      year: "2020",
+      title: "International Recognition",
+      description: "Received accreditation and recognition for excellence in Islamic education."
+    }
+  ];
 
   return (
     <>
@@ -66,7 +95,7 @@ import Footer from '@/components/layout/Footer';
           </div>
         </section>
 
-         {/* Our Journey Timeline */}
+        {/* Our Journey Timeline */}
         <section className="py-16 bg-islamic-navy relative">
           <PatternBackground className="absolute inset-0" patternType="dots" patternColor="#ffffff" patternOpacity={0.05} />
           
@@ -80,9 +109,35 @@ import Footer from '@/components/layout/Footer';
                 Key milestones in the development of Irsyadulhaq Islamic Boarding School.
               </p>
             </AnimatedSectionWrapper>
-
-
-
+            
+            <div className="relative flex flex-col items-center">
+              {/* Timeline Line */}
+              <div className="absolute h-full w-0.5 bg-islamic-gold/50 left-0 md:left-1/2 transform md:-translate-x-1/2 top-0"></div>
+              
+              {/* Timeline Items */}
+              {milestones.map((milestone, index) => (
+                <AnimatedSectionWrapper 
+                  key={index} 
+                  animation={index % 2 === 0 ? "fade-in-left" : "fade-in-right"}
+                  delay={index * 100}
+                  className={`relative mb-12 w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:self-end' : 'md:pl-8 md:self-start'}`}
+                >
+                  <div className={`absolute top-0 ${index % 2 === 0 ? 'left-0 md:-left-5' : 'left-0 md:-left-5'} md:transform md:translate-x-1/2 w-10 h-10 rounded-full bg-islamic-gold flex items-center justify-center z-10`}>
+                    <span className="text-islamic-navy font-medium">{index + 1}</span>
+                  </div>
+                  
+                  <div className={`ml-14 md:ml-0 p-5 rounded-lg glass-card ${index % 2 === 0 ? 'md:text-right' : ''}`}>
+                    <div className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded inline-block text-islamic-cream mb-3">
+                      {milestone.year}
+                    </div>
+                    <h3 className="text-xl font-display font-semibold text-white mb-2">{milestone.title}</h3>
+                    <p className="text-islamic-cream/80">{milestone.description}</p>
+                  </div>
+                </AnimatedSectionWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
         
         {/* Our Story Section */}
         <section className="py-16">
@@ -172,7 +227,7 @@ import Footer from '@/components/layout/Footer';
                
                 <ul className="space-y-3">
                   {[
-                    "Menanamkan sifat Amanah dan Akhlakul karimah berdasarkan tuntunan syari’at Islam",
+                    "Menanamkan sifat Amanah dan Akhlakul karimah berdasarkan tuntunan syari'at Islam",
                     "Menjalankan pendidikan yang berkelanjutan, aktif, tertib, disiplin dan efisien",
                     "Membekali Ilmu Alat sebagai modal memahami Ilmu Ghoyah",
                     "Menciptakan Tempat Belajar yang sehat, aman dan menyenangkan",
@@ -258,37 +313,6 @@ import Footer from '@/components/layout/Footer';
                   <p className="text-islamic-slate mb-4">
                     {value.description}
                   </p>
-                </AnimatedSectionWrapper>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-       
-            
-            <div className="relative flex flex-col items-center">
-              {/* Timeline Line */}
-              <div className="absolute h-full w-0.5 bg-islamic-gold/50 left-0 md:left-1/2 transform md:-translate-x-1/2 top-0"></div>
-              
-              {/* Timeline Items */}
-              {milestones.map((milestone, index) => (
-                <AnimatedSectionWrapper 
-                  key={index} 
-                  animation={index % 2 === 0 ? "fade-in-left" : "fade-in-right"}
-                  delay={index * 100}
-                  className={`relative mb-12 w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:self-end' : 'md:pl-8 md:self-start'}`}
-                >
-                  <div className={`absolute top-0 ${index % 2 === 0 ? 'left-0 md:-left-5' : 'left-0 md:-left-5'} md:transform md:translate-x-1/2 w-10 h-10 rounded-full bg-islamic-gold flex items-center justify-center z-10`}>
-                    <span className="text-islamic-navy font-medium">{index + 1}</span>
-                  </div>
-                  
-                  <div className={`ml-14 md:ml-0 p-5 rounded-lg glass-card ${index % 2 === 0 ? 'md:text-right' : ''}`}>
-                    <div className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded inline-block text-islamic-cream mb-3">
-                      {milestone.year}
-                    </div>
-                    <h3 className="text-xl font-display font-semibold text-white mb-2">{milestone.title}</h3>
-                    <p className="text-islamic-cream/80">{milestone.description}</p>
-                  </div>
                 </AnimatedSectionWrapper>
               ))}
             </div>
