@@ -328,7 +328,7 @@ const Organization: React.FC = () => {
                     <li>60% Male Students</li>
                    
                     <li>Ages 12-18 years</li>
-                    <li>From 15+ different regions</li>
+                
                   </ul>
                 </div>
               </AnimatedSectionWrapper>
@@ -352,10 +352,10 @@ const Organization: React.FC = () => {
                   </p>
                   <div className="w-16 h-1 bg-islamic-emerald/20 mx-auto my-4"></div>
                   <ul className="text-sm text-islamic-slate space-y-2">
-                    <li>60 Teaching Faculty</li>
-                    <li>15 Islamic Scholars</li>
-                    <li>25 Administrative Staff</li>
-                    <li>15 Support Staff</li>
+                    <li>Teaching Faculty</li>
+                    <li>Islamic Scholars</li>
+                    <li>Administrative Staff</li>
+                    <li>Support Staff</li>
                   </ul>
                 </div>
               </AnimatedSectionWrapper>
@@ -372,17 +372,17 @@ const Organization: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <h3 className="text-3xl font-serif font-bold text-islamic-navy mb-2">
-                    Since 1985
+                    Since 2021
                   </h3>
                   <p className="text-islamic-slate font-medium">
                     Years of Excellence
                   </p>
                   <div className="w-16 h-1 bg-islamic-gold/20 mx-auto my-4"></div>
                   <ul className="text-sm text-islamic-slate space-y-2">
-                    <li>38 Years of Operation</li>
-                    <li>5,000+ Alumni Worldwide</li>
-                    <li>85% University Admission Rate</li>
-                    <li>30+ National Awards</li>
+                    <li>3 Years of Operation</li>
+                   
+                    <li>Pesantren Admission Rate</li>
+                    <li>National Awards</li>
                   </ul>
                 </div>
               </AnimatedSectionWrapper>
