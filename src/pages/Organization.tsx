@@ -13,49 +13,49 @@ const Organization: React.FC = () => {
       name: "Andi Frans Maramis (Abu Surya)",
       position: "Ketua Yayasan",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Ph.D. in Islamic Studies, Al-Azhar University",
-      experience: "20+ years in Islamic education",
-      bio: "Tauhid"
+      education: "Al-Azhar University",
+      experience: "Ketua Yayasan Manarul Ilmi",
+      bio: ""
     },
     {
       name: "Ustadz Sofyan Chalid bin Idham Ruray, Lc Hafizhahullah",
       position: "Pembina Pondok",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "M.A. in Education, University of Jordan",
-      experience: "15+ years in curriculum development",
-      bio: "Tauhid"
+      education: "Alumni LIPIA Universitas Muhammad bin Su’ud Al-Islamiyah Arab Saudi",
+      experience: "Pembina Pondok Pesantren",
+      bio: ""
     },
     {
       name: "Ustadz Sofyan Ahmad Madiu, Hafizhahullah",
       position: "Pembina Pondok",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "M.Sc. in Psychology, International Islamic University",
-      experience: "12+ years in student counseling",
-      bio: "Tauhid"
+      education: "Alumni Universitas Islamabad Pakistan",
+      experience: "Pembina Pondok Pesantren",
+      bio: ""
     },
     {
       name: "Ustadz Rosihan Anwar, SP.d",
       position: "Mudir Pondok",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "M.Sc. in Psychology, International Islamic University",
-      experience: "12+ years in student counseling",
-      bio: "Tauhid"
+      education: "Sarjana Pendidikan Institut Agama Islam",
+      experience: "Mudir Pesantren",
+      bio: ""
     },
     {
       name: "Hadi Supriyanto, SE",
       position: "Kepala Madrasah",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "M.Sc. in Psychology, International Islamic University",
-      experience: "12+ years in student counseling",
-      bio: "Tauhid"
+      education: "Sarjana Ekonomi Universitas Samratulangi",
+      experience: "Kepala Madrasah Pesantren",
+      bio: ""
     },
     {
       name: "Ustadz Abu Sa'id Hafizhahullah",
       position: "Pengasuh Santri",
       photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "M.Sc. in Psychology, International Islamic University",
-      experience: "12+ years in student counseling",
-      bio: "Tauhid"
+      education: "Alumni Pondok Pesantren",
+      experience: "Pengasuh Santri Pensatren",
+      bio: ""
     }
   ];
   
