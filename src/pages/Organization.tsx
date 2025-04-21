@@ -68,25 +68,25 @@ const Organization: React.FC = () => {
     },
     {
       name: "Academic Department",
-      head: "Ustadz Yusuf Hamid",
+      head: "Ustadz",
       description: "Covers general education subjects following the national curriculum.",
       programs: ["Mathematics", "Sciences", "Languages", "Social Studies", "Arts"]
     },
     {
       name: "Character Development Department",
-      head: "Ustadzah Aisha Noor",
+      head: "Ustadz",
       description: "Focuses on developing moral values and leadership skills in students.",
       programs: ["Islamic Ethics", "Leadership Training", "Community Service", "Personal Development"]
     },
     {
       name: "Extracurricular Department",
-      head: "Ustadz Khalid Omar",
+      head: "Ustadz",
       description: "Organizes sports, arts, and other extracurricular activities.",
       programs: ["Sports Activities", "Arts & Crafts", "Debate Club", "Science Competitions"]
     },
     {
       name: "Extracurricular Department",
-      head: "Ustadz Khalid Omar",
+      head: "Ustadz",
       description: "Organizes sports, arts, and other extracurricular activities.",
       programs: ["Sports Activities", "Arts & Crafts", "Debate Club", "Science Competitions"]
     }
@@ -96,22 +96,22 @@ const Organization: React.FC = () => {
   const administrationTeam = [
     {
       name: "Administration & Finance",
-      head: "Mrs. Layla Zubair",
+      head: "Dewanto Ali",
       positions: ["Financial Manager", "Administrative Assistants", "HR Staff", "Accounting Team"]
     },
     {
       name: "Facilities & Maintenance",
-      head: "Mr. Rizwan Ahmed",
+      head: "Andi Frans Maramis",
       positions: ["Maintenance Supervisors", "Security Team", "Cleaning Staff", "Gardeners"]
     },
     {
       name: "Student Services",
-      head: "Mrs. Samira Malik",
+      head: "Ustadz Abu Sa'id",
       positions: ["Health Services", "Dining Services", "Dormitory Supervisors", "Transportation Coordinators"]
     },
     {
       name: "Community Relations",
-      head: "Mr. Hassan Ibrahim",
+      head: "Ustadz Rasihan",
       positions: ["Parent Coordinators", "Alumni Relations", "Event Organizers", "Media Team"]
     }
   ];
@@ -318,7 +318,7 @@ const Organization: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <h3 className="text-3xl font-serif font-bold text-islamic-navy mb-2">
-                    1,000+
+                    16+
                   </h3>
                   <p className="text-islamic-slate font-medium">
                     Students Enrolled
@@ -326,7 +326,7 @@ const Organization: React.FC = () => {
                   <div className="w-16 h-1 bg-islamic-navy/20 mx-auto my-4"></div>
                   <ul className="text-sm text-islamic-slate space-y-2">
                     <li>60% Male Students</li>
-                    <li>40% Female Students</li>
+                   
                     <li>Ages 12-18 years</li>
                     <li>From 15+ different regions</li>
                   </ul>
