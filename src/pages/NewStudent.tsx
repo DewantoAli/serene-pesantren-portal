@@ -1,12 +1,11 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import { ChevronRight, BookOpen, Users, GraduationCap, Clock, ArrowRight, Award, Target, MapPin } from 'lucide-react';
 import PatternBackground from '@/components/ui/PatternBackground';
-
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 const NewStudent = () => {
   return (
