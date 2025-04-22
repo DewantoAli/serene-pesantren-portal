@@ -131,7 +131,7 @@ const Index: React.FC = () => {
                 <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button className="bg-islamic-teal hover:bg-islamic-teal/90 text-white w-full sm:w-auto flex items-center gap-2">
                     <Info size={18} />
-                    <Link to="/registration" className="w-full">
+                    <Link to="/new-student" className="w-full">
                       Informasi Lengkap
                     </Link>
                   </Button>
