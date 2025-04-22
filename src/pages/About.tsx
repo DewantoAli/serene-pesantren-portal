@@ -79,13 +79,13 @@ const About: React.FC = () => {
                 </h2>
                 <div className="geometric-divider"></div>
                 <p className="text-islamic-slate mb-4">
-                  Irsyadul Haq Islamic Boarding School was founded in 1985 by Sheikh Abdullah Hamid, a respected Islamic scholar with a vision to create an educational institution that would nurture both the intellectual and spiritual development of Muslim youth.
+                  Pesantren Irsyadul Haq didirikan pada tahun 2021 dengan visi Mencetak generasi Rabbani dan Beraqidah lurus yang berlandaskan Al Qur'an dan As sunnah sebagaimana Pemahaman Salafush Shalih.
                 </p>
                 <p className="text-islamic-slate mb-6">
-                  Starting with just 20 students and 3 teachers in a modest building, our school has grown into a renowned institution with over 1,000 students, modern facilities, and a comprehensive curriculum that balances Islamic studies with academic excellence.
+                  Dimulai dengan hanya 5 Santri dan 3 Ustadz di tempat sederhana, pesantren kami telah berkembang menjadi Pesantren ternama dengan lebih dari 20 Santri, fasilitas modern, dan kurikulum komprehensif yang menyeimbangkan studi Islam dengan keunggulan akademis.
                 </p>
                 <p className="text-islamic-slate mb-8">
-                  For more than three decades, we have remained committed to our founding principles while adapting to the changing educational landscape. Today, Irsyadulhaq stands as a testament to our dedication to providing quality Islamic education that prepares students for success in this world and the hereafter.
+                  Selama ini, kami tetap berkomitmen pada prinsip-prinsip dasar kami sambil beradaptasi dengan lanskap pendidikan yang terus berubah. Saat ini, Irsyadulhaq berdiri sebagai bukti dedikasi kami untuk menyediakan pendidikan Islam berkualitas yang mempersiapkan Santri untuk sukses di dunia dan akhirat.
                 </p>
                 <Link to="/organization" className="btn-primary inline-flex items-center space-x-2">
                   <span>Learn About Our Organization</span>
