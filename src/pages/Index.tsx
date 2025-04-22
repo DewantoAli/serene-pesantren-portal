@@ -136,7 +136,7 @@ const Index: React.FC = () => {
                     </Link>
                   </Button>
                   <Button variant="outline" className="border-islamic-teal/30 text-islamic-teal hover:bg-islamic-teal/10 w-full sm:w-auto">
-                    <Link to="/registration" className="w-full">
+                    <Link to="/new-student" className="w-full">
                       Daftar Sekarang
                     </Link>
                   </Button>
