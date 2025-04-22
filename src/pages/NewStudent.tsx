@@ -3,6 +3,8 @@ import React from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
+import PatternBackground from '@/components/ui/PatternBackground';
+
 
 const NewStudent = () => {
   return (
