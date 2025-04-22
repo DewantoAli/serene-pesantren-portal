@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Upload } from 'lucide-react';
@@ -27,7 +26,6 @@ const Header: React.FC = () => {
   }, [location.pathname]);
   
   useEffect(() => {
-    // Load saved logo from localStorage if available
     const savedLogo = localStorage.getItem('customLogo');
     if (savedLogo) {
       setLogoImage(savedLogo);
@@ -50,6 +48,7 @@ const Header: React.FC = () => {
   const navLinks = [
     { name: 'Beranda', path: '/' },
     { name: 'Pendaftaran', path: '/registration' },
+    { name: 'Santri Baru', path: '/new-student' },
     { name: 'Organisasi', path: '/organization' },
     { name: 'Tentang', path: '/about' },
   ];
@@ -82,7 +81,6 @@ const Header: React.FC = () => {
             <span className="text-xs text-islamic-slate -mt-1">Pondok Pesantren</span>
           </div>
           
-          {/* Logo upload button (visible on hover) */}
           <label htmlFor="logo-upload" className="absolute -bottom-7 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/90 rounded-md px-2 py-1 shadow-sm text-xs flex items-center cursor-pointer">
             <Upload size={12} className="mr-1" />
             <span>Upload Logo</span>
@@ -96,7 +94,6 @@ const Header: React.FC = () => {
           </label>
         </Link>
         
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link
@@ -120,7 +117,6 @@ const Header: React.FC = () => {
           </Link>
         </nav>
         
-        {/* Mobile Menu Toggle */}
         <button 
           onClick={toggleMobileMenu}
           className="md:hidden p-2 text-islamic-navy focus:outline-none"
@@ -130,7 +126,6 @@ const Header: React.FC = () => {
         </button>
       </div>
       
-      {/* Mobile Navigation */}
       <div className={cn(
         'fixed inset-0 bg-white z-40 pt-20 px-6 transform transition-transform duration-300 ease-in-out',
         mobileMenuOpen ? 'translate-x-0' : 'translate-x-full',
