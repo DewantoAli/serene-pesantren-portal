@@ -14,7 +14,7 @@ const StepNavigation: React.FC<StepNavigationProps> = ({
   showNext = true,
   submitButton = false
 }) => {
-  const { prevStep, nextStep, isSubmitting } = useFormContext();
+  const { prevStep, nextStep, isSubmitting, step } = useFormContext();
   
   return (
     <div className="flex justify-between">

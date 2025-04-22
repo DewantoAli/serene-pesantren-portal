@@ -42,15 +42,23 @@ export const FormProvider: React.FC<{
     2: ['previousSchool', 'schoolAddress', 'schoolDistrict', 'schoolCity', 'schoolProvince', 'graduationYear'],
     3: ['program'],
     4: ['familyCardNumber', 'fatherName', 'fatherStatus', 'fatherNik', 'fatherOccupation', 'motherName', 'motherStatus', 'motherNik', 'motherEducation', 'parentsIncome'],
+    5: ['agreeTerms'],
   };
 
   const nextStep = () => {
-    formState.trigger(fieldsByStep[step as keyof typeof fieldsByStep]).then((valid) => {
-      if (valid) {
-        setStep(step + 1);
-        window.scrollTo(0, 0);
-      }
-    });
+    // If we're on step 4 or less, trigger validation for current step's fields
+    if (step <= 4) {
+      formState.trigger(fieldsByStep[step as keyof typeof fieldsByStep]).then((valid) => {
+        if (valid) {
+          setStep(step + 1);
+          window.scrollTo(0, 0);
+        }
+      });
+    } else {
+      // Simply move to next step if we're on review step (5)
+      setStep(step + 1);
+      window.scrollTo(0, 0);
+    }
   };
 
   const prevStep = () => {
