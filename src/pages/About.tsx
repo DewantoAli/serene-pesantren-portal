@@ -328,8 +328,8 @@ const About: React.FC = () => {
                 Become part of our growing family at Irsyadulhaq Islamic Boarding School. Applications for the upcoming academic year are now open.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/registration" className="btn-primary inline-flex items-center space-x-2">
-                  <span>Apply Now</span>
+                <Link to="/new-student" className="btn-primary inline-flex items-center space-x-2">
+                  <span>Daftar Sekarang</span>
                   <ArrowRight size={18} />
                 </Link>
                 <Link to="/organization" className="btn-outline">
