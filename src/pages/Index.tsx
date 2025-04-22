@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, BookOpen, Users, GraduationCap, Calendar, ArrowRight, MapPin, Info } from 'lucide-react';
@@ -34,7 +33,7 @@ const Index: React.FC = () => {
                   Pondok Pesantren Irsyadul Haq Mencetak generasi Rabbani dan Beraqidah lurus yang berlandaskan Al Qur'an dan As sunnah sebagaimana Pemahaman Salafush Shalih.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Link to="/registration" className="btn-accent">
+                  <Link to="/new-student" className="btn-accent">
                     Daftar Sekarang
                   </Link>
                   <Link to="/about" className="flex items-center justify-center space-x-2 bg-white/10 backdrop-blur-sm text-white px-6 py-3 rounded-lg hover:bg-white/20 transition-all duration-300">
@@ -279,7 +278,7 @@ const Index: React.FC = () => {
                 Pendaftaran sekarang dibuka untuk tahun ajaran mendatang. Bergabunglah dengan komunitas kami dan mulai perjalanan Anda menuju masa depan cerah yang dipandu oleh prinsip-prinsip Islam.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/registration" className="btn-accent">
+                <Link to="/new-student" className="btn-accent">
                   Daftar Sekarang
                 </Link>
                 <a href="#" className="btn-outline border-white/20 text-white hover:bg-white/10">

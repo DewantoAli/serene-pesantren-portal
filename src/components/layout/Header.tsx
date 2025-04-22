@@ -47,8 +47,7 @@ const Header: React.FC = () => {
   
   const navLinks = [
     { name: 'Beranda', path: '/' },
-    { name: 'Pendaftaran', path: '/registration' },
-    { name: 'Santri Baru', path: '/new-student' },
+    { name: 'Pendaftaran Santri Baru', path: '/new-student' },
     { name: 'Organisasi', path: '/organization' },
     { name: 'Tentang', path: '/about' },
   ];
@@ -110,7 +109,7 @@ const Header: React.FC = () => {
             </Link>
           ))}
           <Link 
-            to="/registration" 
+            to="/new-student" 
             className="btn-primary text-sm px-5 py-2"
           >
             Daftar Sekarang
@@ -145,7 +144,7 @@ const Header: React.FC = () => {
             </Link>
           ))}
           <Link 
-            to="/registration" 
+            to="/new-student" 
             className="btn-primary text-center mt-4"
           >
             Daftar Sekarang
