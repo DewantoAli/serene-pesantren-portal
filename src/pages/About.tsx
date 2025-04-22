@@ -268,19 +268,19 @@ const About: React.FC = () => {
                   quote: "Studying at Irsyadulhaq has been a transformative experience. I've not only gained knowledge but also developed a stronger connection to my faith.",
                   name: "Hassan Ahmad",
                   role: "Current Student, Grade 11",
-                  photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703"
                 },
                 {
                   quote: "As a parent, I'm impressed by how the school balances academic excellence with Islamic values. My children have flourished here both in studies and character.",
                   name: "Fatima Rahman",
                   role: "Parent of Two Students",
-                  photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
+                  photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703"
                 },
                 {
                   quote: "The values and education I received at Irsyadulhaq have been the foundation of my success. I'm proud to be an alumnus of this prestigious institution.",
                   name: "Dr. Yusuf Ibrahim",
                   role: "Alumni, Class of 2005",
-                  photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                  photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703"
                 }
               ].map((testimonial, index) => (
                 <AnimatedSectionWrapper 
