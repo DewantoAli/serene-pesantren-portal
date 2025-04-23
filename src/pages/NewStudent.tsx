@@ -12,7 +12,7 @@ const NewStudent: React.FC = () => {
     <>
       <Header />
       <main className="pt-28 pb-20">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <AnimatedSectionWrapper className="text-center mb-8">
             <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-gold/20 text-islamic-cream text-sm font-medium">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-islamic-navy mb-4">
