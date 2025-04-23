@@ -13,6 +13,9 @@ const NewStudent: React.FC = () => {
       <Header />
       <main className="pt-28 pb-20">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-islamic-navy mb-4">
+              Pendaftaran Santri Baru
+            </h1>
          <p className="text-islamic-slate max-w-2xl mx-auto mb-8">
               Silakan isi formulir pendaftaran di bawah ini untuk mendaftar sebagai santri baru.
             </p>
