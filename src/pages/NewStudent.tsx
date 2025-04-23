@@ -24,7 +24,7 @@ const NewStudent: React.FC = () => {
           
           <div className="aspect-[4/3] w-full max-w-5xl mx-auto">
             <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSelmRTNIZqwlb11qtdTNh1GZzYTdVCd6uNqqEmOXQchK0EV_A/viewform"
+              src="https://docs.google.com/forms/d/e/1FAIpQLSelmRTNIZqwlb11qtdTNh1GZzYTdVCd6uNqqEmOXQchK0EV_A/viewform?usp=sf_link"
               className="w-full h-full"
               frameBorder="0"
               marginHeight={0}
