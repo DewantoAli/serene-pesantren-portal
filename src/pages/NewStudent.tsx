@@ -7,7 +7,7 @@ import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-const NewStudent = () => {
+const NewStudent: React.FC = () => {
   return (
     <>
       <Header />
