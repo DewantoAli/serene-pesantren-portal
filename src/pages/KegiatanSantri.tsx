@@ -15,7 +15,7 @@ const KegiatanSantri: React.FC = () => {
       time: "08:00 - 10:00",
       location: "Masjid Utama",
       participants: "Seluruh Santri",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop",
+      image: "https://ik.imagekit.io/uzuuvayyu/3.jpeg?updatedAt=1749089018271",
       description: "Kajian mendalam tentang tafsir Al-Quran dengan menggunakan pendekatan klasik dan kontemporer."
     },
     {
