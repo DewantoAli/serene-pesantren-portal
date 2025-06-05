@@ -25,7 +25,7 @@ const KegiatanSantri: React.FC = () => {
       time: "14:00 - 17:00",
       location: "Aula Pesantren",
       participants: "Santri Tahfidz",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop",
+      image: "https://ik.imagekit.io/uzuuvayyu/9.jpeg?updatedAt=1749089318934",
       description: "Kompetisi tahunan untuk menguji kemampuan hafalan Al-Quran santri dengan berbagai kategori."
     },
     {
