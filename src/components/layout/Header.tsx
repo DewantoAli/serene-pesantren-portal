@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Upload } from 'lucide-react';
@@ -48,6 +49,7 @@ const Header: React.FC = () => {
   const navLinks = [
     { name: 'Beranda', path: '/' },
     { name: 'Pendaftaran Santri Baru', path: '/new-student' },
+    { name: 'Kegiatan Santri', path: '/kegiatan-santri' },
     { name: 'Organisasi', path: '/organization' },
     { name: 'Tentang', path: '/about' },
   ];
