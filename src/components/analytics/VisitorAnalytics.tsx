@@ -35,40 +35,40 @@ const VisitorAnalytics: React.FC = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 pt-8 border-t border-islamic-navy/20">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 pt-6 border-t border-islamic-navy/20">
       {/* Visitor Counter */}
-      <div className="bg-islamic-navy/5 rounded-lg p-4">
-        <div className="flex items-center space-x-3 mb-3">
-          <Users className="text-islamic-gold" size={24} />
-          <h4 className="font-display text-lg font-medium text-islamic-navy">Statistik Pengunjung</h4>
+      <div className="bg-islamic-navy/5 rounded-lg p-3">
+        <div className="flex items-center space-x-2 mb-2">
+          <Users className="text-islamic-gold" size={16} />
+          <h4 className="font-display text-sm font-medium text-islamic-navy">Statistik Pengunjung</h4>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="flex justify-between items-center">
-            <span className="text-sm text-islamic-slate">Total Pengunjung:</span>
-            <span className="font-bold text-xl text-islamic-teal">{visitorCount.toLocaleString()}</span>
+            <span className="text-xs text-islamic-slate">Total:</span>
+            <span className="font-bold text-sm text-islamic-teal">{visitorCount.toLocaleString()}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-sm text-islamic-slate">Hari Ini:</span>
-            <span className="font-semibold text-islamic-navy">127</span>
+            <span className="text-xs text-islamic-slate">Hari Ini:</span>
+            <span className="font-semibold text-xs text-islamic-navy">127</span>
           </div>
           <div className="flex items-center space-x-1 text-xs text-islamic-slate">
-            <TrendingUp size={12} className="text-green-500" />
-            <span>+15% dari minggu lalu</span>
+            <TrendingUp size={10} className="text-green-500" />
+            <span className="text-xs">+15%</span>
           </div>
         </div>
       </div>
 
       {/* Visitor Chart */}
-      <div className="bg-islamic-navy/5 rounded-lg p-4">
-        <h4 className="font-display text-lg font-medium text-islamic-navy mb-3">Pengunjung 7 Hari Terakhir</h4>
-        <ChartContainer config={chartConfig} className="h-32">
+      <div className="bg-islamic-navy/5 rounded-lg p-3">
+        <h4 className="font-display text-sm font-medium text-islamic-navy mb-2">7 Hari Terakhir</h4>
+        <ChartContainer config={chartConfig} className="h-20">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={dailyData}>
               <XAxis 
                 dataKey="day" 
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: '#64748b' }}
+                tick={{ fontSize: 10, fill: '#64748b' }}
               />
               <YAxis hide />
               <ChartTooltip 
