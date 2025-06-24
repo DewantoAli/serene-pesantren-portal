@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import VisitorAnalytics from '@/components/analytics/VisitorAnalytics';
 
 const Footer: React.FC = () => {
   return (
@@ -113,6 +114,9 @@ const Footer: React.FC = () => {
             </ul>
           </div>
         </div>
+        
+        {/* Visitor Analytics Section */}
+        <VisitorAnalytics />
         
         <div className="border-t border-islamic-navy/40 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
