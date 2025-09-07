@@ -4,28 +4,7 @@ import { cn } from '@/lib/utils';
 
 const VideoReelSection: React.FC = () => {
   const reels = [
-    {
-      id: 1,
-      thumbnail: "/lovable-uploads/3e4352c1-687f-47e6-ad0f-ea924c3a58ef.png",
-      title: "",
-      platform: "instagram",
-      views: "2.1K"
-    },
-    {
-      id: 2,
-      thumbnail: "https://www.youtube.com/shorts/ooKSulHGEu8",
-      title: "",
-      url: 'https://www.youtube.com/shorts/ooKSulHGEu8',
-      platform: "https://www.youtube.com/shorts/ooKSulHGEu8",
-      views: "5.3K"
-    },
-    {
-      id: 3,
-      thumbnail: "/lovable-uploads/3e4352c1-687f-47e6-ad0f-ea924c3a58ef.png",
-      title: "",
-      platform: "https://www.facebook.com/reel/1927700628021972",
-      views: "3.7K"
-    }
+   
   ];
 
   const getPlatformIcon = (platform: string) => {
