@@ -33,7 +33,7 @@ const SocialMediaFeed: React.FC = () => {
       title: 'Kegiatan Tahfidz Pagi',
       content: 'Para santri memulai hari dengan muraja\'ah Al-Quran',
       image: '/lovable-uploads/3e4352c1-687f-47e6-ad0f-ea924c3a58ef.png',
-      url: 'https://www.instagram.com/reel/DOSVD4Vkusf/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+      url: 'https://www.instagram.com/reel/DOSVD4Vkusf/?utm_source=ig_web_copy_link',
       likes: 124,
       comments: 15,
       date: '2024-01-15T08:00:00Z'
