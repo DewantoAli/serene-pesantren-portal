@@ -13,7 +13,7 @@ const VideoReelSection: React.FC = () => {
     },
     {
       id: 2,
-      thumbnail: "/lovable-uploads/df6366a9-1018-4237-bffb-263beadecc59.png",
+      thumbnail: "https://www.youtube.com/shorts/ooKSulHGEu8",
       title: "",
       url: 'https://www.youtube.com/shorts/ooKSulHGEu8',
       platform: "https://www.youtube.com/shorts/ooKSulHGEu8",
