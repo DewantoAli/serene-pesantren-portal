@@ -44,7 +44,7 @@ const SocialMediaFeed: React.FC = () => {
       title: 'Kajian Tafsir Surat Al-Baqarah',
       content: 'Ustadz memberikan penjelasan mendalam tentang ayat-ayat pilihan',
       thumbnail: '/lovable-uploads/df6366a9-1018-4237-bffb-263beadecc59.png',
-      url: 'https://youtube.com/watch?v=example2',
+      url: 'https://www.youtube.com/shorts/ooKSulHGEu8',
       likes: 89,
       comments: 23,
       date: '2024-01-14T15:30:00Z'
@@ -55,7 +55,7 @@ const SocialMediaFeed: React.FC = () => {
       title: 'Pengumuman Wisuda Santri',
       content: 'Alhamdulillah, 45 santri telah menyelesaikan program tahfidz 30 juz',
       image: '/lovable-uploads/3e4352c1-687f-47e6-ad0f-ea924c3a58ef.png',
-      url: 'https://facebook.com/irsyadulhaq.manado/posts/example3',
+      url: 'https://www.facebook.com/reel/1927700628021972',
       likes: 156,
       comments: 42,
       shares: 28,
