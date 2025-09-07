@@ -15,14 +15,14 @@ const VideoReelSection: React.FC = () => {
       id: 2,
       thumbnail: "/lovable-uploads/df6366a9-1018-4237-bffb-263beadecc59.png",
       title: "Pembina Karakter Islam",
-      platform: "youtube",
+      platform: "https://www.youtube.com/shorts/ooKSulHGEu8",
       views: "5.3K"
     },
     {
       id: 3,
       thumbnail: "/lovable-uploads/3e4352c1-687f-47e6-ad0f-ea924c3a58ef.png",
       title: "Wisuda Santri 2024",
-      platform: "facebook",
+      platform: "https://www.facebook.com/reel/1927700628021972",
       views: "3.7K"
     }
   ];
