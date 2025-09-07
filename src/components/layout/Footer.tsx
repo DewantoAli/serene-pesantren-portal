@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
               <a href="https://instagram.com/pondokpesantrenirsyadulhaq" className="text-islamic-sand hover:text-pink-400 transition-colors" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <Instagram size={20} />
               </a>
-              <a href="www.youtube.com/@IrsyadulHaq-Manado" className="text-islamic-sand hover:text-red-400 transition-colors" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+              <a href="www.youtube.com/IrsyadulHaq-Manado" className="text-islamic-sand hover:text-red-400 transition-colors" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
                 <Youtube size={20} />
               </a>
             </div>
