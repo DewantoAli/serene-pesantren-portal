@@ -7,21 +7,21 @@ const VideoReelSection: React.FC = () => {
     {
       id: 1,
       thumbnail: "/lovable-uploads/3e4352c1-687f-47e6-ad0f-ea924c3a58ef.png",
-      title: "Kegiatan Harian Santri",
+      title: "",
       platform: "instagram",
       views: "2.1K"
     },
     {
       id: 2,
       thumbnail: "/lovable-uploads/df6366a9-1018-4237-bffb-263beadecc59.png",
-      title: "Pembina Karakter Islam",
+      title: "",
       platform: "https://www.youtube.com/shorts/ooKSulHGEu8",
       views: "5.3K"
     },
     {
       id: 3,
       thumbnail: "/lovable-uploads/3e4352c1-687f-47e6-ad0f-ea924c3a58ef.png",
-      title: "Wisuda Santri 2024",
+      title: "",
       platform: "https://www.facebook.com/reel/1927700628021972",
       views: "3.7K"
     }
