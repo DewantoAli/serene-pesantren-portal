@@ -20,23 +20,23 @@ const KegiatanSantri: React.FC = () => {
     },
     {
       id: 2,
-      title: "Kompetisi Hafalan Quran",
-      date: "22 Januari 2025",
+      title: "Pembiasaan Bahasa Inggris",
+      date: "17 Agustus 2025",
       time: "14:00 - 17:00",
       location: "Aula Pesantren",
       participants: "Santri Tahfidz",
       media: { type: 'video' as const, url: "https://youtube.com/embed/6NO0tb6TcVo" },
-      description: "Kompetisi tahunan untuk menguji kemampuan hafalan Al-Quran santri dengan berbagai kategori."
+      description: "Kegiatan percakapan santri dalam bahasa Inggris "Hari Kemerdekaan Indonesa"."
     },
     {
       id: 3,
-      title: "Bakti Sosial Masyarakat",
+      title: "Pembiasaan Bahasa Arab",
       date: "28 Januari 2025",
       time: "06:00 - 12:00",
       location: "Desa Sekitar",
       participants: "Santri Kelas Atas",
-      media: { type: 'image' as const, url: "https://youtube.com/embed/ooKSulHGEu8" },
-      description: "Kegiatan pengabdian masyarakat berupa pembersihan lingkungan dan bantuan sosial."
+      media: { type: 'video' as const, url: "https://youtube.com/embed/ooKSulHGEu8" },
+      description: "Kegiatan percakapan santri dalam bahasa Arab."
     },
     {
       id: 4,
