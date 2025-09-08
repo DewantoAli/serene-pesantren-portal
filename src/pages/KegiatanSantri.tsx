@@ -35,7 +35,7 @@ const KegiatanSantri: React.FC = () => {
       time: "06:00 - 12:00",
       location: "Desa Sekitar",
       participants: "Santri Kelas Atas",
-      media: { type: 'image' as const, url: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=800&h=600&fit=crop" },
+      media: { type: 'image' as const, url: "https://youtube.com/embed/ooKSulHGEu8" },
       description: "Kegiatan pengabdian masyarakat berupa pembersihan lingkungan dan bantuan sosial."
     },
     {
