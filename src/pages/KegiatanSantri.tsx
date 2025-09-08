@@ -25,7 +25,7 @@ const KegiatanSantri: React.FC = () => {
       time: "14:00 - 17:00",
       location: "Aula Pesantren",
       participants: "Santri Tahfidz",
-      media: { type: 'video' as const, url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+      media: { type: 'video' as const, url: "https://www.youtube.com/shorts/6NO0tb6TcVo" },
       description: "Kompetisi tahunan untuk menguji kemampuan hafalan Al-Quran santri dengan berbagai kategori."
     },
     {
