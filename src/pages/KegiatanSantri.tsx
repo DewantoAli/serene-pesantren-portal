@@ -26,7 +26,7 @@ const KegiatanSantri: React.FC = () => {
       location: "Aula Pesantren",
       participants: "Santri Tahfidz",
       media: { type: 'video' as const, url: "https://youtube.com/embed/6NO0tb6TcVo" },
-      description: "Kegiatan percakapan santri dalam bahasa Inggris "Hari Kemerdekaan Indonesa"."
+      description: "Kegiatan percakapan santri dalam bahasa Inggris Hari Kemerdekaan Indonesa."
     },
     {
       id: 3,
