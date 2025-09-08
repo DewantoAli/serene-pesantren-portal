@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
             <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Media Sosial</h3>
             <div className="space-y-4">
               <a 
-                href="href="https://instagram.com/pondokpesantrenirsyadulhaq" 
+                href="https://instagram.com/pondokpesantrenirsyadulhaq" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="group flex items-center space-x-3 p-3 bg-islamic-navy/20 rounded-lg hover:bg-pink-500/20 transition-all duration-300"
@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
                 <Instagram size={20} className="text-pink-400" />
                 <div>
                   <p className="text-sm font-medium text-white">Instagram</p>
-                  <p className="text-xs text-islamic-sand/60">@pondokpesantrenirsyadulhaq</p>
+                  <p className="text-xs text-islamic-sand/60">Pondok Pesantren Irsyadul Haq</p>
                 </div>
                 <ExternalLink size={14} className="text-islamic-sand/40 group-hover:text-pink-400 transition-colors" />
               </a>
