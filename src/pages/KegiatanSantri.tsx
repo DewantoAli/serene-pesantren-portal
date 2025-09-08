@@ -50,12 +50,12 @@ const KegiatanSantri: React.FC = () => {
     },
     {
       id: 5,
-      title: "Rihlah Ilmiah",
-      date: "12 Februari 2025",
-      time: "05:00 - 18:00",
-      location: "Masjid Bersejarah",
+      title: "Rihlah Santri dan Pembina",
+      date: "19 Agustus 2025",
+      time: "09:00 - 17:00",
+      location: "Pantai Ranowangko",
       participants: "Seluruh Santri",
-      media: { type: 'image' as const, url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=600&fit=crop" },
+      media: { type: 'Video' as const, url: "https://www.youtube.com/embed/Sz7dCHaLST8" },
       description: "Perjalanan edukatif mengunjungi tempat-tempat bersejarah Islam untuk memperluas wawasan."
     },
     {
