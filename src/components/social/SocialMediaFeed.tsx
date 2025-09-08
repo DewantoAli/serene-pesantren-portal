@@ -30,7 +30,8 @@ const SocialMediaFeed: React.FC = () => {
     {
       id: '1',
       platform: 'instagram',
-      title: '',
+      title: 'Kegiatan Mengaji Pagi',
+      content: 'Para santri sedang mengikuti kegiatan mengaji pagi dengan penuh khusyuk',
       url: 'https://www.instagram.com/reel/DOSVD4Vkusf/?utm_source=ig_web_copy_link',
       likes: 124,
       comments: 15,
@@ -39,7 +40,7 @@ const SocialMediaFeed: React.FC = () => {
     {
       id: '2',
       platform: 'youtube',
-      title: '',
+      title: 'Kajian Tafsir Al-Quran',
       content: 'Ustadz memberikan penjelasan mendalam tentang ayat-ayat pilihan',
       thumbnail: '/lovable-uploads/df6366a9-1018-4237-bffb-263beadecc59.png',
       url: 'https://www.youtube.com/shorts/ooKSulHGEu8',
@@ -50,7 +51,7 @@ const SocialMediaFeed: React.FC = () => {
     {
       id: '3',
       platform: 'facebook',
-      title: '',
+      title: 'Program Tahfidz Selesai',
       content: 'Alhamdulillah, 45 santri telah menyelesaikan program tahfidz 30 juz',
       image: '/lovable-uploads/3e4352c1-687f-47e6-ad0f-ea924c3a58ef.png',
       url: 'https://www.facebook.com/reel/1927700628021972',

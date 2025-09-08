@@ -15,7 +15,7 @@ const KegiatanSantri: React.FC = () => {
       time: "08:00 - 10:00",
       location: "Masjid Utama",
       participants: "Seluruh Santri",
-      image: "https://ik.imagekit.io/uzuuvayyu/3.jpeg?updatedAt=1749089018271",
+      media: { type: 'image' as const, url: "https://ik.imagekit.io/uzuuvayyu/3.jpeg?updatedAt=1749089018271" },
       description: "Kajian mendalam tentang tafsir Al-Quran dengan menggunakan pendekatan klasik dan kontemporer."
     },
     {
@@ -25,7 +25,7 @@ const KegiatanSantri: React.FC = () => {
       time: "14:00 - 17:00",
       location: "Aula Pesantren",
       participants: "Santri Tahfidz",
-      image: "https://ik.imagekit.io/uzuuvayyu/9.jpeg?updatedAt=1749089318934",
+      media: { type: 'video' as const, url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
       description: "Kompetisi tahunan untuk menguji kemampuan hafalan Al-Quran santri dengan berbagai kategori."
     },
     {
@@ -35,7 +35,7 @@ const KegiatanSantri: React.FC = () => {
       time: "06:00 - 12:00",
       location: "Desa Sekitar",
       participants: "Santri Kelas Atas",
-      image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=800&h=600&fit=crop",
+      media: { type: 'image' as const, url: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=800&h=600&fit=crop" },
       description: "Kegiatan pengabdian masyarakat berupa pembersihan lingkungan dan bantuan sosial."
     },
     {
@@ -45,7 +45,7 @@ const KegiatanSantri: React.FC = () => {
       time: "19:30 - 21:00",
       location: "Ruang Kajian",
       participants: "Santri Senior",
-      image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=600&fit=crop",
+      media: { type: 'video' as const, url: "https://www.youtube.com/embed/ScMzIvxBSi4" },
       description: "Pembahasan kitab-kitab klasik Islam dengan metode tradisional halaqah."
     },
     {
@@ -55,7 +55,7 @@ const KegiatanSantri: React.FC = () => {
       time: "05:00 - 18:00",
       location: "Masjid Bersejarah",
       participants: "Seluruh Santri",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=600&fit=crop",
+      media: { type: 'image' as const, url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=600&fit=crop" },
       description: "Perjalanan edukatif mengunjungi tempat-tempat bersejarah Islam untuk memperluas wawasan."
     },
     {
@@ -65,7 +65,7 @@ const KegiatanSantri: React.FC = () => {
       time: "13:00 - 16:00",
       location: "Ruang Seni",
       participants: "Santri Berbakat",
-      image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop",
+      media: { type: 'video' as const, url: "https://www.youtube.com/embed/jfKfPfyJRdk" },
       description: "Kompetisi seni kaligrafi Arab untuk mengembangkan kreativitas dan kecintaan terhadap seni Islam."
     }
   ];
@@ -110,13 +110,28 @@ const KegiatanSantri: React.FC = () => {
                 >
                   <Card className="h-full overflow-hidden hover:shadow-elegant transition-all duration-300 group">
                     <div className="relative overflow-hidden">
-                      <img 
-                        src={activity.image} 
-                        alt={activity.title}
-                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+                      {activity.media.type === 'image' ? (
+                        <img 
+                          src={activity.media.url} 
+                          alt={activity.title}
+                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="w-full h-48 bg-black">
+                          <iframe
+                            src={activity.media.url}
+                            className="w-full h-full"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      )}
                       <div className="absolute top-4 left-4 bg-islamic-navy/80 text-white px-3 py-1 rounded-full text-sm">
                         {activity.date}
+                      </div>
+                      <div className="absolute top-4 right-4 bg-islamic-teal/80 text-white px-2 py-1 rounded text-xs">
+                        {activity.media.type === 'image' ? 'Foto' : 'Video'}
                       </div>
                     </div>
                     
