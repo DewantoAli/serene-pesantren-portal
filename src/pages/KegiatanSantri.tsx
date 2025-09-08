@@ -60,13 +60,13 @@ const KegiatanSantri: React.FC = () => {
     },
     {
       id: 6,
-      title: "Lomba Kaligrafi Arab",
+      title: "Kerja Bakti",
       date: "18 Februari 2025",
       time: "13:00 - 16:00",
-      location: "Ruang Seni",
+      location: "Halaman Pesantren",
       participants: "Santri Berbakat",
-      media: { type: 'video' as const, url: "https://www.youtube.com/embed/jfKfPfyJRdk" },
-      description: "Kompetisi seni kaligrafi Arab untuk mengembangkan kreativitas dan kecintaan terhadap seni Islam."
+      media: { type: 'video' as const, url: "https://youtube.com/embed/hxn-tJaa5FY" },
+      description: "Kerja Bakti santri bersama ustadz dan pembina."
     }
   ];
 
