@@ -40,13 +40,13 @@ const KegiatanSantri: React.FC = () => {
     },
     {
       id: 4,
-      title: "Halaqah Kitab Kuning",
+      title: "Menulis Al-Quran",
       date: "5 Februari 2025",
       time: "19:30 - 21:00",
-      location: "Ruang Kajian",
+      location: "Ruang Kelas",
       participants: "Santri Senior",
-      media: { type: 'video' as const, url: "https://www.youtube.com/embed/ScMzIvxBSi4" },
-      description: "Pembahasan kitab-kitab klasik Islam dengan metode tradisional halaqah."
+      media: { type: 'video' as const, url: "https://www.youtube.com/embed/LAtHFfhg4Y4" },
+      description: "Belajar menulis indah dengan huruf Arab."
     },
     {
       id: 5,
