@@ -142,7 +142,7 @@ const Footer: React.FC = () => {
           {/* Contact */}
           <div>
             <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Hubungi Kami</h3>
-            <ul className="space-y-5">
+            <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={18} className="text-islamic-gold mr-2 mt-0.5" />
                 <span className="text-sm text-islamic-sand/80">Jl. Anggur 1, GPI, Paniki Bawah, Kec. Mapanget, Kota Manado, Sulawesi Utara 95256</span>
@@ -159,10 +159,7 @@ const Footer: React.FC = () => {
                 <Mail size={18} className="text-islamic-gold mr-2" />
                 <span className="text-sm text-islamic-sand/80">irsyadulhaq.manado@gmail.com</span>
               </li>
-              <li className="flex items-center">
-                <Website size={18} className="text-islamic-gold mr-2" />
-                <span className="text-sm text-islamic-sand/80">www.irsyadulhaq.or.id</span>
-              </li>
+              
             </ul>
           </div>
         </div>
