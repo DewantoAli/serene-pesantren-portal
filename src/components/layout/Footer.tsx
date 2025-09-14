@@ -159,8 +159,7 @@ const Footer: React.FC = () => {
                 <Mail size={18} className="text-islamic-gold mr-2" />
                 <span className="text-sm text-islamic-sand/80">irsyadulhaq.manado@gmail.com</span>
               </li>
-              
-            
+            </ul>           
           </div>
         </div>
         
