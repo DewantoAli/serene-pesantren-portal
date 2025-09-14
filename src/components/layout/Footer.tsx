@@ -160,7 +160,7 @@ const Footer: React.FC = () => {
                 <span className="text-sm text-islamic-sand/80">irsyadulhaq.manado@gmail.com</span>
               </li>
               
-            </ul>
+            
           </div>
         </div>
         
