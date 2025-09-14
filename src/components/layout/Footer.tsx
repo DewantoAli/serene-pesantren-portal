@@ -142,7 +142,7 @@ const Footer: React.FC = () => {
           {/* Contact */}
           <div>
             <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Hubungi Kami</h3>
-            <ul className="space-y-4">
+            <ul className="space-y-5">
               <li className="flex items-start">
                 <MapPin size={18} className="text-islamic-gold mr-2 mt-0.5" />
                 <span className="text-sm text-islamic-sand/80">Jl. Anggur 1, GPI, Paniki Bawah, Kec. Mapanget, Kota Manado, Sulawesi Utara 95256</span>
