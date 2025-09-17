@@ -222,7 +222,7 @@ const Index: React.FC = () => {
                 </h2>
                 <div className="geometric-divider"></div>
                 <p className="text-islamic-slate mb-6">
-                  Didirikan pada tahun 2000, Pondok Pesantren Irsyadul Haq telah berdedikasi menyediakan pendidikan Islam berkualitas selama lebih dari tiga dekade. Institusi kami menggabungkan pengajaran Islam tradisional dengan pendekatan pendidikan modern.
+                  Didirikan pada tahun 2021, Pondok Pesantren Irsyadul Haq telah berdedikasi menyediakan pendidikan Islam berkualitas selama lebih dari tiga dekade. Institusi kami menggabungkan pengajaran Islam tradisional dengan pendekatan pendidikan modern.
                 </p>
                 <ul className="space-y-3 mb-8">
                   {[
