@@ -97,11 +97,11 @@ const Index: React.FC = () => {
                 Pengumuman Penting
               </span>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-islamic-navy mb-4">
-                Penerimaan Murid Baru 2025/2026
+                Penerimaan Murid Baru 2026/2027
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Sistem Penerimaan Murid Baru (SPMB) Pondok Pesantren Irsyadul Haq untuk tahun ajaran 2025/2026 telah dibuka.
+                Sistem Penerimaan Murid Baru (SPMB) Pondok Pesantren Irsyadul Haq untuk tahun ajaran 2026/2027 telah dibuka.
               </p>
             </AnimatedSectionWrapper>
             
