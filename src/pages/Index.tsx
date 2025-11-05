@@ -115,8 +115,8 @@ const Index: React.FC = () => {
                           <CardContent className="flex items-center justify-center p-2 md:p-4">
                             <div className="overflow-hidden rounded-lg shadow-lg">
                               <img 
-                                src="https://ik.imagekit.io/uzuuvayyu/SPMB%20Irsyadul%20Haq%2025-26.png?updatedAt=1742604257380" 
-                                alt="Sistem Penerimaan Murid Baru 2025/2026" 
+                                src="https://ik.imagekit.io/uzuuvayyu/brosur%20pesantren%20PPDB%2026%20-%2027.png?updatedAt=1762378813879" 
+                                alt="Sistem Penerimaan Murid Baru 2026/2027" 
                                 className="w-full h-auto"
                               />
                             </div>
