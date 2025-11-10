@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/', // penting untuk custom domain di root (bukan subfolder)
+  base: '/',
+  server: {
+    port: 8080,
+  },
   build: {
     outDir: 'dist',
   },
