@@ -5,6 +5,7 @@ import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+/* import VideoReelSection from '@/components/ui/VideoReelSection'; */
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -96,11 +97,11 @@ const Index: React.FC = () => {
                 Pengumuman Penting
               </span>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-islamic-navy mb-4">
-                Penerimaan Murid Baru 2025/2026
+                Penerimaan Murid Baru 2026/2027
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Sistem Penerimaan Murid Baru (SPMB) Pondok Pesantren Irsyadul Haq untuk tahun ajaran 2025/2026 telah dibuka.
+                Sistem Penerimaan Murid Baru (SPMB) Pondok Pesantren Irsyadul Haq untuk tahun ajaran 2026/2027 telah dibuka.
               </p>
             </AnimatedSectionWrapper>
             
@@ -114,8 +115,8 @@ const Index: React.FC = () => {
                           <CardContent className="flex items-center justify-center p-2 md:p-4">
                             <div className="overflow-hidden rounded-lg shadow-lg">
                               <img 
-                                src="https://ik.imagekit.io/uzuuvayyu/SPMB%20Irsyadul%20Haq%2025-26.png?updatedAt=1742604257380" 
-                                alt="Sistem Penerimaan Murid Baru 2025/2026" 
+                                src="https://ik.imagekit.io/uzuuvayyu/brosur%20pesantren%20PPDB%2026%20-%2027.png?updatedAt=1762378813879" 
+                                alt="Sistem Penerimaan Murid Baru 2026/2027" 
                                 className="w-full h-auto"
                               />
                             </div>
@@ -145,7 +146,7 @@ const Index: React.FC = () => {
             </AnimatedSectionWrapper>
           </div>
         </section>
-        
+      
         {/* Services Section */}
         <section className="py-20">
           <div className="container mx-auto px-4 md:px-6">
@@ -221,7 +222,7 @@ const Index: React.FC = () => {
                 </h2>
                 <div className="geometric-divider"></div>
                 <p className="text-islamic-slate mb-6">
-                  Didirikan pada tahun 2000, Pondok Pesantren Irsyadul Haq telah berdedikasi menyediakan pendidikan Islam berkualitas selama lebih dari tiga dekade. Institusi kami menggabungkan pengajaran Islam tradisional dengan pendekatan pendidikan modern.
+                  Didirikan pada tahun 2021, Pondok Pesantren Irsyadul Haq telah berdedikasi menyediakan pendidikan Islam berkualitas selama lebih dari tiga dekade. Institusi kami menggabungkan pengajaran Islam tradisional dengan pendekatan pendidikan modern.
                 </p>
                 <ul className="space-y-3 mb-8">
                   {[

@@ -1,14 +1,14 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, ExternalLink } from 'lucide-react';
 import VisitorAnalytics from '@/components/analytics/VisitorAnalytics';
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-islamic-navy text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and About */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -29,14 +29,14 @@ const Footer: React.FC = () => {
               Membina pemimpin masa depan dengan nilai-nilai Islam, keunggulan akademik, dan pengembangan karakter.
             </p>
             <div className="flex space-x-4 pt-2">
-              <a href="#" className="text-islamic-sand hover:text-islamic-gold transition-colors" aria-label="Facebook">
+              <a href="https://facebook.com/irsyadulhaq.manado" className="text-islamic-sand hover:text-blue-400 transition-colors" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-islamic-sand hover:text-islamic-gold transition-colors" aria-label="Twitter">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-islamic-sand hover:text-islamic-gold transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com/pondokpesantrenirsyadulhaq" className="text-islamic-sand hover:text-pink-400 transition-colors" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <Instagram size={20} />
+              </a>
+              <a href="https://www.youtube.com/@IrsyadulHaq-Manado" className="text-islamic-sand hover:text-red-400 transition-colors" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                <Youtube size={20} />
               </a>
             </div>
           </div>
@@ -89,6 +89,54 @@ const Footer: React.FC = () => {
                 <a href="#" className="text-sm text-islamic-sand/80 hover:text-islamic-gold transition-colors">Ekstrakurikuler</a>
               </li>
             </ul>
+          </div>
+          
+          {/* Social Media */}
+          <div>
+            <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold">Media Sosial</h3>
+            <div className="space-y-4">
+              <a 
+                href="https://instagram.com/pondokpesantrenirsyadulhaq" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group flex items-center space-x-3 p-3 bg-islamic-navy/20 rounded-lg hover:bg-pink-500/20 transition-all duration-300"
+              >
+                <Instagram size={20} className="text-pink-400" />
+                <div>
+                  <p className="text-sm font-medium text-white">Instagram</p>
+                  <p className="text-xs text-islamic-sand/60">Pondok Pesantren Irsyadul Haq</p>
+                </div>
+                <ExternalLink size={14} className="text-islamic-sand/40 group-hover:text-pink-400 transition-colors" />
+              </a>
+              
+              <a 
+                href="https://facebook.com/irsyadulhaq.manado" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group flex items-center space-x-3 p-3 bg-islamic-navy/20 rounded-lg hover:bg-blue-500/20 transition-all duration-300"
+              >
+                <Facebook size={20} className="text-blue-400" />
+                <div>
+                  <p className="text-sm font-medium text-white">Facebook</p>
+                  <p className="text-xs text-islamic-sand/60">Irsyadul Haq Manado</p>
+                </div>
+                <ExternalLink size={14} className="text-islamic-sand/40 group-hover:text-blue-400 transition-colors" />
+              </a>
+              
+              <a 
+                href="https://www.youtube.com/@IrsyadulHaq-Manado" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group flex items-center space-x-3 p-3 bg-islamic-navy/20 rounded-lg hover:bg-red-500/20 transition-all duration-300"
+              >
+                <Youtube size={20} className="text-red-400" />
+                <div>
+                  <p className="text-sm font-medium text-white">YouTube</p>
+                  <p className="text-xs text-islamic-sand/60">Irsyadul Haq Channel</p>
+                </div>
+                <ExternalLink size={14} className="text-islamic-sand/40 group-hover:text-red-400 transition-colors" />
+              </a>
+            </div>
           </div>
           
           {/* Contact */}
