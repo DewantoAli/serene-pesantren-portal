@@ -282,7 +282,7 @@ const Index: React.FC = () => {
                 <Link to="/new-student" className="btn-accent">
                   Daftar Sekarang
                 </Link>
-                <a href="https://ik.imagekit.io/uzuuvayyu/brosur%20pesantren%20PPDB%2026%20-%2027.png?updatedAt=1762378813879" className="btn-outline border-white/20 text-white hover:bg-white/10">
+                <a href="https://ik.imagekit.io/uzuuvayyu/brosur%20pesantren%20PPDB%2026%20-%2027.png" className="btn-outline border-white/20 text-white hover:bg-white/10">
                   Unduh Brosur
                 </a>
               </div>
