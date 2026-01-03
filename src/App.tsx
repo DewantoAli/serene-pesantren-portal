@@ -11,6 +11,7 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import NewStudent from "./pages/NewStudent";
 import KegiatanSantri from "./pages/KegiatanSantri";
+import AplikasiPesantren from "./pages/AplikasiPesantren";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/new-student" element={<NewStudent />} />
           <Route path="/kegiatan-santri" element={<KegiatanSantri />} />
+          <Route path="/aplikasi-pesantren" element={<AplikasiPesantren />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
