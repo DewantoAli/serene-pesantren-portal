@@ -51,8 +51,8 @@ const Header: React.FC = () => {
     { name: 'Pendaftaran Santri Baru', path: '/new-student' },
     { name: 'Kegiatan Santri', path: '/kegiatan-santri' },
     { name: 'Organisasi', path: '/organization' },
-    { name: 'Tentang', path: '/about' },
     { name: 'Aplikasi Pesantren', path: '/aplikasi-pesantren' },
+    { name: 'Tentang', path: '/about' },
   ];
   
   const isActive = (path: string) => {
