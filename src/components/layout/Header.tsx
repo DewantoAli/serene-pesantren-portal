@@ -52,6 +52,7 @@ const Header: React.FC = () => {
     { name: 'Kegiatan Santri', path: '/kegiatan-santri' },
     { name: 'Organisasi', path: '/organization' },
     { name: 'Tentang', path: '/about' },
+    { name: 'Aplikasi Pesantren', path: 'https://pondok-cemerlang-online.vercel.app', external: true },
   ];
   
   const isActive = (path: string) => {
@@ -97,18 +98,30 @@ const Header: React.FC = () => {
         
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={cn(
-                'islamic-link text-sm font-medium transition-all',
-                isActive(link.path) 
-                  ? 'text-islamic-teal after:w-full' 
-                  : 'text-islamic-navy hover:text-islamic-teal'
-              )}
-            >
-              {link.name}
-            </Link>
+            link.external ? (
+              <a
+                key={link.path}
+                href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="islamic-link text-sm font-medium transition-all text-islamic-navy hover:text-islamic-teal"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={cn(
+                  'islamic-link text-sm font-medium transition-all',
+                  isActive(link.path) 
+                    ? 'text-islamic-teal after:w-full' 
+                    : 'text-islamic-navy hover:text-islamic-teal'
+                )}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
           <Link 
             to="/new-student" 
@@ -134,16 +147,28 @@ const Header: React.FC = () => {
       )}>
         <nav className="flex flex-col space-y-6">
           {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={cn(
-                'text-lg font-medium py-2 border-b border-gray-100',
-                isActive(link.path) ? 'text-islamic-teal' : 'text-islamic-navy'
-              )}
-            >
-              {link.name}
-            </Link>
+            link.external ? (
+              <a
+                key={link.path}
+                href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-medium py-2 border-b border-gray-100 text-islamic-navy"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={cn(
+                  'text-lg font-medium py-2 border-b border-gray-100',
+                  isActive(link.path) ? 'text-islamic-teal' : 'text-islamic-navy'
+                )}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
           <Link 
             to="/new-student" 
