@@ -1,9 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Upload } from 'lucide-react';
+import { Menu, X, Upload, ChevronDown, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuPortal,
+} from '@/components/ui/dropdown-menu';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,8 +61,17 @@ const Header: React.FC = () => {
     { name: 'Pendaftaran Santri Baru', path: '/new-student' },
     { name: 'Kegiatan Santri', path: '/kegiatan-santri' },
     { name: 'Organisasi', path: '/organization' },
-    { name: 'Aplikasi Pesantren', path: '/aplikasi-pesantren' },
     { name: 'Tentang', path: '/about' },
+  ];
+
+  const aplikasiSubMenu = [
+    { name: 'Keuangan Pesantren', path: '/aplikasi-pesantren' },
+  ];
+
+  const statusPembayaranSubMenu = [
+    { name: 'Kelas VII', path: '/status-pembayaran/kelas-7' },
+    { name: 'Kelas VIII', path: '/status-pembayaran/kelas-8' },
+    { name: 'Kelas IX', path: '/status-pembayaran/kelas-9' },
   ];
   
   const isActive = (path: string) => {
@@ -111,6 +130,45 @@ const Header: React.FC = () => {
               {link.name}
             </Link>
           ))}
+          
+          {/* Aplikasi Pesantren Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger className={cn(
+              'islamic-link text-sm font-medium transition-all flex items-center gap-1 outline-none',
+              location.pathname.includes('/aplikasi-pesantren') || location.pathname.includes('/status-pembayaran')
+                ? 'text-islamic-teal' 
+                : 'text-islamic-navy hover:text-islamic-teal'
+            )}>
+              Aplikasi Pesantren
+              <ChevronDown size={14} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-white shadow-lg border z-50">
+              {aplikasiSubMenu.map((item) => (
+                <DropdownMenuItem key={item.path} asChild>
+                  <Link to={item.path} className="cursor-pointer">
+                    {item.name}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="cursor-pointer">
+                  Status Pembayaran SPP
+                </DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent className="bg-white shadow-lg border z-50">
+                    {statusPembayaranSubMenu.map((item) => (
+                      <DropdownMenuItem key={item.path} asChild>
+                        <Link to={item.path} className="cursor-pointer">
+                          {item.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Link 
             to="/new-student" 
             className="btn-primary text-sm px-5 py-2"
@@ -146,6 +204,43 @@ const Header: React.FC = () => {
               {link.name}
             </Link>
           ))}
+          
+          {/* Mobile Aplikasi Pesantren */}
+          <div className="border-b border-gray-100 pb-4">
+            <p className="text-lg font-medium text-islamic-navy mb-2">Aplikasi Pesantren</p>
+            <div className="pl-4 space-y-2">
+              {aplikasiSubMenu.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={cn(
+                    'block text-base py-1',
+                    isActive(item.path) ? 'text-islamic-teal' : 'text-islamic-slate'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div>
+                <p className="text-base text-islamic-navy font-medium py-1">Status Pembayaran SPP</p>
+                <div className="pl-4 space-y-1">
+                  {statusPembayaranSubMenu.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={cn(
+                        'block text-sm py-1',
+                        isActive(item.path) ? 'text-islamic-teal' : 'text-islamic-slate'
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <Link 
             to="/new-student" 
             className="btn-primary text-center mt-4"
