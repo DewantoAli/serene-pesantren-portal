@@ -12,6 +12,9 @@ import NotFound from "./pages/NotFound";
 import NewStudent from "./pages/NewStudent";
 import KegiatanSantri from "./pages/KegiatanSantri";
 import AplikasiPesantren from "./pages/AplikasiPesantren";
+import StatusPembayaranKelas7 from "./pages/StatusPembayaranKelas7";
+import StatusPembayaranKelas8 from "./pages/StatusPembayaranKelas8";
+import StatusPembayaranKelas9 from "./pages/StatusPembayaranKelas9";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +32,9 @@ const App = () => (
           <Route path="/new-student" element={<NewStudent />} />
           <Route path="/kegiatan-santri" element={<KegiatanSantri />} />
           <Route path="/aplikasi-pesantren" element={<AplikasiPesantren />} />
+          <Route path="/status-pembayaran/kelas-7" element={<StatusPembayaranKelas7 />} />
+          <Route path="/status-pembayaran/kelas-8" element={<StatusPembayaranKelas8 />} />
+          <Route path="/status-pembayaran/kelas-9" element={<StatusPembayaranKelas9 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
