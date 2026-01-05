@@ -152,7 +152,7 @@ const Header: React.FC = () => {
               ))}
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger className="cursor-pointer">
-                  Informasi Pembayaran SPP
+                  Status Pembayaran SPP
                 </DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent className="bg-white shadow-lg border z-50">
@@ -222,7 +222,7 @@ const Header: React.FC = () => {
                 </Link>
               ))}
               <div>
-                <p className="text-base text-islamic-navy font-medium py-1">Informasi Pembayaran SPP</p>
+                <p className="text-base text-islamic-navy font-medium py-1">Status Pembayaran SPP</p>
                 <div className="pl-4 space-y-1">
                   {statusPembayaranSubMenu.map((item) => (
                     <Link
