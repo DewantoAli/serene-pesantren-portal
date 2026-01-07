@@ -1,0 +1,11 @@
+# Robots.txt untuk Pondok Pesantren Irsyadulhaq
+# https://www.irsyadulhaq.or.id
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.irsyadulhaq.or.id/sitemap.xml
+
+# Crawl-delay (optional, untuk menghindari overload server)
+Crawl-delay: 1
