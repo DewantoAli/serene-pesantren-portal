@@ -24,7 +24,7 @@ const NewStudent: React.FC = () => {
           
           <div className="w-full h-[calc(100vh-200px)] min-h-[800px]">
             <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSelmRTNIZqwlb11qtdTNh1GZzYTdVCd6uNqqEmOXQchK0EV_A/viewform?usp=sf_link"
+              src="https://santri-form-hub.vercel.app"
               className="w-full h-full border-0"
               frameBorder="0"
               marginHeight={0}
