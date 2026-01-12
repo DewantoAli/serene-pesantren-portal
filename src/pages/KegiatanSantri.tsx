@@ -1,74 +1,46 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calendar, MapPin, Users, Clock } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
+import { supabase } from '@/integrations/supabase/client';
+
+interface Activity {
+  id: string;
+  title: string;
+  description: string | null;
+  date: string;
+  time: string | null;
+  location: string | null;
+  participants: string | null;
+  media_type: string | null;
+  media_url: string | null;
+}
 
 const KegiatanSantri: React.FC = () => {
-  const activities = [
-    {
-      id: 1,
-      title: "Kajian Tafsir Al-Quran",
-      date: "15 Januari 2025",
-      time: "08:00 - 10:00",
-      location: "Masjid Utama",
-      participants: "Seluruh Santri",
-      media: { type: 'image' as const, url: "https://ik.imagekit.io/uzuuvayyu/3.jpeg?updatedAt=1749089018271" },
-      description: "Kajian mendalam tentang tafsir Al-Quran dengan menggunakan pendekatan klasik dan kontemporer."
-    },
-    {
-      id: 2,
-      title: "Pembiasaan Bahasa Inggris",
-      date: "17 Agustus 2025",
-      time: "14:00 - 17:00",
-      location: "Aula Pesantren",
-      participants: "Santri Tahfidz",
-      media: { type: 'video' as const, url: "https://youtube.com/embed/6NO0tb6TcVo" },
-      description: "Kegiatan percakapan santri dalam bahasa Inggris Hari Kemerdekaan Indonesa."
-    },
-    {
-      id: 3,
-      title: "Pembiasaan Bahasa Arab",
-      date: "28 Januari 2025",
-      time: "06:00 - 12:00",
-      location: "Desa Sekitar",
-      participants: "Santri Kelas Atas",
-      media: { type: 'video' as const, url: "https://youtube.com/embed/ooKSulHGEu8" },
-      description: "Kegiatan percakapan santri dalam bahasa Arab."
-    },
-    {
-      id: 4,
-      title: "Menulis Al-Quran",
-      date: "5 Februari 2025",
-      time: "19:30 - 21:00",
-      location: "Ruang Kelas",
-      participants: "Santri Senior",
-      media: { type: 'video' as const, url: "https://www.youtube.com/embed/LAtHFfhg4Y4" },
-      description: "Belajar menulis indah dengan huruf Arab."
-    },
-    {
-      id: 5,
-      title: "Rihlah Santri dan Pembina",
-      date: "19 Agustus 2025",
-      time: "09:00 - 17:00",
-      location: "Pantai Ranowangko",
-      participants: "Seluruh Santri",
-      media: { type: 'Video' as const, url: "https://www.youtube.com/embed/Sz7dCHaLST8" },
-      description: "Perjalanan edukatif mengunjungi tempat-tempat bersejarah Islam untuk memperluas wawasan."
-    },
-    {
-      id: 6,
-      title: "Kerja Bakti",
-      date: "18 Februari 2025",
-      time: "13:00 - 16:00",
-      location: "Halaman Pesantren",
-      participants: "Santri Berbakat",
-      media: { type: 'video' as const, url: "https://youtube.com/embed/hxn-tJaa5FY" },
-      description: "Kerja Bakti santri bersama ustadz dan pembina."
-    }
-  ];
+  const [activities, setActivities] = useState<Activity[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      const { data, error } = await supabase
+        .from('activities')
+        .select('*')
+        .eq('is_published', true)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching activities:', error);
+      } else {
+        setActivities(data || []);
+      }
+      setIsLoading(false);
+    };
+
+    fetchActivities();
+  }, []);
 
   return (
     <>
@@ -101,78 +73,100 @@ const KegiatanSantri: React.FC = () => {
               <div className="geometric-divider mx-auto"></div>
             </AnimatedSectionWrapper>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {activities.map((activity, index) => (
-                <AnimatedSectionWrapper 
-                  key={activity.id}
-                  animation="scale-in"
-                  delay={index * 100}
-                >
-                  <Card className="h-full overflow-hidden hover:shadow-elegant transition-all duration-300 group">
-                    <div className="relative overflow-hidden">
-                      {activity.media.type === 'image' ? (
-                        <img 
-                          src={activity.media.url} 
-                          alt={activity.title}
-                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="w-full h-48 bg-black">
-                          <iframe
-                            src={activity.media.url}
-                            className="w-full h-full"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
+            {isLoading ? (
+              <div className="flex justify-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-islamic-teal"></div>
+              </div>
+            ) : activities.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-islamic-slate">Belum ada kegiatan yang dipublikasikan.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {activities.map((activity, index) => (
+                  <AnimatedSectionWrapper 
+                    key={activity.id}
+                    animation="scale-in"
+                    delay={index * 100}
+                  >
+                    <Card className="h-full overflow-hidden hover:shadow-elegant transition-all duration-300 group">
+                      <div className="relative overflow-hidden">
+                        {activity.media_type === 'image' || activity.media_type === null ? (
+                          activity.media_url ? (
+                            <img 
+                              src={activity.media_url} 
+                              alt={activity.title}
+                              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                          ) : (
+                            <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
+                              <span className="text-gray-400">No Image</span>
+                            </div>
+                          )
+                        ) : (
+                          <div className="w-full h-48 bg-black">
+                            <iframe
+                              src={activity.media_url || ''}
+                              className="w-full h-full"
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        )}
+                        <div className="absolute top-4 left-4 bg-islamic-navy/80 text-white px-3 py-1 rounded-full text-sm">
+                          {activity.date}
                         </div>
-                      )}
-                      <div className="absolute top-4 left-4 bg-islamic-navy/80 text-white px-3 py-1 rounded-full text-sm">
-                        {activity.date}
-                      </div>
-                      <div className="absolute top-4 right-4 bg-islamic-teal/80 text-white px-2 py-1 rounded text-xs">
-                        {activity.media.type === 'image' ? 'Foto' : 'Video'}
-                      </div>
-                    </div>
-                    
-                    <CardHeader>
-                      <CardTitle className="text-islamic-navy text-xl font-display">
-                        {activity.title}
-                      </CardTitle>
-                    </CardHeader>
-                    
-                    <CardContent className="space-y-4">
-                      <p className="text-islamic-slate text-sm leading-relaxed">
-                        {activity.description}
-                      </p>
-                      
-                      <div className="space-y-2">
-                        <div className="flex items-center text-sm text-islamic-slate">
-                          <Clock size={16} className="mr-2 text-islamic-teal" />
-                          <span>{activity.time}</span>
-                        </div>
-                        
-                        <div className="flex items-center text-sm text-islamic-slate">
-                          <MapPin size={16} className="mr-2 text-islamic-teal" />
-                          <span>{activity.location}</span>
-                        </div>
-                        
-                        <div className="flex items-center text-sm text-islamic-slate">
-                          <Users size={16} className="mr-2 text-islamic-teal" />
-                          <span>{activity.participants}</span>
+                        <div className="absolute top-4 right-4 bg-islamic-teal/80 text-white px-2 py-1 rounded text-xs">
+                          {activity.media_type === 'image' || activity.media_type === null ? 'Foto' : 'Video'}
                         </div>
                       </div>
                       
-                      <div className="pt-4 border-t border-gray-100">
-                        <button className="w-full bg-islamic-teal/10 text-islamic-teal hover:bg-islamic-teal hover:text-white transition-colors duration-300 py-2 px-4 rounded-lg text-sm font-medium">
-                          Lihat Detail
-                        </button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </AnimatedSectionWrapper>
-              ))}
-            </div>
+                      <CardHeader>
+                        <CardTitle className="text-islamic-navy text-xl font-display">
+                          {activity.title}
+                        </CardTitle>
+                      </CardHeader>
+                      
+                      <CardContent className="space-y-4">
+                        <p className="text-islamic-slate text-sm leading-relaxed">
+                          {activity.description}
+                        </p>
+                        
+                        <div className="space-y-2">
+                          {activity.time && (
+                            <div className="flex items-center text-sm text-islamic-slate">
+                              <Clock size={16} className="mr-2 text-islamic-teal" />
+                              <span>{activity.time}</span>
+                            </div>
+                          )}
+                          
+                          {activity.location && (
+                            <div className="flex items-center text-sm text-islamic-slate">
+                              <MapPin size={16} className="mr-2 text-islamic-teal" />
+                              <span>{activity.location}</span>
+                            </div>
+                          )}
+                          
+                          {activity.participants && (
+                            <div className="flex items-center text-sm text-islamic-slate">
+                              <Users size={16} className="mr-2 text-islamic-teal" />
+                              <span>{activity.participants}</span>
+                            </div>
+                          )}
+                        </div>
+                        
+                        <div className="pt-4 border-t border-gray-100">
+                          <button className="w-full bg-islamic-teal/10 text-islamic-teal hover:bg-islamic-teal hover:text-white transition-colors duration-300 py-2 px-4 rounded-lg text-sm font-medium">
+                            Lihat Detail
+                          </button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </AnimatedSectionWrapper>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
