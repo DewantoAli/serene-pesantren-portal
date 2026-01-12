@@ -22,16 +22,14 @@ const NewStudent: React.FC = () => {
             </p>
           </AnimatedSectionWrapper>
           
-          <div className="w-full h-[calc(100vh-200px)] min-h-[800px]">
+          <div className="w-full h-[calc(100vh-180px)] min-h-[700px] rounded-xl overflow-hidden shadow-lg border border-gray-200">
             <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSelmRTNIZqwlb11qtdTNh1GZzYTdVCd6uNqqEmOXQchK0EV_A/viewform?usp=sf_link"
-              className="w-full h-full border-0"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              allowFullScreen
+              src="https://santri-form-hub.vercel.app/"
+              className="w-full h-full border-0 bg-white"
+              title="Formulir Pendaftaran Santri Baru"
+              loading="lazy"
             >
-              Loading…
+              Memuat formulir pendaftaran...
             </iframe>
           </div>
         </div>
