@@ -9,32 +9,16 @@ import Header from '@/components/layout/Header';
 
 const NewStudent: React.FC = () => {
   return (
-    <>
-      <Header />
-      <main className="pt-28 pb-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <AnimatedSectionWrapper className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-islamic-navy mb-4">
-              Pendaftaran Santri Baru
-            </h1>
-            <p className="text-islamic-slate max-w-2xl mx-auto mb-8">
-              Silakan isi formulir pendaftaran di bawah ini untuk mendaftar sebagai santri baru.
-            </p>
-          </AnimatedSectionWrapper>
-          
-          <div className="w-full h-[calc(100vh-180px)] min-h-[700px] rounded-xl overflow-hidden shadow-lg border border-gray-200">
-            <iframe
-              src="https://santri-form-hub.vercel.app/"
-              className="w-full h-full border-0 bg-white"
-              title="Formulir Pendaftaran Santri Baru"
-              loading="lazy"
-            >
-              Memuat formulir pendaftaran...
-            </iframe>
-          </div>
-        </div>
-      </main>
-    </>
+    <div className="w-full h-screen">
+      <iframe
+        src="https://santri-form-hub.vercel.app/"
+        className="w-full h-full border-0"
+        title="Formulir Pendaftaran Santri Baru"
+        loading="lazy"
+      >
+        Memuat formulir pendaftaran...
+      </iframe>
+    </div>
   );
 };
 
