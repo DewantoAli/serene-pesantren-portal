@@ -7,7 +7,7 @@ const AplikasiPesantren: React.FC = () => {
       <Header />
       <div className="flex-1 pt-20">
         <iframe
-          src="https://pondok-cemerlang-online.vercel.app"
+          src="https://irsyadulhaq-administrasi.lovable.app/"
           className="w-full h-[calc(100vh-5rem)] border-0"
           title="Aplikasi Pesantren"
           allow="fullscreen"
