@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
-import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video } from 'lucide-react';
+import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video, Users } from 'lucide-react';
 import StorageImageUploader from '@/components/ui/StorageImageUploader';
 
 interface Activity {
@@ -222,6 +222,14 @@ const AdminKegiatan: React.FC = () => {
                 Lihat Halaman
               </Link>
             </Button>
+            {isAdmin && (
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/admin/users">
+                  <Users className="h-4 w-4 mr-2" />
+                  Kelola Users
+                </Link>
+              </Button>
+            )}
             <Button variant="destructive" size="sm" onClick={handleLogout}>
               <LogOut className="h-4 w-4 mr-2" />
               Keluar
