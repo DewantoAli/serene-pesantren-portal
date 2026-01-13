@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
 import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video } from 'lucide-react';
+import StorageImageUploader from '@/components/ui/StorageImageUploader';
 
 interface Activity {
   id: string;
@@ -320,16 +321,21 @@ const AdminKegiatan: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="media_url">
-                    {formData.media_type === 'image' ? 'URL Gambar' : 'URL Embed YouTube'}
+                    {formData.media_type === 'image' ? 'Gambar' : 'URL Embed YouTube'}
                   </Label>
-                  <Input
-                    id="media_url"
-                    value={formData.media_url}
-                    onChange={(e) => setFormData({ ...formData, media_url: e.target.value })}
-                    placeholder={formData.media_type === 'image' 
-                      ? 'https://example.com/image.jpg' 
-                      : 'https://youtube.com/embed/VIDEO_ID'}
-                  />
+                  {formData.media_type === 'image' ? (
+                    <StorageImageUploader
+                      value={formData.media_url}
+                      onChange={(url) => setFormData({ ...formData, media_url: url })}
+                    />
+                  ) : (
+                    <Input
+                      id="media_url"
+                      value={formData.media_url}
+                      onChange={(e) => setFormData({ ...formData, media_url: e.target.value })}
+                      placeholder="https://youtube.com/embed/VIDEO_ID"
+                    />
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="description">Deskripsi</Label>
