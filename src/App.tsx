@@ -18,6 +18,7 @@ import StatusPembayaranKelas8 from "./pages/StatusPembayaranKelas8";
 import StatusPembayaranKelas9 from "./pages/StatusPembayaranKelas9";
 import AdminLogin from "./pages/AdminLogin";
 import AdminKegiatan from "./pages/AdminKegiatan";
+import AdminUserRoles from "./pages/AdminUserRoles";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/status-pembayaran/kelas-9" element={<StatusPembayaranKelas9 />} />
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/kegiatan" element={<AdminKegiatan />} />
+            <Route path="/admin/users" element={<AdminUserRoles />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
