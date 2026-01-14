@@ -68,11 +68,7 @@ const Header: React.FC = () => {
     { name: 'Keuangan Pesantren', path: '/aplikasi-pesantren' },
   ];
 
-  const statusPembayaranSubMenu = [
-    { name: 'Kelas VII', path: '/status-pembayaran/kelas-7' },
-    { name: 'Kelas VIII', path: '/status-pembayaran/kelas-8' },
-    { name: 'Kelas IX', path: '/status-pembayaran/kelas-9' },
-  ];
+  const statusPembayaranLink = 'https://irsyadulhaq-administrasi.lovable.app/rekap-spp-publik';
   
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -150,22 +146,11 @@ const Header: React.FC = () => {
                   </Link>
                 </DropdownMenuItem>
               ))}
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="cursor-pointer">
+              <DropdownMenuItem asChild>
+                <a href={statusPembayaranLink} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
                   Status Pembayaran SPP
-                </DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent className="bg-white shadow-lg border z-50">
-                    {statusPembayaranSubMenu.map((item) => (
-                      <DropdownMenuItem key={item.path} asChild>
-                        <Link to={item.path} className="cursor-pointer">
-                          {item.name}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
+                </a>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -221,23 +206,14 @@ const Header: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
-              <div>
-                <p className="text-base text-islamic-navy font-medium py-1">Status Pembayaran SPP</p>
-                <div className="pl-4 space-y-1">
-                  {statusPembayaranSubMenu.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className={cn(
-                        'block text-sm py-1',
-                        isActive(item.path) ? 'text-islamic-teal' : 'text-islamic-slate'
-                      )}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              <a 
+                href={statusPembayaranLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-base text-islamic-slate py-1 hover:text-islamic-teal"
+              >
+                Status Pembayaran SPP
+              </a>
             </div>
           </div>
 
