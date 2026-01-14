@@ -4,13 +4,10 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Plus, Trash2, LogOut, Home, Users, Shield, UserCog } from 'lucide-react';
+import { Plus, Trash2, LogOut, Home, Users, Shield, UserCog, RefreshCw } from 'lucide-react';
 import type { Database } from '@/integrations/supabase/types';
 
 type AppRole = Database['public']['Enums']['app_role'];
@@ -27,9 +24,6 @@ const AdminUserRoles: React.FC = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState<UserWithRoles[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedUserId, setSelectedUserId] = useState<string>('');
-  const [selectedRole, setSelectedRole] = useState<AppRole>('editor');
   const [searchEmail, setSearchEmail] = useState('');
 
   useEffect(() => {
@@ -48,56 +42,39 @@ const AdminUserRoles: React.FC = () => {
   const fetchUsersWithRoles = async () => {
     setIsLoading(true);
     try {
-      // Fetch all user roles
-      const { data: rolesData, error: rolesError } = await supabase
-        .from('user_roles')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (rolesError) throw rolesError;
-
-      // Group roles by user_id
-      const userRolesMap = new Map<string, AppRole[]>();
-      const userCreatedAtMap = new Map<string, string>();
+      // Call edge function to get all users with roles
+      const { data: { session } } = await supabase.auth.getSession();
       
-      rolesData?.forEach(role => {
-        const existing = userRolesMap.get(role.user_id) || [];
-        existing.push(role.role);
-        userRolesMap.set(role.user_id, existing);
-        if (!userCreatedAtMap.has(role.user_id)) {
-          userCreatedAtMap.set(role.user_id, role.created_at);
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/list-users`,
+        {
+          headers: {
+            Authorization: `Bearer ${session?.access_token}`,
+            'Content-Type': 'application/json',
+          },
         }
-      });
+      );
 
-      // Create user list with roles (we'll show user_id as identifier)
-      const usersWithRoles: UserWithRoles[] = Array.from(userRolesMap.entries()).map(([userId, roles]) => ({
-        id: userId,
-        email: userId.substring(0, 8) + '...', // Show partial ID as placeholder
-        roles,
-        created_at: userCreatedAtMap.get(userId) || ''
-      }));
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Gagal mengambil data user');
+      }
 
-      setUsers(usersWithRoles);
+      const { users: usersData } = await response.json();
+      setUsers(usersData);
     } catch (error: any) {
       toast.error('Gagal memuat data: ' + error.message);
     }
     setIsLoading(false);
   };
 
-  const handleAddRole = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!selectedUserId.trim()) {
-      toast.error('User ID tidak boleh kosong');
-      return;
-    }
-
+  const handleAddRole = async (userId: string, role: AppRole) => {
     try {
       const { error } = await supabase
         .from('user_roles')
         .insert({
-          user_id: selectedUserId.trim(),
-          role: selectedRole
+          user_id: userId,
+          role: role
         });
 
       if (error) {
@@ -109,10 +86,7 @@ const AdminUserRoles: React.FC = () => {
         return;
       }
 
-      toast.success(`Role ${selectedRole} berhasil ditambahkan!`);
-      setIsDialogOpen(false);
-      setSelectedUserId('');
-      setSelectedRole('editor');
+      toast.success(`Role ${role} berhasil ditambahkan!`);
       fetchUsersWithRoles();
     } catch (error: any) {
       toast.error('Gagal menambahkan role: ' + error.message);
@@ -171,7 +145,8 @@ const AdminUserRoles: React.FC = () => {
   };
 
   const filteredUsers = users.filter(u => 
-    u.id.toLowerCase().includes(searchEmail.toLowerCase())
+    u.id.toLowerCase().includes(searchEmail.toLowerCase()) ||
+    u.email.toLowerCase().includes(searchEmail.toLowerCase())
   );
 
   if (loading || isLoading) {
@@ -218,9 +193,7 @@ const AdminUserRoles: React.FC = () => {
         <Card className="mb-6 bg-blue-50 border-blue-200">
           <CardContent className="pt-4">
             <p className="text-sm text-blue-800">
-              <strong>Cara Menambah Role:</strong> Untuk mendapatkan User ID, minta pengguna untuk mendaftar di halaman 
-              <Link to="/admin" className="text-blue-600 underline mx-1">/admin</Link>
-              lalu Anda dapat melihat User ID mereka di database atau minta mereka mengirimkan ID dari profil mereka.
+              <strong>Info:</strong> Semua user yang terdaftar ditampilkan di bawah. Klik tombol untuk menambahkan role.
             </p>
             <p className="text-sm text-blue-800 mt-2">
               <strong>Your User ID:</strong> <code className="bg-blue-100 px-2 py-1 rounded">{user?.id}</code>
@@ -230,78 +203,14 @@ const AdminUserRoles: React.FC = () => {
 
         <div className="flex justify-between items-center mb-6 gap-4">
           <Input
-            placeholder="Cari berdasarkan User ID..."
+            placeholder="Cari berdasarkan email atau User ID..."
             value={searchEmail}
             onChange={(e) => setSearchEmail(e.target.value)}
-            className="max-w-xs"
+            className="max-w-md"
           />
-          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-islamic-teal hover:bg-islamic-teal/90">
-                <Plus className="h-4 w-4 mr-2" />
-                Tambah Role
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Tambah Role Baru</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleAddRole} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="userId">User ID</Label>
-                  <Input
-                    id="userId"
-                    value={selectedUserId}
-                    onChange={(e) => setSelectedUserId(e.target.value)}
-                    placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-                    required
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    Masukkan User ID (UUID) dari pengguna yang sudah terdaftar
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="role">Role</Label>
-                  <Select
-                    value={selectedRole}
-                    onValueChange={(value) => setSelectedRole(value as AppRole)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="admin">
-                        <div className="flex items-center">
-                          <Shield className="h-4 w-4 mr-2 text-red-500" />
-                          Admin (Full Access)
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="editor">
-                        <div className="flex items-center">
-                          <UserCog className="h-4 w-4 mr-2 text-blue-500" />
-                          Editor (Manage Content)
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="user">
-                        <div className="flex items-center">
-                          <Users className="h-4 w-4 mr-2 text-gray-500" />
-                          User (Basic Access)
-                        </div>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex justify-end gap-2 pt-4">
-                  <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
-                    Batal
-                  </Button>
-                  <Button type="submit" className="bg-islamic-teal hover:bg-islamic-teal/90">
-                    Tambah Role
-                  </Button>
-                </div>
-              </form>
-            </DialogContent>
-          </Dialog>
+          <Button onClick={fetchUsersWithRoles} variant="outline" size="sm">
+            Refresh
+          </Button>
         </div>
 
         {/* Users Grid */}
@@ -309,31 +218,76 @@ const AdminUserRoles: React.FC = () => {
           {filteredUsers.map((userItem) => (
             <Card key={userItem.id}>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-mono break-all">
-                  {userItem.id}
+                <CardTitle className="text-sm truncate" title={userItem.email}>
+                  {userItem.email}
                 </CardTitle>
+                <p className="text-xs text-muted-foreground font-mono truncate" title={userItem.id}>
+                  {userItem.id}
+                </p>
                 {userItem.id === user?.id && (
                   <Badge variant="outline" className="w-fit text-xs">Anda</Badge>
                 )}
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-3">
+                {/* Current Roles */}
                 <div className="flex flex-wrap gap-2">
-                  {userItem.roles.map((role) => (
-                    <Badge 
-                      key={role} 
-                      className={`${getRoleBadgeColor(role)} text-white flex items-center gap-1`}
-                    >
-                      {getRoleIcon(role)}
-                      {role}
-                      <button
-                        onClick={() => handleRemoveRole(userItem.id, role)}
-                        className="ml-1 hover:bg-white/20 rounded-full p-0.5"
-                        title="Hapus role"
+                  {userItem.roles.length > 0 ? (
+                    userItem.roles.map((role) => (
+                      <Badge 
+                        key={role} 
+                        className={`${getRoleBadgeColor(role)} text-white flex items-center gap-1`}
                       >
-                        <Trash2 className="h-3 w-3" />
-                      </button>
-                    </Badge>
-                  ))}
+                        {getRoleIcon(role)}
+                        {role}
+                        <button
+                          onClick={() => handleRemoveRole(userItem.id, role)}
+                          className="ml-1 hover:bg-white/20 rounded-full p-0.5"
+                          title="Hapus role"
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </button>
+                      </Badge>
+                    ))
+                  ) : (
+                    <span className="text-xs text-muted-foreground italic">Belum ada role</span>
+                  )}
+                </div>
+
+                {/* Add Role Buttons */}
+                <div className="flex flex-wrap gap-1 pt-2 border-t">
+                  {!userItem.roles.includes('admin') && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="text-xs h-7"
+                      onClick={() => handleAddRole(userItem.id, 'admin')}
+                    >
+                      <Plus className="h-3 w-3 mr-1" />
+                      Admin
+                    </Button>
+                  )}
+                  {!userItem.roles.includes('editor') && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="text-xs h-7"
+                      onClick={() => handleAddRole(userItem.id, 'editor')}
+                    >
+                      <Plus className="h-3 w-3 mr-1" />
+                      Editor
+                    </Button>
+                  )}
+                  {!userItem.roles.includes('user') && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="text-xs h-7"
+                      onClick={() => handleAddRole(userItem.id, 'user')}
+                    >
+                      <Plus className="h-3 w-3 mr-1" />
+                      User
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -344,7 +298,7 @@ const AdminUserRoles: React.FC = () => {
           <div className="text-center py-12">
             <Users className="h-12 w-12 mx-auto text-gray-300 mb-4" />
             <p className="text-muted-foreground">
-              {searchEmail ? 'Tidak ada user yang ditemukan' : 'Belum ada user dengan role. Klik "Tambah Role" untuk memulai.'}
+              {searchEmail ? 'Tidak ada user yang ditemukan' : 'Belum ada user terdaftar.'}
             </p>
           </div>
         )}
