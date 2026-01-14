@@ -65,7 +65,7 @@ const Header: React.FC = () => {
   ];
 
   const aplikasiSubMenu = [
-    { name: 'Keuangan Pesantren', path: '/aplikasi-pesantren' },
+    { name: 'Administrasi & Keuangan Pesantren', path: '/aplikasi-pesantren' },
   ];
 
   const statusPembayaranPath = '/status-pembayaran-spp';
