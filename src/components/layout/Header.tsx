@@ -68,7 +68,7 @@ const Header: React.FC = () => {
     { name: 'Keuangan Pesantren', path: '/aplikasi-pesantren' },
   ];
 
-  const statusPembayaranLink = 'https://irsyadulhaq-administrasi.lovable.app/rekap-spp-publik';
+  const statusPembayaranPath = '/status-pembayaran-spp';
   
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -147,9 +147,9 @@ const Header: React.FC = () => {
                 </DropdownMenuItem>
               ))}
               <DropdownMenuItem asChild>
-                <a href={statusPembayaranLink} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+                <Link to={statusPembayaranPath} className="cursor-pointer">
                   Status Pembayaran SPP
-                </a>
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -206,14 +206,15 @@ const Header: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
-              <a 
-                href={statusPembayaranLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block text-base text-islamic-slate py-1 hover:text-islamic-teal"
+              <Link
+                to={statusPembayaranPath}
+                className={cn(
+                  'block text-base py-1',
+                  isActive(statusPembayaranPath) ? 'text-islamic-teal' : 'text-islamic-slate'
+                )}
               >
                 Status Pembayaran SPP
-              </a>
+              </Link>
             </div>
           </div>
 
