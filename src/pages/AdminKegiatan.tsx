@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
-import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video, Users, Settings, Share2 } from 'lucide-react';
+import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video, Users, Settings, Share2, BookOpen } from 'lucide-react';
 import StorageImageUploader from '@/components/ui/StorageImageUploader';
 
 interface Activity {
@@ -306,11 +306,11 @@ const AdminKegiatan: React.FC = () => {
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Integrasi Social Media via Zapier</DialogTitle>
+                  <DialogTitle>Integrasi Social Media</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
                   <div className="space-y-2">
-                    <Label htmlFor="zapier_webhook">Zapier Webhook URL</Label>
+                    <Label htmlFor="zapier_webhook">Zapier Webhook URL (Opsi 1 - Berbayar)</Label>
                     <Input
                       id="zapier_webhook"
                       value={zapierWebhookUrl}
@@ -321,22 +321,27 @@ const AdminKegiatan: React.FC = () => {
                       Masukkan URL webhook dari Zapier untuk posting otomatis ke social media.
                     </p>
                   </div>
+                  
+                  <div className="border-t pt-4">
+                    <p className="font-medium text-sm mb-2">Opsi 2 - Integrasi Langsung (Gratis)</p>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Setup integrasi langsung dengan Facebook, Instagram, dan YouTube API.
+                    </p>
+                    <Button variant="outline" className="w-full" asChild>
+                      <Link to="/admin/social-media-guide">
+                        <BookOpen className="h-4 w-4 mr-2" />
+                        Lihat Panduan Setup API
+                      </Link>
+                    </Button>
+                  </div>
+
                   <div className="bg-muted p-4 rounded-lg space-y-2 text-sm">
-                    <p className="font-medium">Cara Setup Zapier:</p>
-                    <ol className="list-decimal list-inside space-y-1 text-muted-foreground">
-                      <li>Buat akun di <a href="https://zapier.com" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">zapier.com</a></li>
-                      <li>Buat Zap baru dengan trigger "Webhooks by Zapier" → "Catch Hook"</li>
-                      <li>Copy webhook URL dan paste di atas</li>
-                      <li>Hubungkan ke action Facebook, Instagram, atau YouTube</li>
-                    </ol>
-                    <div className="mt-2 pt-2 border-t">
-                      <p className="font-medium">Social Media Anda:</p>
-                      <ul className="text-muted-foreground space-y-1 mt-1">
-                        <li><Share2 className="inline h-3 w-3 mr-1" /> Facebook: <a href="https://www.facebook.com/irsyadulhaq.manado" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@irsyadulhaq.manado</a></li>
-                        <li><Share2 className="inline h-3 w-3 mr-1" /> Instagram: <a href="https://www.instagram.com/pondokpesantrenirsyadulhaq" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@pondokpesantrenirsyadulhaq</a></li>
-                        <li><Share2 className="inline h-3 w-3 mr-1" /> YouTube: <a href="https://www.youtube.com/@IrsyadulHaq-Manado" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@IrsyadulHaq-Manado</a></li>
-                      </ul>
-                    </div>
+                    <p className="font-medium">Social Media Anda:</p>
+                    <ul className="text-muted-foreground space-y-1 mt-1">
+                      <li><Share2 className="inline h-3 w-3 mr-1" /> Facebook: <a href="https://www.facebook.com/irsyadulhaq.manado" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@irsyadulhaq.manado</a></li>
+                      <li><Share2 className="inline h-3 w-3 mr-1" /> Instagram: <a href="https://www.instagram.com/pondokpesantrenirsyadulhaq" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@pondokpesantrenirsyadulhaq</a></li>
+                      <li><Share2 className="inline h-3 w-3 mr-1" /> YouTube: <a href="https://www.youtube.com/@IrsyadulHaq-Manado" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@IrsyadulHaq-Manado</a></li>
+                    </ul>
                   </div>
                   <Button onClick={saveZapierWebhook} className="w-full bg-islamic-teal hover:bg-islamic-teal/90">
                     Simpan Webhook URL

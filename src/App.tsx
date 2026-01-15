@@ -17,6 +17,7 @@ import StatusPembayaranSPP from "./pages/StatusPembayaranSPP";
 import AdminLogin from "./pages/AdminLogin";
 import AdminKegiatan from "./pages/AdminKegiatan";
 import AdminUserRoles from "./pages/AdminUserRoles";
+import SocialMediaGuide from "./pages/SocialMediaGuide";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/kegiatan" element={<AdminKegiatan />} />
             <Route path="/admin/users" element={<AdminUserRoles />} />
+            <Route path="/admin/social-media-guide" element={<SocialMediaGuide />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
