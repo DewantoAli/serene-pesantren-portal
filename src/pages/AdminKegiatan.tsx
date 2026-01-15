@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
-import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video, Users } from 'lucide-react';
+import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video, Users, Settings, Share2 } from 'lucide-react';
 import StorageImageUploader from '@/components/ui/StorageImageUploader';
 
 interface Activity {
@@ -34,7 +34,11 @@ const AdminKegiatan: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [editingActivity, setEditingActivity] = useState<Activity | null>(null);
+  const [zapierWebhookUrl, setZapierWebhookUrl] = useState(() => {
+    return localStorage.getItem('zapier_webhook_url') || '';
+  });
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -44,7 +48,8 @@ const AdminKegiatan: React.FC = () => {
     participants: '',
     media_type: 'image',
     media_url: '',
-    is_published: true
+    is_published: true,
+    post_to_social: true
   });
 
   useEffect(() => {
@@ -84,9 +89,62 @@ const AdminKegiatan: React.FC = () => {
       participants: '',
       media_type: 'image',
       media_url: '',
-      is_published: true
+      is_published: true,
+      post_to_social: true
     });
     setEditingActivity(null);
+  };
+
+  const saveZapierWebhook = () => {
+    localStorage.setItem('zapier_webhook_url', zapierWebhookUrl);
+    toast.success('Zapier webhook URL berhasil disimpan!');
+    setIsSettingsOpen(false);
+  };
+
+  const triggerZapierWebhook = async (activityData: {
+    title: string;
+    description: string | null;
+    date: string;
+    time: string | null;
+    location: string | null;
+    media_url: string | null;
+    media_type: string;
+  }) => {
+    if (!zapierWebhookUrl) {
+      console.log('Zapier webhook URL not configured, skipping...');
+      return;
+    }
+
+    try {
+      await fetch(zapierWebhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'no-cors',
+        body: JSON.stringify({
+          title: activityData.title,
+          description: activityData.description,
+          date: activityData.date,
+          time: activityData.time,
+          location: activityData.location,
+          media_url: activityData.media_url,
+          media_type: activityData.media_type,
+          timestamp: new Date().toISOString(),
+          source: 'Pondok Pesantren Irsyadul Haq',
+          social_links: {
+            facebook: 'https://www.facebook.com/irsyadulhaq.manado',
+            instagram: 'https://www.instagram.com/pondokpesantrenirsyadulhaq',
+            youtube: 'https://www.youtube.com/@IrsyadulHaq-Manado'
+          }
+        }),
+      });
+      
+      toast.success('Kegiatan dikirim ke Zapier untuk posting ke social media!');
+    } catch (error) {
+      console.error('Error triggering Zapier webhook:', error);
+      toast.error('Gagal mengirim ke Zapier, tapi kegiatan tetap tersimpan.');
+    }
   };
 
   const handleOpenDialog = (activity?: Activity) => {
@@ -101,7 +159,8 @@ const AdminKegiatan: React.FC = () => {
         participants: activity.participants || '',
         media_type: activity.media_type || 'image',
         media_url: activity.media_url || '',
-        is_published: activity.is_published ?? true
+        is_published: activity.is_published ?? true,
+        post_to_social: false // Don't auto-post on edit by default
       });
     } else {
       resetForm();
@@ -134,6 +193,10 @@ const AdminKegiatan: React.FC = () => {
         toast.error('Gagal mengupdate: ' + error.message);
       } else {
         toast.success('Kegiatan berhasil diupdate!');
+        // Trigger Zapier if post_to_social is enabled
+        if (formData.post_to_social && formData.is_published) {
+          await triggerZapierWebhook(activityData);
+        }
         setIsDialogOpen(false);
         fetchActivities();
       }
@@ -146,6 +209,10 @@ const AdminKegiatan: React.FC = () => {
         toast.error('Gagal menambahkan: ' + error.message);
       } else {
         toast.success('Kegiatan berhasil ditambahkan!');
+        // Trigger Zapier if post_to_social is enabled
+        if (formData.post_to_social && formData.is_published) {
+          await triggerZapierWebhook(activityData);
+        }
         setIsDialogOpen(false);
         fetchActivities();
       }
@@ -230,6 +297,53 @@ const AdminKegiatan: React.FC = () => {
                 </Link>
               </Button>
             )}
+            <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm">
+                  <Settings className="h-4 w-4 mr-2" />
+                  Social Media
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Integrasi Social Media via Zapier</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="zapier_webhook">Zapier Webhook URL</Label>
+                    <Input
+                      id="zapier_webhook"
+                      value={zapierWebhookUrl}
+                      onChange={(e) => setZapierWebhookUrl(e.target.value)}
+                      placeholder="https://hooks.zapier.com/hooks/catch/..."
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Masukkan URL webhook dari Zapier untuk posting otomatis ke social media.
+                    </p>
+                  </div>
+                  <div className="bg-muted p-4 rounded-lg space-y-2 text-sm">
+                    <p className="font-medium">Cara Setup Zapier:</p>
+                    <ol className="list-decimal list-inside space-y-1 text-muted-foreground">
+                      <li>Buat akun di <a href="https://zapier.com" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">zapier.com</a></li>
+                      <li>Buat Zap baru dengan trigger "Webhooks by Zapier" → "Catch Hook"</li>
+                      <li>Copy webhook URL dan paste di atas</li>
+                      <li>Hubungkan ke action Facebook, Instagram, atau YouTube</li>
+                    </ol>
+                    <div className="mt-2 pt-2 border-t">
+                      <p className="font-medium">Social Media Anda:</p>
+                      <ul className="text-muted-foreground space-y-1 mt-1">
+                        <li><Share2 className="inline h-3 w-3 mr-1" /> Facebook: <a href="https://www.facebook.com/irsyadulhaq.manado" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@irsyadulhaq.manado</a></li>
+                        <li><Share2 className="inline h-3 w-3 mr-1" /> Instagram: <a href="https://www.instagram.com/pondokpesantrenirsyadulhaq" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@pondokpesantrenirsyadulhaq</a></li>
+                        <li><Share2 className="inline h-3 w-3 mr-1" /> YouTube: <a href="https://www.youtube.com/@IrsyadulHaq-Manado" target="_blank" rel="noopener noreferrer" className="text-islamic-teal underline">@IrsyadulHaq-Manado</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <Button onClick={saveZapierWebhook} className="w-full bg-islamic-teal hover:bg-islamic-teal/90">
+                    Simpan Webhook URL
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
             <Button variant="destructive" size="sm" onClick={handleLogout}>
               <LogOut className="h-4 w-4 mr-2" />
               Keluar
@@ -354,13 +468,28 @@ const AdminKegiatan: React.FC = () => {
                     rows={3}
                   />
                 </div>
-                <div className="flex items-center gap-2">
-                  <Switch
-                    id="is_published"
-                    checked={formData.is_published}
-                    onCheckedChange={(checked) => setFormData({ ...formData, is_published: checked })}
-                  />
-                  <Label htmlFor="is_published">Publikasikan</Label>
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2">
+                    <Switch
+                      id="is_published"
+                      checked={formData.is_published}
+                      onCheckedChange={(checked) => setFormData({ ...formData, is_published: checked })}
+                    />
+                    <Label htmlFor="is_published">Publikasikan</Label>
+                  </div>
+                  {zapierWebhookUrl && (
+                    <div className="flex items-center gap-2">
+                      <Switch
+                        id="post_to_social"
+                        checked={formData.post_to_social}
+                        onCheckedChange={(checked) => setFormData({ ...formData, post_to_social: checked })}
+                      />
+                      <Label htmlFor="post_to_social" className="flex items-center gap-1">
+                        <Share2 className="h-4 w-4" />
+                        Posting ke Social Media
+                      </Label>
+                    </div>
+                  )}
                 </div>
                 <div className="flex justify-end gap-2 pt-4">
                   <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
