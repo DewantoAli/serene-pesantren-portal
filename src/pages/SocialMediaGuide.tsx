@@ -227,8 +227,8 @@ const SocialMediaGuide: React.FC = () => {
             <div className="flex items-center gap-3">
               <Instagram className="h-8 w-8 text-pink-600" />
               <div>
-                <CardTitle className="text-pink-800">Panduan Instagram API</CardTitle>
-                <CardDescription>Setup posting otomatis ke Instagram Business</CardDescription>
+                <CardTitle className="text-pink-800">Panduan Instagram API - Step by Step</CardTitle>
+                <CardDescription>Setup posting otomatis ke Instagram Business (@pondokpesantrenirsyadulhaq)</CardDescription>
               </div>
             </div>
           </CardHeader>
@@ -238,8 +238,17 @@ const SocialMediaGuide: React.FC = () => {
                 <strong>📌 Catatan Penting:</strong> Instagram API untuk posting hanya tersedia untuk akun Instagram Business/Creator yang terhubung dengan Facebook Page. API ini menggunakan infrastruktur Facebook Graph API yang sama.
               </p>
             </div>
+
+            <div className="p-4 bg-green-50 border border-green-200 rounded-lg mb-4">
+              <p className="text-sm text-green-800">
+                <strong>✅ Akun Instagram Anda:</strong>{' '}
+                <a href="https://www.instagram.com/pondokpesantrenirsyadulhaq" target="_blank" rel="noopener noreferrer" className="underline">
+                  @pondokpesantrenirsyadulhaq
+                </a>
+              </p>
+            </div>
             
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion type="single" collapsible className="w-full" defaultValue="ig-step-1">
               <AccordionItem value="ig-step-1">
                 <AccordionTrigger>
                   <span className="flex items-center gap-2">
@@ -248,13 +257,36 @@ const SocialMediaGuide: React.FC = () => {
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="space-y-4 pl-8">
+                  <div className="p-3 bg-blue-50 border border-blue-200 rounded text-sm">
+                    <p className="font-medium text-blue-800">💡 Mungkin sudah selesai?</p>
+                    <p className="text-blue-700">Jika akun @pondokpesantrenirsyadulhaq sudah menjadi Business Account, lewati langkah ini.</p>
+                  </div>
+                  
+                  <p className="text-sm font-medium">Cara mengecek apakah sudah Business Account:</p>
+                  <ol className="list-decimal list-inside space-y-2 text-sm">
+                    <li>Buka profil Instagram @pondokpesantrenirsyadulhaq</li>
+                    <li>Klik <strong>Edit Profile</strong></li>
+                    <li>Jika ada tombol <strong>"Switch to Personal Account"</strong>, berarti sudah Business ✅</li>
+                  </ol>
+
+                  <p className="text-sm font-medium mt-4">Jika belum Business Account, ikuti langkah ini:</p>
                   <ol className="list-decimal list-inside space-y-3 text-sm">
                     <li>Buka aplikasi Instagram di HP</li>
-                    <li>Pergi ke <strong>Settings → Account → Switch to Professional Account</strong></li>
-                    <li>Pilih <strong>"Business"</strong></li>
-                    <li>Hubungkan dengan Facebook Page pesantren</li>
-                    <li>Lengkapi informasi bisnis</li>
+                    <li>Login ke akun <strong>@pondokpesantrenirsyadulhaq</strong></li>
+                    <li>Tap ikon profil (pojok kanan bawah)</li>
+                    <li>Tap <strong>≡</strong> (hamburger menu) di pojok kanan atas</li>
+                    <li>Pilih <strong>Settings and privacy</strong></li>
+                    <li>Scroll ke bawah, tap <strong>Account type and tools</strong></li>
+                    <li>Tap <strong>Switch to professional account</strong></li>
+                    <li>Pilih kategori yang sesuai (misal: <strong>Education</strong> atau <strong>Religious Organization</strong>)</li>
+                    <li>Pilih <strong>Business</strong> (bukan Creator)</li>
+                    <li>Ikuti langkah selanjutnya hingga selesai</li>
                   </ol>
+                  
+                  <div className="p-3 bg-green-50 border border-green-200 rounded text-sm mt-4">
+                    <p className="font-medium text-green-800">✅ Selesai!</p>
+                    <p className="text-green-700">Jika sudah menjadi Business Account, lanjutkan ke Langkah 2.</p>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -266,13 +298,39 @@ const SocialMediaGuide: React.FC = () => {
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="space-y-4 pl-8">
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded text-sm">
+                    <p className="font-medium text-amber-800">⚠️ Penting!</p>
+                    <p className="text-amber-700">Instagram harus terhubung dengan Facebook Page untuk bisa menggunakan API. Gunakan Facebook Page: <strong>Irsyadul Haq Manado</strong></p>
+                  </div>
+
+                  <p className="text-sm font-medium">Cara menghubungkan dari Instagram:</p>
                   <ol className="list-decimal list-inside space-y-3 text-sm">
-                    <li>Buka Facebook Page pesantren</li>
-                    <li>Pergi ke <strong>Settings → Linked Accounts → Instagram</strong></li>
-                    <li>Klik <strong>"Connect Account"</strong></li>
-                    <li>Login dengan akun Instagram pesantren</li>
-                    <li>Berikan izin yang diperlukan</li>
+                    <li>Buka aplikasi Instagram</li>
+                    <li>Pergi ke profil → <strong>Edit Profile</strong></li>
+                    <li>Scroll ke bawah, tap <strong>Page</strong> atau <strong>Connect Facebook Page</strong></li>
+                    <li>Login ke Facebook jika diminta</li>
+                    <li>Pilih Facebook Page: <strong>Irsyadul Haq Manado</strong></li>
+                    <li>Tap <strong>Done</strong></li>
                   </ol>
+
+                  <p className="text-sm font-medium mt-4">Cara alternatif dari Facebook Page:</p>
+                  <ol className="list-decimal list-inside space-y-3 text-sm">
+                    <li>
+                      Buka{' '}
+                      <a href="https://www.facebook.com/irsyadulhaq.manado/settings" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline inline-flex items-center gap-1">
+                        Facebook Page Settings <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </li>
+                    <li>Di sidebar kiri, klik <strong>Linked accounts</strong> atau <strong>Instagram</strong></li>
+                    <li>Klik <strong>Connect account</strong></li>
+                    <li>Masukkan username dan password Instagram @pondokpesantrenirsyadulhaq</li>
+                    <li>Berikan izin yang diminta</li>
+                  </ol>
+
+                  <div className="p-3 bg-green-50 border border-green-200 rounded text-sm mt-4">
+                    <p className="font-medium text-green-800">✅ Cara mengecek sudah terhubung:</p>
+                    <p className="text-green-700">Di Instagram Edit Profile → bagian "Page" akan terlihat nama Facebook Page yang terhubung.</p>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -280,22 +338,49 @@ const SocialMediaGuide: React.FC = () => {
                 <AccordionTrigger>
                   <span className="flex items-center gap-2">
                     <span className="bg-pink-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
-                    Tambahkan Permissions di Facebook App
+                    Buat Facebook Developer Account & App
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="space-y-4 pl-8">
+                  <p className="text-sm font-medium">Langkah 3a: Daftar sebagai Facebook Developer</p>
                   <ol className="list-decimal list-inside space-y-3 text-sm">
-                    <li>Kembali ke Facebook App yang sudah dibuat</li>
                     <li>
-                      Di <strong>App Review → Permissions</strong>, tambahkan:
+                      Buka{' '}
+                      <a href="https://developers.facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline inline-flex items-center gap-1">
+                        developers.facebook.com <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </li>
+                    <li>Klik <strong>Get Started</strong> atau <strong>Log In</strong></li>
+                    <li>Login dengan akun Facebook yang mengelola Page Irsyadul Haq Manado</li>
+                    <li>Setujui Developer Agreement</li>
+                    <li>Verifikasi akun dengan nomor telepon jika diminta</li>
+                  </ol>
+
+                  <p className="text-sm font-medium mt-4">Langkah 3b: Buat App Baru</p>
+                  <ol className="list-decimal list-inside space-y-3 text-sm">
+                    <li>Di dashboard developer, klik <strong>My Apps</strong> (kanan atas)</li>
+                    <li>Klik <strong>Create App</strong></li>
+                    <li>Pilih use case: <strong>Other</strong> → klik Next</li>
+                    <li>Pilih app type: <strong>Business</strong> → klik Next</li>
+                    <li>
+                      Isi detail app:
                       <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
-                        <li><code className="bg-gray-100 px-1 rounded">instagram_basic</code></li>
-                        <li><code className="bg-gray-100 px-1 rounded">instagram_content_publish</code></li>
-                        <li><code className="bg-gray-100 px-1 rounded">instagram_manage_comments</code></li>
+                        <li>App name: <code className="bg-gray-100 px-2 py-1 rounded">Irsyadul Haq Social Posting</code></li>
+                        <li>App contact email: email Anda</li>
+                        <li>Business Account: pilih atau buat baru</li>
                       </ul>
                     </li>
-                    <li>Submit untuk review</li>
+                    <li>Klik <strong>Create App</strong></li>
                   </ol>
+
+                  <div className="p-3 bg-blue-50 border border-blue-200 rounded text-sm mt-4">
+                    <p className="font-medium text-blue-800">📝 Catat Informasi App:</p>
+                    <p className="text-blue-700">Setelah app dibuat, pergi ke <strong>App Settings → Basic</strong> dan catat:</p>
+                    <ul className="list-disc list-inside ml-4 mt-2 text-blue-700">
+                      <li><strong>App ID</strong></li>
+                      <li><strong>App Secret</strong> (klik Show untuk melihat)</li>
+                    </ul>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -303,23 +388,22 @@ const SocialMediaGuide: React.FC = () => {
                 <AccordionTrigger>
                   <span className="flex items-center gap-2">
                     <span className="bg-pink-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
-                    Dapatkan Instagram Business Account ID
+                    Setup Instagram Graph API di App
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="space-y-4 pl-8">
                   <ol className="list-decimal list-inside space-y-3 text-sm">
-                    <li>Buka Graph API Explorer</li>
-                    <li>
-                      Jalankan query: 
-                      <div className="flex items-center gap-2 mt-2">
-                        <code className="bg-gray-100 px-2 py-1 rounded text-xs flex-1">GET /me/accounts?fields=instagram_business_account</code>
-                        <Button size="sm" variant="outline" onClick={() => copyToClipboard('/me/accounts?fields=instagram_business_account')}>
-                          <Copy className="h-3 w-3" />
-                        </Button>
-                      </div>
-                    </li>
-                    <li>Catat <strong>Instagram Business Account ID</strong></li>
+                    <li>Di dashboard App, cari bagian <strong>Add products to your app</strong></li>
+                    <li>Cari <strong>Instagram Graph API</strong> dan klik <strong>Set Up</strong></li>
+                    <li>Pergi ke <strong>App Settings → Basic</strong></li>
+                    <li>Scroll ke bawah, isi <strong>Privacy Policy URL</strong>: masukkan URL website pesantren</li>
+                    <li>Klik <strong>Save Changes</strong></li>
                   </ol>
+
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded text-sm mt-4">
+                    <p className="font-medium text-amber-800">⚠️ Tentang App Mode:</p>
+                    <p className="text-amber-700">App dalam mode "Development" hanya bisa digunakan oleh admin/tester. Untuk production, perlu menjalani App Review (bisa memakan waktu beberapa hari).</p>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -327,7 +411,90 @@ const SocialMediaGuide: React.FC = () => {
                 <AccordionTrigger>
                   <span className="flex items-center gap-2">
                     <span className="bg-pink-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">5</span>
-                    Informasi yang Perlu Diberikan ke Saya
+                    Dapatkan Access Token & Instagram Business ID
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="space-y-4 pl-8">
+                  <p className="text-sm font-medium">Langkah 5a: Buka Graph API Explorer</p>
+                  <ol className="list-decimal list-inside space-y-3 text-sm">
+                    <li>
+                      Buka{' '}
+                      <a href="https://developers.facebook.com/tools/explorer" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline inline-flex items-center gap-1">
+                        Graph API Explorer <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </li>
+                    <li>Di dropdown <strong>Meta App</strong>, pilih app yang baru dibuat (Irsyadul Haq Social Posting)</li>
+                    <li>Klik <strong>Generate Access Token</strong></li>
+                    <li>
+                      Di popup, centang permissions berikut:
+                      <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li><code className="bg-gray-100 px-1 rounded">pages_show_list</code></li>
+                        <li><code className="bg-gray-100 px-1 rounded">pages_read_engagement</code></li>
+                        <li><code className="bg-gray-100 px-1 rounded">instagram_basic</code></li>
+                        <li><code className="bg-gray-100 px-1 rounded">instagram_content_publish</code></li>
+                      </ul>
+                    </li>
+                    <li>Klik <strong>Generate Access Token</strong></li>
+                    <li>Login dan berikan izin ke Facebook Page Irsyadul Haq Manado</li>
+                  </ol>
+
+                  <p className="text-sm font-medium mt-4">Langkah 5b: Dapatkan Instagram Business Account ID</p>
+                  <ol className="list-decimal list-inside space-y-3 text-sm">
+                    <li>
+                      Di Graph API Explorer, masukkan query ini di kolom input:
+                      <div className="flex items-center gap-2 mt-2">
+                        <code className="bg-gray-100 px-2 py-1 rounded text-xs flex-1">me/accounts?fields=name,instagram_business_account</code>
+                        <Button size="sm" variant="outline" onClick={() => copyToClipboard('me/accounts?fields=name,instagram_business_account')}>
+                          <Copy className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </li>
+                    <li>Klik <strong>Submit</strong></li>
+                    <li>
+                      Hasil akan menampilkan:
+                      <pre className="bg-gray-100 p-2 rounded text-xs mt-2 overflow-x-auto">
+{`{
+  "data": [
+    {
+      "name": "Irsyadul Haq Manado",
+      "instagram_business_account": {
+        "id": "INSTAGRAM_BUSINESS_ID" ← Catat ini!
+      },
+      "id": "PAGE_ID"
+    }
+  ]
+}`}
+                      </pre>
+                    </li>
+                    <li>Catat <strong>instagram_business_account.id</strong></li>
+                  </ol>
+
+                  <p className="text-sm font-medium mt-4">Langkah 5c: Dapatkan Page Access Token (Long-Lived)</p>
+                  <ol className="list-decimal list-inside space-y-3 text-sm">
+                    <li>
+                      Di Graph API Explorer, masukkan query:
+                      <div className="flex items-center gap-2 mt-2">
+                        <code className="bg-gray-100 px-2 py-1 rounded text-xs flex-1">me/accounts?fields=access_token</code>
+                        <Button size="sm" variant="outline" onClick={() => copyToClipboard('me/accounts?fields=access_token')}>
+                          <Copy className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </li>
+                    <li>Klik <strong>Submit</strong></li>
+                    <li>Catat <strong>access_token</strong> dari Page Irsyadul Haq Manado</li>
+                  </ol>
+
+                  <div className="p-3 bg-green-50 border border-green-200 rounded text-sm mt-4">
+                    <p className="font-medium text-green-800">💡 Tips: Page Access Token dari langkah ini sudah Long-Lived (tidak expire) selama app masih aktif.</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="ig-step-6">
+                <AccordionTrigger>
+                  <span className="flex items-center gap-2">
+                    <span className="bg-pink-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">6</span>
+                    Berikan Informasi ke Saya
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="space-y-4 pl-8">
