@@ -18,6 +18,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminKegiatan from "./pages/AdminKegiatan";
 import AdminUserRoles from "./pages/AdminUserRoles";
 import SocialMediaGuide from "./pages/SocialMediaGuide";
+import InstagramSetupGuide from "./pages/InstagramSetupGuide";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,8 @@ const App = () => (
             <Route path="/admin/kegiatan" element={<AdminKegiatan />} />
             <Route path="/admin/users" element={<AdminUserRoles />} />
             <Route path="/admin/social-media-guide" element={<SocialMediaGuide />} />
+            <Route path="/panduan-instagram" element={<InstagramSetupGuide />} />
+            <Route path="/panduan-social-media" element={<SocialMediaGuide />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
