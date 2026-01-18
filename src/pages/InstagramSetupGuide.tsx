@@ -369,10 +369,146 @@ const InstagramSetupGuide: React.FC = () => {
           </Card>
         </div>
 
-        {/* STEP 4: Generate Token */}
+        {/* STEP 4: Add Developer Role - FIX ERROR */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pink-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">4</div>
+            <div className="bg-red-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">4</div>
+            <h2 className="text-xl font-bold text-gray-800">⚠️ PENTING: Tambahkan Developer Role</h2>
+          </div>
+          
+          <Card className="border-red-300 bg-red-50/50">
+            <CardContent className="pt-6">
+              <div className="bg-red-100 border border-red-300 rounded-lg p-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-red-800">Jika muncul error:</p>
+                    <p className="text-red-700 font-mono text-sm mt-1">"Insufficient Developer Role: Insufficient developer role"</p>
+                    <p className="text-red-700 text-sm mt-2">Ikuti langkah di bawah ini untuk mengatasinya:</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                {/* Sub-step A */}
+                <div className="flex gap-4">
+                  <div className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">A</div>
+                  <div className="flex-1">
+                    <p className="font-medium mb-2">Buka App Roles di Sidebar Kiri</p>
+                    <div className="bg-gray-900 rounded-lg p-4 text-white">
+                      <div className="flex items-center gap-2 text-sm mb-3">
+                        <span className="text-gray-400">Sidebar:</span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="bg-gray-800 rounded px-3 py-2 text-sm flex items-center gap-2">
+                          <span>📱 Instagram</span>
+                        </div>
+                        <div className="bg-gray-800 rounded px-3 py-2 text-sm flex items-center gap-2">
+                          <span>📊 App Dashboard</span>
+                        </div>
+                        <div className="bg-blue-600 rounded px-3 py-2 text-sm flex items-center gap-2 border-2 border-blue-400">
+                          <span>👥 <strong>App Roles</strong></span>
+                          <span className="ml-auto text-xs bg-yellow-500 text-black px-2 py-0.5 rounded">Klik ini!</span>
+                        </div>
+                        <div className="ml-4 bg-gray-700 rounded px-3 py-2 text-sm flex items-center gap-2">
+                          <ArrowRight className="h-3 w-3" />
+                          <span className="font-medium text-green-400">Roles</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sub-step B */}
+                <div className="flex gap-4">
+                  <div className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">B</div>
+                  <div className="flex-1">
+                    <p className="font-medium mb-2">Klik "Add People"</p>
+                    <div className="bg-gray-900 rounded-lg p-4 text-white">
+                      <p className="text-sm text-gray-400 mb-3">Halaman App Roles:</p>
+                      <div className="bg-gray-800 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <span className="text-lg font-medium">Roles</span>
+                          <div className="bg-green-500 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2">
+                            <Plus className="h-4 w-4" />
+                            Add People
+                            <span className="ml-2 text-xs bg-yellow-400 text-black px-2 py-0.5 rounded">Klik!</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sub-step C */}
+                <div className="flex gap-4">
+                  <div className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">C</div>
+                  <div className="flex-1">
+                    <p className="font-medium mb-2">Tambahkan diri Anda sebagai Admin/Developer</p>
+                    <div className="bg-gray-900 rounded-lg p-4 text-white">
+                      <p className="text-sm text-gray-400 mb-3">Dialog "Add People":</p>
+                      <div className="bg-gray-800 rounded-lg p-4 space-y-4">
+                        <div>
+                          <label className="text-sm text-gray-400">1. Pilih Role:</label>
+                          <div className="mt-2 space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-4 h-4 rounded-full border-2 border-green-500 bg-green-500"></div>
+                              <span className="font-medium text-green-400">Administrator</span>
+                              <span className="text-xs text-gray-500">(Rekomendasi)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-4 h-4 rounded-full border-2 border-gray-500"></div>
+                              <span>Developer</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <label className="text-sm text-gray-400">2. Masukkan nama/email Facebook Anda:</label>
+                          <div className="mt-2 bg-gray-700 rounded px-3 py-2 text-sm">
+                            <input type="text" placeholder="Nama Facebook Anda..." className="bg-transparent w-full outline-none text-white placeholder-gray-500" disabled />
+                          </div>
+                        </div>
+                        <div className="bg-blue-500 text-white text-center py-2 rounded font-medium">
+                          Add
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sub-step D */}
+                <div className="flex gap-4">
+                  <div className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">D</div>
+                  <div className="flex-1">
+                    <p className="font-medium mb-2">Terima Undangan (jika diperlukan)</p>
+                    <div className="bg-amber-50 border border-amber-300 rounded-lg p-4">
+                      <p className="text-amber-800 text-sm flex items-start gap-2">
+                        <span className="text-lg">🔔</span>
+                        <span>
+                          <strong>Cek Notifikasi Facebook:</strong><br/>
+                          Buka <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Facebook.com</a> → 
+                          Klik ikon lonceng (🔔) → Cari undangan dari app Anda → Klik "Accept"
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded-lg">
+                <p className="text-green-800 flex items-center gap-2 font-medium">
+                  <CheckCircle2 className="h-5 w-5" />
+                  Setelah role ditambahkan, lanjut ke Step 5 untuk Generate Token
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* STEP 5: Generate Token */}
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="bg-pink-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">5</div>
             <h2 className="text-xl font-bold text-gray-800">Generate Access Token</h2>
           </div>
           
@@ -467,10 +603,10 @@ const InstagramSetupGuide: React.FC = () => {
           </Card>
         </div>
 
-        {/* STEP 5: Get User ID */}
+        {/* STEP 6: Get User ID */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pink-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">5</div>
+            <div className="bg-pink-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">6</div>
             <h2 className="text-xl font-bold text-gray-800">Dapatkan Instagram User ID</h2>
           </div>
           
@@ -551,10 +687,10 @@ const InstagramSetupGuide: React.FC = () => {
           </Card>
         </div>
 
-        {/* STEP 6: Get App Credentials */}
+        {/* STEP 7: Get App Credentials */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pink-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">6</div>
+            <div className="bg-pink-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">7</div>
             <h2 className="text-xl font-bold text-gray-800">Dapatkan App ID & App Secret</h2>
           </div>
           
