@@ -34,6 +34,64 @@ serve(async (req) => {
       );
     }
 
+    // Check if this is a test token request
+    const url = new URL(req.url);
+    const isTestMode = url.searchParams.get('test') === 'true';
+
+    if (isTestMode) {
+      // Test mode: check token validity and permissions
+      console.log('Testing Instagram token...');
+      
+      // Step 1: Check token debug info
+      const debugResponse = await fetch(
+        `https://graph.facebook.com/debug_token?input_token=${accessToken}&access_token=${accessToken}`
+      );
+      const debugData = await debugResponse.json();
+      
+      // Step 2: Get user info
+      const meResponse = await fetch(
+        `https://graph.facebook.com/v22.0/me?fields=id,name&access_token=${accessToken}`
+      );
+      const meData = await meResponse.json();
+      
+      // Step 3: Get pages with Instagram accounts
+      const pagesResponse = await fetch(
+        `https://graph.facebook.com/v22.0/me?fields=accounts{id,name,instagram_business_account{id,username}}&access_token=${accessToken}`
+      );
+      const pagesData = await pagesResponse.json();
+      
+      const accounts = pagesData?.accounts?.data ?? [];
+      const pagesWithInstagram = accounts.filter((a: any) => a?.instagram_business_account?.id);
+      
+      return new Response(
+        JSON.stringify({
+          success: true,
+          tokenInfo: {
+            isValid: debugData?.data?.is_valid ?? false,
+            appId: debugData?.data?.app_id,
+            expiresAt: debugData?.data?.expires_at ? new Date(debugData.data.expires_at * 1000).toISOString() : 'Never',
+            scopes: debugData?.data?.scopes ?? [],
+          },
+          user: meData.error ? null : { id: meData.id, name: meData.name },
+          pages: accounts.map((a: any) => ({
+            id: a.id,
+            name: a.name,
+            instagramAccount: a.instagram_business_account ? {
+              id: a.instagram_business_account.id,
+              username: a.instagram_business_account.username
+            } : null
+          })),
+          instagramAccountsFound: pagesWithInstagram.length,
+          errors: {
+            debug: debugData?.error,
+            me: meData?.error,
+            pages: pagesData?.error,
+          }
+        }),
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     // Get Instagram Business Account User ID via Facebook Graph API
     // NOTE: Instagram Content Publishing works with a Facebook Page access token and the Facebook Graph API.
     // The token must have permissions like: instagram_basic, instagram_content_publish, pages_show_list.
