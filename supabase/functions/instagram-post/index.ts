@@ -34,23 +34,39 @@ serve(async (req) => {
       );
     }
 
-    // Get Instagram User ID first
-    const userResponse = await fetch(
-      `https://graph.instagram.com/v22.0/me?fields=id,username&access_token=${accessToken}`
+    // Get Instagram Business Account User ID via Facebook Graph API
+    // NOTE: Instagram Content Publishing works with a Facebook Page access token and the Facebook Graph API.
+    // The token must have permissions like: instagram_basic, instagram_content_publish, pages_show_list.
+    const pagesResponse = await fetch(
+      `https://graph.facebook.com/v22.0/me?fields=accounts{instagram_business_account{id,username}}&access_token=${accessToken}`
     );
-    
-    if (!userResponse.ok) {
-      const errorData = await userResponse.json();
-      console.error('Failed to get Instagram user:', errorData);
+
+    if (!pagesResponse.ok) {
+      const errorData = await pagesResponse.json();
+      console.error('Failed to get Facebook pages:', errorData);
       return new Response(
-        JSON.stringify({ error: 'Failed to get Instagram user', details: errorData }),
+        JSON.stringify({ error: 'Failed to get Facebook pages', details: errorData }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    const userData = await userResponse.json();
-    const instagramUserId = userData.id;
-    console.log('Instagram User ID:', instagramUserId, 'Username:', userData.username);
+    const pagesData = await pagesResponse.json();
+    const accounts = pagesData?.accounts?.data ?? [];
+    const igAccount = accounts.find((a: any) => a?.instagram_business_account?.id)?.instagram_business_account;
+
+    if (!igAccount?.id) {
+      return new Response(
+        JSON.stringify({
+          error: 'No Instagram Business Account found for this token',
+          hint: 'Pastikan akun Instagram Business/Creator sudah terhubung ke Facebook Page, dan token punya izin pages_show_list + instagram_content_publish.',
+          details: { accountsCount: accounts.length }
+        }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const instagramUserId = igAccount.id;
+    console.log('Instagram Business User ID:', instagramUserId, 'Username:', igAccount.username ?? 'unknown');
 
     // Parse request body
     const { imageUrl, caption = '' }: InstagramPostRequest = await req.json();
@@ -73,7 +89,7 @@ serve(async (req) => {
     console.log('Creating media container for image:', imageUrl);
 
     // Step 1: Create a media container
-    const createMediaUrl = `https://graph.instagram.com/v22.0/${instagramUserId}/media`;
+    const createMediaUrl = `https://graph.facebook.com/v22.0/${instagramUserId}/media`;
     const createMediaParams = new URLSearchParams({
       image_url: imageUrl,
       caption: caption,
@@ -110,7 +126,7 @@ serve(async (req) => {
 
     while (!containerReady && attempts < maxAttempts) {
       const statusResponse = await fetch(
-        `https://graph.instagram.com/v22.0/${mediaContainerId}?fields=status_code&access_token=${accessToken}`
+        `https://graph.facebook.com/v22.0/${mediaContainerId}?fields=status_code&access_token=${accessToken}`
       );
       const statusData = await statusResponse.json();
       
@@ -144,7 +160,7 @@ serve(async (req) => {
     }
 
     // Step 3: Publish the media container
-    const publishUrl = `https://graph.instagram.com/v22.0/${instagramUserId}/media_publish`;
+    const publishUrl = `https://graph.facebook.com/v22.0/${instagramUserId}/media_publish`;
     const publishParams = new URLSearchParams({
       creation_id: mediaContainerId,
       access_token: accessToken,
