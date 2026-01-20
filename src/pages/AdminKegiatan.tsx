@@ -297,6 +297,12 @@ const AdminKegiatan: React.FC = () => {
                 </Link>
               </Button>
             )}
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/admin/instagram-post">
+                <Share2 className="h-4 w-4 mr-2" />
+                Post Instagram
+              </Link>
+            </Button>
             <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
               <DialogTrigger asChild>
                 <Button variant="outline" size="sm">
