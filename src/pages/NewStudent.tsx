@@ -24,7 +24,7 @@ const NewStudent: React.FC = () => {
           </div>
         )}
         <iframe
-          src="https://santri-form-hub.vercel.app/"
+          src="https://santri-form-hub.lovable.app/"
           className="w-full h-full border-0"
           title="Formulir Pendaftaran Santri Baru"
           onLoad={() => setIsLoading(false)}
