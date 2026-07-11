@@ -25,8 +25,8 @@ const stats = [
 const programs = [
   {
     icon: BookOpen,
-    title: 'Tahfidz Al-Qur\u2019an',
-    desc: 'Program menghafal Al-Qur\u2019an dengan metode terstruktur, tajwid yang benar, dan bimbingan intensif.',
+    title: 'Tahfidz Al-Qur’an',
+    desc: 'Program menghafal Al-Qur’an dengan metode terstruktur, tajwid yang benar, dan bimbingan intensif.',
   },
   {
     icon: GraduationCap,
@@ -49,7 +49,7 @@ const events = [
   },
   {
     date: '10 Juli 2026',
-    title: 'Musabaqah Hifzhil Qur\u2019an',
+    title: 'Musabaqah Hifzhil Qur’an',
     location: 'Aula Utama',
     desc: 'Lomba tahunan yang menampilkan hafalan terbaik para santri di berbagai jenjang.',
   },
@@ -96,7 +96,7 @@ const Index: React.FC = () => {
 
                 <p className="mt-6 md:mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
                   Pondok Pesantren Irsyadul Haq Manado mendidik santri dengan
-                  Al-Qur\u2019an, As-Sunnah, dan pemahaman Salafush Shalih \u2014 dipadu
+                  Al-Qur’an, As-Sunnah, dan pemahaman Salafush Shalih — dipadu
                   akademik modern dan pembinaan karakter yang utuh.
                 </p>
 
@@ -158,7 +158,7 @@ const Index: React.FC = () => {
                   {/* Floating badge */}
                   <div className="absolute -right-4 top-8 hidden md:flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-4 py-2 text-xs shadow-elegant">
                     <BookOpen size={14} />
-                    Al-Qur\u2019an & As-Sunnah
+                    Al-Qur’an & As-Sunnah
                   </div>
                 </div>
               </div>
@@ -321,7 +321,7 @@ const Index: React.FC = () => {
                   {[
                     'Pengajar berpengalaman & bersanad',
                     'Fasilitas modern dengan nilai tradisional',
-                    'Kurikulum seimbang: syar\u2019i & umum',
+                    'Kurikulum seimbang: syar’i & umum',
                     'Lingkungan aman, terarah, dan menumbuhkan',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
@@ -408,7 +408,7 @@ const Index: React.FC = () => {
                   </h2>
                   <p className="mt-5 text-background/70 max-w-xl">
                     Bergabunglah dengan komunitas pendidikan yang mendidik hati,
-                    akal, dan akhlak di atas bimbingan Al-Qur\u2019an dan As-Sunnah.
+                    akal, dan akhlak di atas bimbingan Al-Qur’an dan As-Sunnah.
                   </p>
                 </div>
                 <div className="lg:col-span-4 flex flex-col gap-3 lg:items-end">
