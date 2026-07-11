@@ -5,44 +5,46 @@
 
 @layer base {
   :root {
-    --background: 40 33% 98%;
-    --foreground: 200 15% 15%;
+    /* Warm Sand palette */
+    --background: 35 33% 97%;         /* #faf8f5 */
+    --foreground: 30 20% 15%;
 
-    --card: 40 33% 99%;
-    --card-foreground: 200 15% 15%;
+    --card: 35 30% 99%;
+    --card-foreground: 30 20% 15%;
 
-    --popover: 40 33% 99%;
-    --popover-foreground: 200 15% 15%;
+    --popover: 35 30% 99%;
+    --popover-foreground: 30 20% 15%;
 
-    --primary: 200 70% 25%;
-    --primary-foreground: 40 33% 98%;
+    /* Earth clay — primary brand */
+    --primary: 30 24% 44%;            /* #8b7355 */
+    --primary-foreground: 35 33% 97%;
 
-    --secondary: 160 45% 30%;
-    --secondary-foreground: 40 33% 98%;
+    --secondary: 37 28% 70%;          /* #c9b99a sand */
+    --secondary-foreground: 30 30% 20%;
 
-    --muted: 40 10% 95%;
-    --muted-foreground: 200 10% 45%;
+    --muted: 35 25% 92%;              /* #f0ebe3 */
+    --muted-foreground: 30 12% 40%;
 
-    --accent: 35 80% 55%;
-    --accent-foreground: 200 15% 15%;
+    --accent: 30 24% 44%;
+    --accent-foreground: 35 33% 97%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 40 33% 98%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 35 33% 97%;
 
-    --border: 200 15% 90%;
-    --input: 200 15% 90%;
-    --ring: 200 70% 40%;
+    --border: 35 22% 86%;
+    --input: 35 22% 86%;
+    --ring: 30 24% 44%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --sidebar-background: 200 70% 25%;
-    --sidebar-foreground: 40 33% 98%;
-    --sidebar-primary: 35 80% 55%;
-    --sidebar-primary-foreground: 200 15% 15%;
-    --sidebar-accent: 190 80% 40%;
-    --sidebar-accent-foreground: 40 33% 98%;
-    --sidebar-border: 200 50% 40%;
-    --sidebar-ring: 35 80% 55%;
+    --sidebar-background: 30 20% 15%;
+    --sidebar-foreground: 35 33% 97%;
+    --sidebar-primary: 37 28% 70%;
+    --sidebar-primary-foreground: 30 20% 15%;
+    --sidebar-accent: 30 24% 44%;
+    --sidebar-accent-foreground: 35 33% 97%;
+    --sidebar-border: 30 15% 25%;
+    --sidebar-ring: 37 28% 70%;
   }
 
   * {
