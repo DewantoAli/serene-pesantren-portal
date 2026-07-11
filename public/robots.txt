@@ -3,9 +3,11 @@
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
 
 # Sitemap
 Sitemap: https://www.irsyadulhaq.or.id/sitemap.xml
 
-# Crawl-delay (optional, untuk menghindari overload server)
+# Crawl-delay
 Crawl-delay: 1

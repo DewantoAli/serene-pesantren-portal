@@ -1,0 +1,18 @@
+# Pondok Pesantren Irsyadulhaq Manado
+
+> Lembaga pendidikan Islam di Manado, Sulawesi Utara, yang mencetak generasi Rabbani berlandaskan Al-Quran dan As-Sunnah. Menerima pendaftaran santri baru tingkat MTs dengan program tahfidz Al-Quran, kajian Islam, bahasa Arab, dan pendidikan umum.
+
+## Pages
+
+- [Beranda](/): Profil singkat pesantren, program unggulan, dan informasi terbaru.
+- [Tentang Kami](/about): Sejarah, visi-misi, dan nilai-nilai Pondok Pesantren Irsyadulhaq.
+- [Pendaftaran Santri Baru](/new-student): Formulir pendaftaran santri baru tingkat MTs.
+- [Registrasi](/registration): Alur registrasi calon santri.
+- [Kegiatan Santri](/kegiatan-santri): Dokumentasi kegiatan harian dan program santri.
+- [Organisasi](/organization): Struktur pengurus dan organisasi pesantren.
+- [Aplikasi Pesantren](/aplikasi-pesantren): Layanan aplikasi digital untuk santri dan orang tua.
+- [Status Pembayaran SPP](/status-pembayaran-spp): Cek status pembayaran SPP santri.
+
+## Optional
+
+- [Panduan Instagram](/panduan-instagram): Panduan penggunaan Instagram resmi pesantren.
