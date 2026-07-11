@@ -20,9 +20,10 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				serif: ['Amiri', 'serif'],
-				display: ['Noto Sans Arabic', 'sans-serif'],
+				sans: ['Work Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				serif: ['Instrument Serif', 'ui-serif', 'Georgia', 'serif'],
+				display: ['Instrument Serif', 'ui-serif', 'Georgia', 'serif'],
+				arabic: ['Amiri', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
