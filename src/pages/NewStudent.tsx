@@ -10,6 +10,7 @@ const NewStudent: React.FC = () => {
   return (
     <>
       <Header />
+      <h1 className="sr-only">Pendaftaran Santri Baru Pondok Pesantren Irsyadulhaq Manado</h1>
       <div className="w-full h-[calc(100vh-80px)] mt-20 relative">
         {isLoading && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-background z-10">
