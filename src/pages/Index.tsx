@@ -15,13 +15,6 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 
-const stats = [
-  { value: '2021', label: 'Tahun Didirikan' },
-  { value: '150+', label: 'Santri Aktif' },
-  { value: '20+', label: 'Pengajar' },
-  { value: '3', label: 'Program Unggulan' },
-];
-
 const programs = [
   {
     icon: BookOpen,
