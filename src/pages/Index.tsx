@@ -14,6 +14,8 @@ import {
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
+import heroPesantren from '@/assets/hero-pesantren.jpg';
+import islamicCalligraphy from '@/assets/islamic-calligraphy.jpg';
 
 const stats = [
   { value: '2021', label: 'Tahun Didirikan' },
@@ -138,8 +140,10 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-elegant ring-1 ring-border/60">
                     <img
-                      src="https://ik.imagekit.io/uzuuvayyu/building_LixplpNC1?updatedAt=1742674414873"
-                      alt="Pondok Pesantren Irsyadul Haq Manado"
+                      src={heroPesantren}
+                      alt="Arsitektur pesantren megah dengan cahaya sunset"
+                      width={1600}
+                      height={1008}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -293,10 +297,12 @@ const Index: React.FC = () => {
                       loading="lazy"
                     />
                   </div>
-                  <div className="aspect-[3/4] rounded-2xl overflow-hidden ring-1 ring-border mt-10">
+                  <div className="aspect-[3/4] rounded-2xl overflow-hidden ring-1 ring-border mt-10 bg-secondary/10">
                     <img
-                      src="https://ik.imagekit.io/uzuuvayyu/building_LixplpNC1?updatedAt=1742674414873"
-                      alt="Gedung pesantren"
+                      src={islamicCalligraphy}
+                      alt="Kaligrafi Islam dengan ornamen floral emas dan hijau"
+                      width={1408}
+                      height={1008}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
