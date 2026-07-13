@@ -362,35 +362,35 @@ const Index: React.FC = () => {
         {/* ============== CTA ============== */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="relative overflow-hidden rounded-3xl bg-foreground text-background p-10 md:p-16">
-              <div
-                className="absolute inset-0 opacity-[0.06]"
-                style={{
-                  backgroundImage:
-                    'radial-gradient(hsl(var(--background)) 1px, transparent 1px)',
-                  backgroundSize: '24px 24px',
-                }}
-              />
-              <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-8">
-                  <p className="text-xs uppercase tracking-[0.2em] text-secondary mb-4">
+            <div className="relative overflow-hidden rounded-[3rem] bg-foreground text-background p-10 md:p-16 lg:p-20 shadow-2xl">
+              {/* Gold wave pattern */}
+              <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none text-islamic-gold">
+                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M0,50 Q25,0 50,50 T100,50 T150,50" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                  <path d="M0,60 Q25,10 50,60 T100,60 T150,60" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                </svg>
+              </div>
+
+              <div className="relative z-10 flex flex-col items-center text-center gap-8">
+                <div className="max-w-3xl">
+                  <p className="text-xs uppercase tracking-[0.2em] text-islamic-gold mb-4">
                     Pendaftaran Dibuka
                   </p>
-                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight">
+                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
                     Mulai perjalanan santri anda
                     <br />
-                    bersama <em className="italic text-secondary">Irsyadul Haq</em>.
+                    bersama <em className="italic text-islamic-gold">Irsyadul Haq</em>.
                   </h2>
-                  <p className="mt-5 text-background/70 max-w-xl">
+                  <p className="mt-5 text-background/70 max-w-xl mx-auto">
                     Bergabunglah dengan komunitas pendidikan yang mendidik hati,
                     akal, dan akhlak di atas bimbingan Al-Qur’an dan As-Sunnah.
                   </p>
                 </div>
-                <div className="lg:col-span-4 flex flex-col gap-3 lg:items-end">
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <Button
                     asChild
                     size="lg"
-                    className="rounded-full px-7 bg-secondary text-foreground hover:bg-secondary/90"
+                    className="rounded-full px-7 bg-islamic-gold text-foreground hover:bg-islamic-gold/90 hover:-translate-y-0.5 transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)]"
                   >
                     <Link to="/new-student">
                       Daftar Sekarang <ArrowRight size={18} className="ml-1" />
