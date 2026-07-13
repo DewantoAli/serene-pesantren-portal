@@ -67,41 +67,41 @@ const Index: React.FC = () => {
       <Header />
       <main className="bg-background text-foreground">
         {/* ============== HERO ============== */}
-        <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-          {/* Decorative warm gradient */}
-          <div
-            className="absolute inset-0 -z-10"
-            style={{
-              background:
-                'radial-gradient(1200px 600px at 85% -10%, hsl(37 40% 82%) 0%, transparent 60%), radial-gradient(900px 500px at -10% 20%, hsl(35 30% 92%) 0%, transparent 55%), hsl(var(--background))',
-            }}
-          />
-
+        <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-background">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               {/* Copy */}
-              <div className="lg:col-span-7">
-                <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/60 backdrop-blur px-4 py-1.5 mb-6 text-xs md:text-sm text-muted-foreground">
-                  <Sparkles size={14} className="text-primary" />
-                  <span>Penerimaan Santri Baru 2026/2027 dibuka</span>
+              <div className="lg:col-span-7 space-y-8">
+                <div className="inline-flex items-center gap-2 rounded-full border border-islamic-gold/30 bg-islamic-gold/10 px-4 py-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-islamic-gold opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-islamic-gold" />
+                  </span>
+                  <span className="text-xs font-semibold tracking-wider text-islamic-gold/80 uppercase">
+                    Penerimaan Santri Baru 2026/2027 dibuka
+                  </span>
                 </div>
 
-                <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-foreground">
+                <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-foreground text-balance">
                   Menempa generasi
                   <br />
-                  <em className="italic text-primary">Rabbani</em> yang
+                  <em className="italic text-islamic-gold">Rabbani</em> yang
                   <br />
                   berpijak pada Sunnah.
                 </h1>
 
-                <p className="mt-6 md:mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
+                <p className="max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
                   Pondok Pesantren Irsyadul Haq Manado mendidik santri dengan
                   Al-Qur’an, As-Sunnah, dan pemahaman Salafush Shalih — dipadu
                   akademik modern dan pembinaan karakter yang utuh.
                 </p>
 
-                <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                  <Button asChild size="lg" className="rounded-full px-7">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="rounded-full px-7 bg-primary hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                  >
                     <Link to="/new-student">
                       Daftar Santri Baru
                       <ArrowRight size={18} className="ml-1" />
@@ -111,69 +111,44 @@ const Index: React.FC = () => {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="rounded-full px-7 border-foreground/20 hover:bg-foreground/5"
+                    className="rounded-full px-7 border-foreground/10 text-foreground hover:bg-foreground/5"
                   >
                     <Link to="/about">Kenali Pesantren</Link>
                   </Button>
                 </div>
 
-                {/* Trust row */}
-                <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={14} className="fill-primary text-primary" />
-                    ))}
-                    <span className="ml-2">Dipercaya keluarga muslim Sulut</span>
-                  </div>
-                  <div className="hidden md:block h-4 w-px bg-border" />
-                  <div className="flex items-center gap-2">
-                    <MapPin size={14} className="text-primary" />
-                    <span>Manado, Sulawesi Utara</span>
-                  </div>
+                {/* Stat strip */}
+                <div className="pt-8 flex flex-wrap items-center gap-8 md:gap-12 border-t border-border">
+                  {stats.map((s) => (
+                    <div key={s.label}>
+                      <p className="font-serif text-2xl md:text-3xl text-foreground">
+                        {s.value}
+                      </p>
+                      <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Visual */}
               <div className="lg:col-span-5">
                 <div className="relative">
-                  <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-elegant ring-1 ring-border/60">
+                  <div className="absolute -inset-4 border border-islamic-gold/20 rounded-[2rem] transform translate-x-4 translate-y-4" />
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-elegant ring-1 ring-border/60">
                     <img
                       src="https://ik.imagekit.io/uzuuvayyu/building_LixplpNC1?updatedAt=1742674414873"
                       alt="Pondok Pesantren Irsyadul Haq Manado"
                       className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
                   </div>
 
-                  {/* Floating stat card */}
-                  <div className="absolute -left-6 bottom-8 hidden sm:block bg-card border border-border rounded-xl p-5 shadow-elegant w-56">
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                      Berdiri sejak
-                    </p>
-                    <p className="font-serif text-4xl mt-1 text-foreground">2021</p>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Konsisten dalam manhaj Salafush Shalih.
-                    </p>
-                  </div>
-
-                  {/* Floating badge */}
-                  <div className="absolute -right-4 top-8 hidden md:flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-4 py-2 text-xs shadow-elegant">
-                    <BookOpen size={14} />
-                    Al-Qur’an & As-Sunnah
+                  {/* Ornament decor */}
+                  <div className="absolute -bottom-6 -left-6 w-28 h-28 md:w-32 md:h-32 bg-islamic-gold flex items-center justify-center rounded-2xl shadow-xl border-4 border-background">
+                    <Sparkles className="w-12 h-12 md:w-16 md:h-16 text-background opacity-90" />
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Stat strip */}
-            <div className="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 border-t border-border pt-8">
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <p className="font-serif text-4xl md:text-5xl text-foreground">
-                    {s.value}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
