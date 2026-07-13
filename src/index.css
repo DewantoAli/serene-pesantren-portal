@@ -199,4 +199,46 @@
   .animate-delay-500 {
     animation-delay: 500ms;
   }
+
+  .badge-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .badge-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      rgba(212, 175, 55, 0.18) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%) skewX(-15deg);
+    animation: shimmer-sweep 3.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .dot-pulse {
+    animation: pulse-soft 2.4s ease-in-out infinite;
+  }
+
+  .cta-gold-glow {
+    animation: cta-glow 2.5s ease-in-out infinite;
+    will-change: box-shadow;
+  }
+
+  .cta-gold-glow:hover {
+    animation: none;
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.55);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .badge-shimmer::after,
+    .dot-pulse,
+    .cta-gold-glow {
+      animation: none;
+    }
+  }
 }
