@@ -389,7 +389,7 @@ const Index: React.FC = () => {
                   <Button
                     asChild
                     size="lg"
-                    className="rounded-full px-7 bg-islamic-gold text-foreground hover:bg-islamic-gold/90 hover:-translate-y-0.5 transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+                    className="rounded-full px-7 bg-islamic-gold text-foreground hover:bg-islamic-gold/90 hover:-translate-y-0.5 transition-all cta-gold-glow"
                   >
                     <Link to="/new-student">
                       Daftar Sekarang <ArrowRight size={18} className="ml-1" />
