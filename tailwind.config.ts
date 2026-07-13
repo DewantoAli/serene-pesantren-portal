@@ -119,6 +119,22 @@ export default {
 				'bg-shimmer': {
 					'0%': { backgroundPosition: '200% 0' },
 					'100%': { backgroundPosition: '-200% 0' }
+				},
+				'shimmer-sweep': {
+					'0%': { transform: 'translateX(-100%) skewX(-15deg)' },
+					'100%': { transform: 'translateX(200%) skewX(-15deg)' }
+				},
+				'pulse-soft': {
+					'0%, 100%': { transform: 'scale(1)', opacity: '1' },
+					'50%': { transform: 'scale(1.35)', opacity: '0.85' }
+				},
+				'glow-pulse': {
+					'0%, 100%': { boxShadow: '0 0 0 0 rgba(212, 175, 55, 0)' },
+					'50%': { boxShadow: '0 0 18px 4px rgba(212, 175, 55, 0.28)' }
+				},
+				'cta-glow': {
+					'0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.25)' },
+					'50%': { boxShadow: '0 0 32px rgba(212, 175, 55, 0.45)' }
 				}
 			},
 			animation: {
