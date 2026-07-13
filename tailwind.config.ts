@@ -145,7 +145,11 @@ export default {
 				'fade-in-left': 'fade-in-left 0.7s ease-out forwards',
 				'scale-in': 'scale-in 0.7s ease-out forwards',
 				'float': 'float 5s ease-in-out infinite',
-				'bg-shimmer': 'bg-shimmer 8s ease-in-out infinite'
+				'bg-shimmer': 'bg-shimmer 8s ease-in-out infinite',
+				'shimmer-sweep': 'shimmer-sweep 3s ease-in-out infinite',
+				'pulse-soft': 'pulse-soft 2.4s ease-in-out infinite',
+				'glow-pulse': 'glow-pulse 2.4s ease-in-out infinite',
+				'cta-glow': 'cta-glow 2.5s ease-in-out infinite'
 			},
 			backgroundImage: {
 				'geometric-pattern': "url('/src/assets/pattern.svg')",
