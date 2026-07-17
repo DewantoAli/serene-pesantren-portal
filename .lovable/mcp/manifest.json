@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "sdk_version": "0.23.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://dounqhvrpynccsouarwe.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "irsyadulhaq-mcp",
+      "version": "0.1.0",
+      "title": "Irsyadul Haq Manado"
+    },
+    "tools": [
+      {
+        "name": "whoami",
+        "title": "Who am I",
+        "description": "Return basic info about the currently signed-in Irsyadul Haq user.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_activities",
+        "title": "List santri activities",
+        "description": "List activities (kegiatan santri) for the pesantren. By default returns only published activities. Editors/admins can also see drafts by setting include_drafts=true.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "include_drafts": {
+              "type": "boolean",
+              "description": "Include unpublished drafts. Only effective for editors/admins."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Maximum rows (default 20)."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_activity",
+        "title": "Create santri activity",
+        "description": "Create a new kegiatan santri (activity) entry. Requires editor or admin role — enforced by database policies.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Activity title."
+            },
+            "description": {
+              "type": "string",
+              "description": "Optional description / body text."
+            },
+            "date": {
+              "type": "string",
+              "description": "Date in YYYY-MM-DD format."
+            },
+            "time": {
+              "type": "string",
+              "description": "Optional time, e.g. '08:00'."
+            },
+            "location": {
+              "type": "string"
+            },
+            "participants": {
+              "type": "string",
+              "description": "Participants description, e.g. 'Kelas VII'."
+            },
+            "media_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "Optional image or video URL."
+            },
+            "media_type": {
+              "type": "string",
+              "enum": [
+                "image",
+                "video"
+              ]
+            },
+            "is_published": {
+              "type": "boolean",
+              "description": "Publish immediately (default false)."
+            }
+          },
+          "required": [
+            "title",
+            "date"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "update_activity",
+        "title": "Update santri activity",
+        "description": "Update fields of an existing kegiatan santri by id. Requires editor or admin role — enforced by database policies.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Activity UUID."
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string",
+              "description": "YYYY-MM-DD"
+            },
+            "time": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string"
+            },
+            "participants": {
+              "type": "string"
+            },
+            "media_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "media_type": {
+              "type": "string",
+              "enum": [
+                "image",
+                "video"
+              ]
+            },
+            "is_published": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "delete_activity",
+        "title": "Delete santri activity",
+        "description": "Delete a kegiatan santri by id. Requires admin role — enforced by database policies.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Activity UUID."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}

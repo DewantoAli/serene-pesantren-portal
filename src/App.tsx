@@ -20,6 +20,7 @@ import AdminUserRoles from "./pages/AdminUserRoles";
 import AdminInstagramPost from "./pages/AdminInstagramPost";
 import SocialMediaGuide from "./pages/SocialMediaGuide";
 import InstagramSetupGuide from "./pages/InstagramSetupGuide";
+import OAuthConsent from "./pages/OAuthConsent";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
             <Route path="/admin/social-media-guide" element={<SocialMediaGuide />} />
             <Route path="/panduan-instagram" element={<InstagramSetupGuide />} />
             <Route path="/panduan-social-media" element={<SocialMediaGuide />} />
+            <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
