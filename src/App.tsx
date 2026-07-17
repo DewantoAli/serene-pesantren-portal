@@ -20,6 +20,7 @@ import AdminUserRoles from "./pages/AdminUserRoles";
 import AdminInstagramPost from "./pages/AdminInstagramPost";
 import SocialMediaGuide from "./pages/SocialMediaGuide";
 import InstagramSetupGuide from "./pages/InstagramSetupGuide";
+import OAuthConsent from "./pages/OAuthConsent";
 
 const queryClient = new QueryClient();
 
