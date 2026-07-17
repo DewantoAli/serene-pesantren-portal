@@ -47,6 +47,7 @@ const App = () => (
             <Route path="/admin/social-media-guide" element={<SocialMediaGuide />} />
             <Route path="/panduan-instagram" element={<InstagramSetupGuide />} />
             <Route path="/panduan-social-media" element={<SocialMediaGuide />} />
+            <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
