@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,12 +15,20 @@ const AdminLogin: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { signIn, signUp, user, isEditor, loading } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const rawNext = searchParams.get('next');
+  // Only accept same-origin relative paths.
+  const next = rawNext && rawNext.startsWith('/') && !rawNext.startsWith('//') ? rawNext : null;
 
   useEffect(() => {
-    if (!loading && user && isEditor) {
-      navigate('/admin/kegiatan');
+    if (!loading && user) {
+      if (next) {
+        navigate(next, { replace: true });
+      } else if (isEditor) {
+        navigate('/admin/kegiatan');
+      }
     }
-  }, [user, isEditor, loading, navigate]);
+  }, [user, isEditor, loading, navigate, next]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
