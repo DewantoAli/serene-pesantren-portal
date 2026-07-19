@@ -62,6 +62,36 @@ export type Database = {
         }
         Relationships: []
       }
+      page_content: {
+        Row: {
+          content_key: string
+          created_at: string
+          id: string
+          page_key: string
+          updated_at: string
+          updated_by: string | null
+          value: string
+        }
+        Insert: {
+          content_key: string
+          created_at?: string
+          id?: string
+          page_key: string
+          updated_at?: string
+          updated_by?: string | null
+          value?: string
+        }
+        Update: {
+          content_key?: string
+          created_at?: string
+          id?: string
+          page_key?: string
+          updated_at?: string
+          updated_by?: string | null
+          value?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
