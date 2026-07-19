@@ -5,59 +5,30 @@ import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { ChevronRight, Users, BookOpen, Calendar, MapPin } from 'lucide-react';
+import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
 
-const Organization: React.FC = () => {
+const OrganizationInner: React.FC = () => {
+  const { t } = usePageContent();
   // Organization Structure Data
-  const leadershipTeam = [
-    {
-      name: "Andi Frans Maramis (Abu Surya)",
-      position: "Ketua Yayasan",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Al-Azhar University",
-      experience: "Ketua Yayasan Manarul Ilmi",
-      bio: ""
-    },
-    {
-      name: "Ustadz Sofyan Chalid bin Idham Ruray, Lc Hafizhahullah",
-      position: "Pembina Pondok",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Alumni LIPIA Universitas Muhammad bin Su’ud Al-Islamiyah Arab Saudi",
-      experience: "Pembina Pondok Pesantren",
-      bio: ""
-    },
-    {
-      name: "Ustadz Sofyan Ahmad Madiu, Hafizhahullah",
-      position: "Pembina Pondok",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Alumni Universitas Islamabad Pakistan",
-      experience: "Pembina Pondok Pesantren",
-      bio: ""
-    },
-    {
-      name: "Ustadz Rosihan Anwar, SP.d",
-      position: "Mudir Pondok",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Sarjana Pendidikan Institut Agama Islam",
-      experience: "Mudir Pesantren",
-      bio: ""
-    },
-    {
-      name: "Hadi Supriyanto, SE",
-      position: "Kepala Madrasah",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Sarjana Ekonomi Universitas Samratulangi",
-      experience: "Kepala Madrasah Pesantren",
-      bio: ""
-    },
-    {
-      name: "Ustadz Abu Sa'id Hafizhahullah",
-      position: "Pengasuh Santri",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Alumni Pondok Pesantren",
-      experience: "Pengasuh Santri Pensatren",
-      bio: ""
-    }
-  ];
+  const defaultPhoto = 'https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703';
+  const leadershipTeam = [1, 2, 3, 4, 5, 6].map((n) => {
+    const d = [
+      { name: 'Andi Frans Maramis (Abu Surya)', position: 'Ketua Yayasan', education: 'Al-Azhar University', experience: 'Ketua Yayasan Manarul Ilmi' },
+      { name: 'Ustadz Sofyan Chalid bin Idham Ruray, Lc Hafizhahullah', position: 'Pembina Pondok', education: 'Alumni LIPIA Universitas Muhammad bin Su’ud Al-Islamiyah Arab Saudi', experience: 'Pembina Pondok Pesantren' },
+      { name: 'Ustadz Sofyan Ahmad Madiu, Hafizhahullah', position: 'Pembina Pondok', education: 'Alumni Universitas Islamabad Pakistan', experience: 'Pembina Pondok Pesantren' },
+      { name: 'Ustadz Rosihan Anwar, SP.d', position: 'Mudir Pondok', education: 'Sarjana Pendidikan Institut Agama Islam', experience: 'Mudir Pesantren' },
+      { name: 'Hadi Supriyanto, SE', position: 'Kepala Madrasah', education: 'Sarjana Ekonomi Universitas Samratulangi', experience: 'Kepala Madrasah Pesantren' },
+      { name: "Ustadz Abu Sa'id Hafizhahullah", position: 'Pengasuh Santri', education: 'Alumni Pondok Pesantren', experience: 'Pengasuh Santri Pensatren' },
+    ][n - 1];
+    return {
+      name: t(`leader${n}_name`, d.name),
+      position: t(`leader${n}_position`, d.position),
+      photo: t(`leader${n}_photo`, defaultPhoto),
+      education: t(`leader${n}_education`, d.education),
+      experience: t(`leader${n}_experience`, d.experience),
+      bio: '',
+    };
+  });
   
   const departments = [
     {
@@ -128,13 +99,13 @@ const Organization: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <AnimatedSectionWrapper className="text-center mb-8">
               <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-gold/20 text-islamic-cream text-sm font-medium">
-                Our Organization
+                {t('hero_badge', 'Our Organization')}
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
-                Organizational Structure
+                {t('hero_title', 'Organizational Structure')}
               </h1>
               <p className="text-islamic-cream/90 max-w-2xl mx-auto">
-                Meet the dedicated team of professionals who lead Irsyadulhaq Islamic Boarding School.
+                {t('hero_desc', 'Meet the dedicated team of professionals who lead Irsyadulhaq Islamic Boarding School.')}
               </p>
             </AnimatedSectionWrapper>
           </div>
@@ -145,11 +116,11 @@ const Organization: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                Pengasuh Pondok Pesanten Irsyadul Haq
+                {t('leadership_title', 'Pengasuh Pondok Pesanten Irsyadul Haq')}
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Our school is guided by experienced leaders committed to excellence in Islamic education.
+                {t('leadership_desc', 'Our school is guided by experienced leaders committed to excellence in Islamic education.')}
               </p>
             </AnimatedSectionWrapper>
             
@@ -507,10 +478,10 @@ const Organization: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="glass-card max-w-3xl mx-auto p-8 rounded-lg">
               <h2 className="text-2xl font-serif font-bold text-islamic-navy mb-4 text-center">
-                Would You Like to Visit Our Campus?
+                {t('contact_title', 'Would You Like to Visit Our Campus?')}
               </h2>
               <p className="text-islamic-slate mb-6 text-center">
-                Schedule a tour to visit our campus and meet with our faculty and staff members.
+                {t('contact_desc', 'Schedule a tour to visit our campus and meet with our faculty and staff members.')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#" className="btn-primary">
@@ -528,5 +499,11 @@ const Organization: React.FC = () => {
     </>
   );
 };
+
+const Organization: React.FC = () => (
+  <PageContentProvider pageKey="organisasi">
+    <OrganizationInner />
+  </PageContentProvider>
+);
 
 export default Organization;
