@@ -99,13 +99,13 @@ const OrganizationInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <AnimatedSectionWrapper className="text-center mb-8">
               <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-gold/20 text-islamic-cream text-sm font-medium">
-                Our Organization
+                {t('hero_badge', 'Our Organization')}
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
-                Organizational Structure
+                {t('hero_title', 'Organizational Structure')}
               </h1>
               <p className="text-islamic-cream/90 max-w-2xl mx-auto">
-                Meet the dedicated team of professionals who lead Irsyadulhaq Islamic Boarding School.
+                {t('hero_desc', 'Meet the dedicated team of professionals who lead Irsyadulhaq Islamic Boarding School.')}
               </p>
             </AnimatedSectionWrapper>
           </div>
