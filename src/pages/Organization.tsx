@@ -478,10 +478,10 @@ const OrganizationInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="glass-card max-w-3xl mx-auto p-8 rounded-lg">
               <h2 className="text-2xl font-serif font-bold text-islamic-navy mb-4 text-center">
-                Would You Like to Visit Our Campus?
+                {t('contact_title', 'Would You Like to Visit Our Campus?')}
               </h2>
               <p className="text-islamic-slate mb-6 text-center">
-                Schedule a tour to visit our campus and meet with our faculty and staff members.
+                {t('contact_desc', 'Schedule a tour to visit our campus and meet with our faculty and staff members.')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#" className="btn-primary">
@@ -499,5 +499,11 @@ const OrganizationInner: React.FC = () => {
     </>
   );
 };
+
+const Organization: React.FC = () => (
+  <PageContentProvider pageKey="organisasi">
+    <OrganizationInner />
+  </PageContentProvider>
+);
 
 export default Organization;
