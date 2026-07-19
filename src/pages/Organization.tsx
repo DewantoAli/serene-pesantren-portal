@@ -5,8 +5,10 @@ import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { ChevronRight, Users, BookOpen, Calendar, MapPin } from 'lucide-react';
+import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
 
-const Organization: React.FC = () => {
+const OrganizationInner: React.FC = () => {
+  const { t } = usePageContent();
   // Organization Structure Data
   const leadershipTeam = [
     {
