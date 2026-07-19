@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
-import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video, Users, Settings, Share2, BookOpen } from 'lucide-react';
+import { Plus, Edit, Trash2, LogOut, Eye, Home, Image, Video, Users, Settings, Share2, BookOpen, FileText } from 'lucide-react';
 import StorageImageUploader from '@/components/ui/StorageImageUploader';
 
 interface Activity {
@@ -301,6 +301,12 @@ const AdminKegiatan: React.FC = () => {
               <Link to="/admin/instagram-post">
                 <Share2 className="h-4 w-4 mr-2" />
                 Post Instagram
+              </Link>
+            </Button>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/admin/content">
+                <FileText className="h-4 w-4 mr-2" />
+                Konten Halaman
               </Link>
             </Button>
             <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
