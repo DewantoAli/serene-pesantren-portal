@@ -10,56 +10,25 @@ import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
 const OrganizationInner: React.FC = () => {
   const { t } = usePageContent();
   // Organization Structure Data
-  const leadershipTeam = [
-    {
-      name: "Andi Frans Maramis (Abu Surya)",
-      position: "Ketua Yayasan",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Al-Azhar University",
-      experience: "Ketua Yayasan Manarul Ilmi",
-      bio: ""
-    },
-    {
-      name: "Ustadz Sofyan Chalid bin Idham Ruray, Lc Hafizhahullah",
-      position: "Pembina Pondok",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Alumni LIPIA Universitas Muhammad bin Su’ud Al-Islamiyah Arab Saudi",
-      experience: "Pembina Pondok Pesantren",
-      bio: ""
-    },
-    {
-      name: "Ustadz Sofyan Ahmad Madiu, Hafizhahullah",
-      position: "Pembina Pondok",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Alumni Universitas Islamabad Pakistan",
-      experience: "Pembina Pondok Pesantren",
-      bio: ""
-    },
-    {
-      name: "Ustadz Rosihan Anwar, SP.d",
-      position: "Mudir Pondok",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Sarjana Pendidikan Institut Agama Islam",
-      experience: "Mudir Pesantren",
-      bio: ""
-    },
-    {
-      name: "Hadi Supriyanto, SE",
-      position: "Kepala Madrasah",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Sarjana Ekonomi Universitas Samratulangi",
-      experience: "Kepala Madrasah Pesantren",
-      bio: ""
-    },
-    {
-      name: "Ustadz Abu Sa'id Hafizhahullah",
-      position: "Pengasuh Santri",
-      photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703",
-      education: "Alumni Pondok Pesantren",
-      experience: "Pengasuh Santri Pensatren",
-      bio: ""
-    }
-  ];
+  const defaultPhoto = 'https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703';
+  const leadershipTeam = [1, 2, 3, 4, 5, 6].map((n) => {
+    const d = [
+      { name: 'Andi Frans Maramis (Abu Surya)', position: 'Ketua Yayasan', education: 'Al-Azhar University', experience: 'Ketua Yayasan Manarul Ilmi' },
+      { name: 'Ustadz Sofyan Chalid bin Idham Ruray, Lc Hafizhahullah', position: 'Pembina Pondok', education: 'Alumni LIPIA Universitas Muhammad bin Su’ud Al-Islamiyah Arab Saudi', experience: 'Pembina Pondok Pesantren' },
+      { name: 'Ustadz Sofyan Ahmad Madiu, Hafizhahullah', position: 'Pembina Pondok', education: 'Alumni Universitas Islamabad Pakistan', experience: 'Pembina Pondok Pesantren' },
+      { name: 'Ustadz Rosihan Anwar, SP.d', position: 'Mudir Pondok', education: 'Sarjana Pendidikan Institut Agama Islam', experience: 'Mudir Pesantren' },
+      { name: 'Hadi Supriyanto, SE', position: 'Kepala Madrasah', education: 'Sarjana Ekonomi Universitas Samratulangi', experience: 'Kepala Madrasah Pesantren' },
+      { name: "Ustadz Abu Sa'id Hafizhahullah", position: 'Pengasuh Santri', education: 'Alumni Pondok Pesantren', experience: 'Pengasuh Santri Pensatren' },
+    ][n - 1];
+    return {
+      name: t(`leader${n}_name`, d.name),
+      position: t(`leader${n}_position`, d.position),
+      photo: t(`leader${n}_photo`, defaultPhoto),
+      education: t(`leader${n}_education`, d.education),
+      experience: t(`leader${n}_experience`, d.experience),
+      bio: '',
+    };
+  });
   
   const departments = [
     {
