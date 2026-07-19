@@ -347,4 +347,10 @@ const AboutInner: React.FC = () => {
   );
 };
 
+const About: React.FC = () => (
+  <PageContentProvider pageKey="tentang">
+    <AboutInner />
+  </PageContentProvider>
+);
+
 export default About;
