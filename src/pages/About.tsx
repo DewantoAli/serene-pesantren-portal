@@ -6,8 +6,10 @@ import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
 
-const About: React.FC = () => {
+const AboutInner: React.FC = () => {
+  const { t } = usePageContent();
   // Core values data
   const coreValues = [
     {
