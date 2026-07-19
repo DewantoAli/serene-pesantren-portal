@@ -98,9 +98,9 @@ const AboutInner: React.FC = () => {
               <AnimatedSectionWrapper animation="fade-in-right" delay={200} className="order-1 lg:order-2">
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
-                    <img 
-                      src="https://ik.imagekit.io/uzuuvayyu/WhatsApp%20Image%202025-02-22%20at%209.56.40%20AM.jpeg?updatedAt=1742526180427" 
-                      alt="Irsyadulhaq Islamic Boarding School Building" 
+                    <img
+                      src={t('story_image', 'https://ik.imagekit.io/uzuuvayyu/WhatsApp%20Image%202025-02-22%20at%209.56.40%20AM.jpeg?updatedAt=1742526180427')}
+                      alt="Irsyadulhaq Islamic Boarding School Building"
                       className="w-full h-full object-cover"
                     />
                   </div>
