@@ -116,11 +116,11 @@ const OrganizationInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                Pengasuh Pondok Pesanten Irsyadul Haq
+                {t('leadership_title', 'Pengasuh Pondok Pesanten Irsyadul Haq')}
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Our school is guided by experienced leaders committed to excellence in Islamic education.
+                {t('leadership_desc', 'Our school is guided by experienced leaders committed to excellence in Islamic education.')}
               </p>
             </AnimatedSectionWrapper>
             
