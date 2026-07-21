@@ -58,10 +58,17 @@ const IndexInner: React.FC = () => {
       <main className="bg-background text-foreground">
         {/* HERO */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-background">
-          <div className="container mx-auto px-4 md:px-6">
+          {/* Animated decorative blobs */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute -top-24 -left-24 w-[28rem] h-[28rem] rounded-full bg-islamic-gold/10 blur-3xl animate-float" />
+            <div className="absolute top-1/3 -right-32 w-[32rem] h-[32rem] rounded-full bg-primary/10 blur-3xl animate-float" style={{ animationDelay: '1.2s' }} />
+            <div className="absolute bottom-0 left-1/3 w-72 h-72 rounded-full bg-islamic-sand/20 blur-3xl animate-float" style={{ animationDelay: '2.4s' }} />
+          </div>
+
+          <div className="container mx-auto px-4 md:px-6 relative">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               <div className="lg:col-span-7 space-y-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-islamic-gold/30 bg-islamic-gold/10 px-4 py-2 badge-shimmer animate-fade-in">
+                <div className="inline-flex items-center gap-2 rounded-full border border-islamic-gold/30 bg-islamic-gold/10 px-4 py-2 badge-shimmer animate-fade-in opacity-0" style={{ animationDelay: '0.05s' }}>
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-islamic-gold opacity-60" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-islamic-gold dot-pulse" />
@@ -72,22 +79,26 @@ const IndexInner: React.FC = () => {
                 </div>
 
                 <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-foreground text-balance">
-                  {t('hero_title_line1', 'Menempa generasi')}
-                  <br />
-                  <em className="italic text-islamic-gold">{t('hero_title_line2', 'Rabbani yang')}</em>
-                  <br />
-                  {t('hero_title_line3', 'berpijak pada Sunnah.')}
+                  <span className="block animate-fade-in opacity-0" style={{ animationDelay: '0.15s' }}>
+                    {t('hero_title_line1', 'Menempa generasi')}
+                  </span>
+                  <em className="block italic text-islamic-gold animate-fade-in opacity-0" style={{ animationDelay: '0.35s' }}>
+                    {t('hero_title_line2', 'Rabbani yang')}
+                  </em>
+                  <span className="block animate-fade-in opacity-0" style={{ animationDelay: '0.55s' }}>
+                    {t('hero_title_line3', 'berpijak pada Sunnah.')}
+                  </span>
                 </h1>
 
-                <p className="max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
+                <p className="max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed animate-fade-in opacity-0" style={{ animationDelay: '0.75s' }}>
                   {t('hero_desc', 'Pondok Pesantren Irsyadul Haq Manado mendidik santri dengan Al-Qur’an, As-Sunnah, dan pemahaman Salafush Shalih — dipadu akademik modern dan pembinaan karakter yang utuh.')}
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row gap-3 animate-fade-in opacity-0" style={{ animationDelay: '0.9s' }}>
                   <Button asChild size="lg" className="rounded-full px-7 bg-primary hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 transition-all">
                     <Link to="/new-student">
                       {t('hero_cta_primary', 'Daftar Santri Baru')}
-                      <ArrowRight size={18} className="ml-1" />
+                      <ArrowRight size={18} className="ml-1 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="rounded-full px-7 border-foreground/10 text-foreground hover:bg-foreground/5">
@@ -96,8 +107,8 @@ const IndexInner: React.FC = () => {
                 </div>
 
                 <div className="pt-8 flex flex-wrap items-center gap-8 md:gap-12 border-t border-border">
-                  {stats.map((s) => (
-                    <div key={s.label}>
+                  {stats.map((s, i) => (
+                    <div key={s.label} className="animate-fade-in opacity-0" style={{ animationDelay: `${1.05 + i * 0.1}s` }}>
                       <p className="font-serif text-2xl md:text-3xl text-foreground">{s.value}</p>
                       <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
                     </div>
@@ -105,19 +116,23 @@ const IndexInner: React.FC = () => {
                 </div>
               </div>
 
-              <div className="lg:col-span-5">
-                <div className="relative">
-                  <div className="absolute -inset-4 border border-islamic-gold/20 rounded-[2rem] transform translate-x-4 translate-y-4" />
+              <div className="lg:col-span-5 animate-scale-in opacity-0" style={{ animationDelay: '0.4s' }}>
+                <div className="relative group">
+                  <div className="absolute -inset-4 border border-islamic-gold/20 rounded-[2rem] transform translate-x-4 translate-y-4 transition-transform duration-700 group-hover:translate-x-6 group-hover:translate-y-6" />
                   <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-elegant ring-1 ring-border/60">
                     <img
                       src={t('hero_image', 'https://ik.imagekit.io/uzuuvayyu/building_LixplpNC1?updatedAt=1742674414873')}
                       alt="Pondok Pesantren Irsyadul Haq Manado"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-[2500ms] ease-out group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
+                    {/* Shimmer sweep overlay */}
+                    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                      <div className="absolute top-0 -left-1/2 h-full w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-shimmer-sweep" />
+                    </div>
                   </div>
-                  <div className="absolute -bottom-6 -left-6 w-28 h-28 md:w-32 md:h-32 bg-islamic-gold flex items-center justify-center rounded-2xl shadow-xl border-4 border-background">
-                    <Sparkles className="w-12 h-12 md:w-16 md:h-16 text-background opacity-90" />
+                  <div className="absolute -bottom-6 -left-6 w-28 h-28 md:w-32 md:h-32 bg-islamic-gold flex items-center justify-center rounded-2xl shadow-xl border-4 border-background animate-float">
+                    <Sparkles className="w-12 h-12 md:w-16 md:h-16 text-background opacity-90 animate-pulse-soft" />
                   </div>
                 </div>
               </div>
