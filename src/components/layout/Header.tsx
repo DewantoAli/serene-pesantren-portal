@@ -127,6 +127,18 @@ const Header: React.FC = () => {
             </Link>
           ))}
           
+          <Link
+            to="/al-quran-murotal"
+            className={cn(
+              'islamic-link text-sm font-medium transition-all',
+              isActive('/al-quran-murotal')
+                ? 'text-islamic-teal after:w-full'
+                : 'text-islamic-navy hover:text-islamic-teal'
+            )}
+          >
+            Al-Quran Murotal
+          </Link>
+
           {/* Aplikasi Pesantren Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger className={cn(
@@ -190,6 +202,16 @@ const Header: React.FC = () => {
             </Link>
           ))}
           
+          <Link
+            to="/al-quran-murotal"
+            className={cn(
+              'text-lg font-medium py-2 border-b border-gray-100',
+              isActive('/al-quran-murotal') ? 'text-islamic-teal' : 'text-islamic-navy'
+            )}
+          >
+            Al-Quran Murotal
+          </Link>
+
           {/* Mobile Aplikasi Pesantren */}
           <div className="border-b border-gray-100 pb-4">
             <p className="text-lg font-medium text-islamic-navy mb-2">Aplikasi Pesantren</p>

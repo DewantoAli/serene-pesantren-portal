@@ -12,6 +12,7 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import NewStudent from "./pages/NewStudent";
 import KegiatanSantri from "./pages/KegiatanSantri";
+import AlQuranMurotal from "./pages/AlQuranMurotal";
 import AplikasiPesantren from "./pages/AplikasiPesantren";
 import StatusPembayaranSPP from "./pages/StatusPembayaranSPP";
 import AdminLogin from "./pages/AdminLogin";
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/new-student" element={<NewStudent />} />
             <Route path="/kegiatan-santri" element={<KegiatanSantri />} />
+            <Route path="/al-quran-murotal" element={<AlQuranMurotal />} />
             <Route path="/aplikasi-pesantren" element={<AplikasiPesantren />} />
             <Route path="/status-pembayaran-spp" element={<StatusPembayaranSPP />} />
             <Route path="/admin" element={<AdminLogin />} />
