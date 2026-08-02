@@ -119,6 +119,24 @@ export const PAGE_MANIFESTS: PageManifest[] = [
       { key: 'contact_desc', label: 'Kontak — Deskripsi', type: 'textarea', defaultValue: 'Schedule a tour to visit our campus and meet with our faculty and staff members.' },
     ],
   },
+  {
+    key: 'email',
+    label: 'Template Email',
+    fields: [
+      { key: 'brand_name', label: 'Nama Pengirim / Brand di Email', type: 'text', defaultValue: 'Pondok Pesantren Islam Irsyadulhaq' },
+
+      { key: 'admin_subject', label: 'Notifikasi Admin — Subjek', type: 'text', defaultValue: '[{{label}}] {{nama}}', helper: 'Placeholder: {{label}}, {{nama}}, {{email}}, {{hp}}, {{program}}, {{waktu}}' },
+      { key: 'admin_heading', label: 'Notifikasi Admin — Judul di Email', type: 'text', defaultValue: '{{label}}' },
+      { key: 'admin_intro', label: 'Notifikasi Admin — Paragraf Pembuka', type: 'textarea', defaultValue: 'Ada {{label_kecil}} yang masuk melalui website:' },
+
+      { key: 'confirm_subject', label: 'Konfirmasi Pendaftar — Subjek', type: 'text', defaultValue: 'Konfirmasi {{label}} - {{nama}}', helper: 'Placeholder: {{label}}, {{nama}}, {{email}}, {{hp}}, {{program}}, {{waktu}}' },
+      { key: 'confirm_heading', label: 'Konfirmasi Pendaftar — Judul di Email', type: 'text', defaultValue: 'Pendaftaran Anda Telah Kami Terima' },
+      { key: 'confirm_greeting', label: 'Konfirmasi Pendaftar — Salam', type: 'text', defaultValue: "Assalamu'alaikum {{nama}}," },
+      { key: 'confirm_body', label: 'Konfirmasi Pendaftar — Isi Pesan', type: 'textarea', defaultValue: 'Terima kasih telah mendaftar di Pondok Pesantren Islam Irsyadulhaq. Pengajuan Anda telah kami terima pada {{waktu}} WITA dan sedang dalam proses peninjauan. Tim penerimaan kami akan menghubungi Anda melalui nomor/email yang terdaftar.' },
+      { key: 'confirm_summary_title', label: 'Konfirmasi Pendaftar — Judul Ringkasan Data', type: 'text', defaultValue: 'Ringkasan Data Pendaftaran' },
+      { key: 'confirm_footer', label: 'Konfirmasi Pendaftar — Catatan Penutup', type: 'textarea', defaultValue: 'Mohon periksa kembali data di atas. Jika ada kekeliruan, silakan balas email ini. Email ini dikirim otomatis sebagai bukti pengajuan pendaftaran Anda.' },
+    ],
+  },
 ];
 
 export const getManifest = (pageKey: string) =>
