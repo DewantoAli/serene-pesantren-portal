@@ -121,6 +121,9 @@ const AdminContent: React.FC = () => {
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <Label className="text-xs text-muted-foreground">Key: {field.key}</Label>
+                      {field.helper && (
+                        <p className="text-xs text-muted-foreground">{field.helper}</p>
+                      )}
                       {field.type === 'text' && (
                         <Input value={val} onChange={(e) => handleChange(p.key, field.key, e.target.value)} />
                       )}
