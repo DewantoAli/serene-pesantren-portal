@@ -41,6 +41,56 @@ function esc(s: string) {
   );
 }
 
+// ---- Template CMS (public.page_content, page_key = 'email') ----
+const DEFAULTS: Record<string, string> = {
+  brand_name: 'Pondok Pesantren Islam Irsyadulhaq',
+  admin_subject: '[{{label}}] {{nama}}',
+  admin_heading: '{{label}}',
+  admin_intro: 'Ada {{label_kecil}} yang masuk melalui website:',
+  confirm_subject: 'Konfirmasi {{label}} - {{nama}}',
+  confirm_heading: 'Pendaftaran Anda Telah Kami Terima',
+  confirm_greeting: "Assalamu'alaikum {{nama}},",
+  confirm_body:
+    'Terima kasih telah mendaftar di Pondok Pesantren Islam Irsyadulhaq. Pengajuan Anda telah kami terima pada {{waktu}} WITA dan sedang dalam proses peninjauan. Tim penerimaan kami akan menghubungi Anda melalui nomor/email yang terdaftar.',
+  confirm_summary_title: 'Ringkasan Data Pendaftaran',
+  confirm_footer:
+    'Mohon periksa kembali data di atas. Jika ada kekeliruan, silakan balas email ini. Email ini dikirim otomatis sebagai bukti pengajuan pendaftaran Anda.',
+};
+
+async function loadTemplates(): Promise<Record<string, string>> {
+  const url = Deno.env.get('SUPABASE_URL');
+  const key = Deno.env.get('SUPABASE_ANON_KEY');
+  const out = { ...DEFAULTS };
+  if (!url || !key) return out;
+  try {
+    const res = await fetch(
+      `${url}/rest/v1/page_content?page_key=eq.email&select=content_key,value`,
+      { headers: { apikey: key, Authorization: `Bearer ${key}` } }
+    );
+    if (res.ok) {
+      const rows = (await res.json()) as Array<{ content_key: string; value: string }>;
+      rows.forEach((r) => {
+        if (r.value && r.value.trim().length > 0) out[r.content_key] = r.value;
+      });
+    }
+  } catch (err) {
+    console.error('Gagal memuat template email:', err);
+  }
+  return out;
+}
+
+function fill(tpl: string, vars: Record<string, string>) {
+  return tpl.replace(/\{\{\s*(\w+)\s*\}\}/g, (_m, k: string) => vars[k] ?? '');
+}
+
+function paragraphs(text: string, style: string) {
+  return text
+    .split(/\n{2,}|\n/)
+    .filter((p) => p.trim().length > 0)
+    .map((p) => `<p style="${style}">${esc(p.trim())}</p>`)
+    .join('');
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
