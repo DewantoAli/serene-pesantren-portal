@@ -9,6 +9,7 @@ import { FormProvider, useFormContext } from '@/contexts/FormContext';
 import { Form } from "@/components/ui/form";
 import { formSchema, FormValues } from '@/schemas/registrationSchema';
 import { submitToGoogleSheet } from '@/utils/googleSheetService';
+import { supabase } from '@/integrations/supabase/client';
 
 // Import components
 import RegistrationHeader from '@/components/registration/RegistrationHeader';
@@ -36,7 +37,24 @@ const RegistrationForm: React.FC = () => {
     try {
       setIsSubmitting(true);
       await submitToGoogleSheet(data);
-      
+
+      // Kirim notifikasi email ke pengurus pesantren (tidak memblokir pendaftaran)
+      supabase.functions
+        .invoke('send-notification-email', {
+          body: {
+            type: 'pendaftaran',
+            name: data.fullName,
+            phone: data.phone,
+            email: data.email,
+            program: data.program,
+            details: {
+              'Sekolah Asal': data.previousSchool,
+              'Asal Kota': data.city,
+            },
+          },
+        })
+        .catch((err) => console.error('Gagal mengirim notifikasi email:', err));
+
       toast({
         title: "Pendaftaran Terkirim!",
         description: "Terima kasih atas pendaftaran Anda. Kami akan menghubungi Anda segera.",
