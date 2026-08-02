@@ -9,6 +9,7 @@ import { FormProvider, useFormContext } from '@/contexts/FormContext';
 import { Form } from "@/components/ui/form";
 import { formSchema, FormValues } from '@/schemas/registrationSchema';
 import { submitToGoogleSheet } from '@/utils/googleSheetService';
+import { supabase } from '@/integrations/supabase/client';
 
 // Import components
 import RegistrationHeader from '@/components/registration/RegistrationHeader';
