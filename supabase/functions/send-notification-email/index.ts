@@ -99,30 +99,73 @@ Deno.serve(async (req) => {
         </div>
       </div>`;
 
-    const subject = `[${label}] ${data.name}`;
-    const raw = buildRaw(recipient, subject, html);
+    const sendMail = async (to: string, subject: string, bodyHtml: string) => {
+      const res = await fetch(`${GATEWAY_URL}/users/me/messages/send`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${LOVABLE_API_KEY}`,
+          'X-Connection-Api-Key': GOOGLE_MAIL_API_KEY,
+        },
+        body: JSON.stringify({ raw: buildRaw(to, subject, bodyHtml) }),
+      });
+      if (!res.ok) {
+        const errorBody = await res.text();
+        throw new Error(`[${res.status}]: ${errorBody}`);
+      }
+      return await res.json();
+    };
 
-    const response = await fetch(`${GATEWAY_URL}/users/me/messages/send`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        'X-Connection-Api-Key': GOOGLE_MAIL_API_KEY,
-      },
-      body: JSON.stringify({ raw }),
-    });
+    // 1) Notifikasi ke pengurus pesantren
+    const result = await sendMail(recipient, `[${label}] ${data.name}`, html);
 
-    if (!response.ok) {
-      const errorBody = await response.text();
-      console.error(`Gmail send failed [${response.status}]: ${errorBody}`);
-      return new Response(
-        JSON.stringify({ error: 'Gagal mengirim email', status: response.status, details: errorBody }),
-        { status: response.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+    // 2) Email konfirmasi otomatis ke calon santri
+    let confirmationId: string | null = null;
+    if (data.email) {
+      const waktu = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Makassar' });
+      const confirmHtml = `
+        <div style="font-family:Arial,Helvetica,sans-serif;background:#faf7ef;padding:24px;">
+          <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e7e0cd;">
+            <div style="background:#1a5c47;padding:20px 24px;">
+              <h1 style="margin:0;color:#ffffff;font-size:18px;">Pendaftaran Anda Telah Kami Terima</h1>
+              <p style="margin:4px 0 0;color:#d4a53a;font-size:13px;">Pondok Pesantren Islam Irsyadulhaq</p>
+            </div>
+            <div style="padding:24px;">
+              <p style="margin:0 0 8px;color:#0f172a;font-size:15px;">Assalamu'alaikum ${esc(data.name)},</p>
+              <p style="margin:0 0 16px;color:#334155;font-size:14px;line-height:1.6;">
+                Terima kasih telah mendaftar di Pondok Pesantren Islam Irsyadulhaq.
+                Pengajuan Anda telah kami terima pada <strong>${esc(waktu)} WITA</strong> dan sedang dalam proses peninjauan.
+                Tim penerimaan kami akan menghubungi Anda melalui nomor/email yang terdaftar.
+              </p>
+              <h2 style="margin:24px 0 8px;font-size:14px;color:#1a5c47;">Ringkasan Data Pendaftaran</h2>
+              <table style="width:100%;border-collapse:collapse;font-size:14px;color:#0f172a;">
+                ${rows
+                  .map(
+                    ([k, v]) =>
+                      `<tr><td style="padding:8px 0;color:#64748b;width:40%;">${esc(k)}</td><td style="padding:8px 0;font-weight:600;">${esc(v)}</td></tr>`
+                  )
+                  .join('')}
+              </table>
+              <p style="margin:20px 0 0;color:#64748b;font-size:12px;line-height:1.6;">
+                Mohon periksa kembali data di atas. Jika ada kekeliruan, silakan balas email ini.
+                Email ini dikirim otomatis sebagai bukti pengajuan pendaftaran Anda.
+              </p>
+            </div>
+          </div>
+        </div>`;
+      try {
+        const confirm = await sendMail(
+          data.email,
+          `Konfirmasi ${label} - ${data.name}`,
+          confirmHtml
+        );
+        confirmationId = confirm.id ?? null;
+      } catch (err) {
+        console.error('Gagal mengirim email konfirmasi ke pendaftar:', err);
+      }
     }
 
-    const result = await response.json();
-    return new Response(JSON.stringify({ success: true, id: result.id }), {
+    return new Response(JSON.stringify({ success: true, id: result.id, confirmationId }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (e) {
