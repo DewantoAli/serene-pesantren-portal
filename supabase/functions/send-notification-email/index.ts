@@ -216,7 +216,12 @@ Deno.serve(async (req) => {
       `${paragraphs(fill(tpl.admin_intro, vars), 'margin:0 0 16px;color:#334155;font-size:14px;line-height:1.6;')}${tableHtml}`
     );
 
-    const sendMail = async (to: string, subject: string, bodyHtml: string) => {
+    const sendMail = async (
+      to: string,
+      subject: string,
+      bodyHtml: string,
+      attachments: Attachment[] = []
+    ) => {
       const res = await fetch(`${GATEWAY_URL}/users/me/messages/send`, {
         method: 'POST',
         headers: {
@@ -224,7 +229,7 @@ Deno.serve(async (req) => {
           Authorization: `Bearer ${LOVABLE_API_KEY}`,
           'X-Connection-Api-Key': GOOGLE_MAIL_API_KEY,
         },
-        body: JSON.stringify({ raw: buildRaw(to, subject, bodyHtml) }),
+        body: JSON.stringify({ raw: buildRaw(to, subject, bodyHtml, attachments) }),
       });
       if (!res.ok) {
         const errorBody = await res.text();
@@ -233,8 +238,31 @@ Deno.serve(async (req) => {
       return await res.json();
     };
 
+    // Lampiran PDF rincian biaya PPDB (hasil generate dari dokumen pesantren)
+    let attachments: Attachment[] = [];
+    if (data.type === 'pendaftaran') {
+      try {
+        const pdfBytes = await generatePpdbPdf({
+          nama: data.name,
+          nik: data.nik,
+          hp: data.phone,
+          waktu,
+        });
+        const safeName = data.name.replace(/[^\p{L}\p{N} _-]/gu, '').trim().replace(/\s+/g, '-');
+        attachments = [
+          {
+            filename: `Biaya-PPDB-${safeName || 'Calon-Santri'}.pdf`,
+            mimeType: 'application/pdf',
+            data: pdfBytes,
+          },
+        ];
+      } catch (err) {
+        console.error('Gagal membuat lampiran PDF PPDB:', err);
+      }
+    }
+
     // 1) Notifikasi ke pengurus pesantren
-    const result = await sendMail(recipient, fill(tpl.admin_subject, vars), html);
+    const result = await sendMail(recipient, fill(tpl.admin_subject, vars), html, attachments);
 
     // 2) Email konfirmasi otomatis ke calon santri
     let confirmationId: string | null = null;
@@ -245,15 +273,22 @@ Deno.serve(async (req) => {
          ${paragraphs(fill(tpl.confirm_body, vars), 'margin:0 0 16px;color:#334155;font-size:14px;line-height:1.6;')}
          <h2 style="margin:24px 0 8px;font-size:14px;color:#1a5c47;">${esc(fill(tpl.confirm_summary_title, vars))}</h2>
          ${tableHtml}
+         ${attachments.length > 0 ? `<p style="margin:16px 0 0;color:#1a5c47;font-size:13px;">Terlampir file PDF rincian biaya dan alur PPDB.</p>` : ''}
          ${paragraphs(fill(tpl.confirm_footer, vars), 'margin:20px 0 0;color:#64748b;font-size:12px;line-height:1.6;')}`
       );
       try {
-        const confirm = await sendMail(data.email, fill(tpl.confirm_subject, vars), confirmHtml);
+        const confirm = await sendMail(
+          data.email,
+          fill(tpl.confirm_subject, vars),
+          confirmHtml,
+          attachments
+        );
         confirmationId = confirm.id ?? null;
       } catch (err) {
         console.error('Gagal mengirim email konfirmasi ke pendaftar:', err);
       }
     }
+
 
     return new Response(JSON.stringify({ success: true, id: result.id, confirmationId }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
