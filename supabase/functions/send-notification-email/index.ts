@@ -1,5 +1,6 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { z } from 'npm:zod@3.23.8';
+import { generatePpdbPdf } from './ppdbPdf.ts';
 
 const GATEWAY_URL = 'https://connector-gateway.lovable.dev/google_mail/gmail/v1';
 
@@ -8,6 +9,7 @@ const BodySchema = z.object({
   name: z.string().min(1).max(200),
   phone: z.string().max(50).optional(),
   email: z.string().email().optional(),
+  nik: z.string().max(50).optional(),
   program: z.string().max(200).optional(),
   details: z.record(z.string(), z.string()).optional(),
   recipient: z.string().email().optional(),
@@ -18,22 +20,70 @@ function encodeHeader(value: string) {
   return `=?UTF-8?B?${btoa(unescape(encodeURIComponent(value)))}?=`;
 }
 
-function buildRaw(to: string, subject: string, html: string) {
-  const message = [
-    `To: ${to}`,
-    `Subject: ${encodeHeader(subject)}`,
-    'MIME-Version: 1.0',
+function b64(bytes: Uint8Array) {
+  let bin = '';
+  bytes.forEach((b) => (bin += String.fromCharCode(b)));
+  return btoa(bin);
+}
+
+function chunk(s: string, n = 76) {
+  return (s.match(new RegExp(`.{1,${n}}`, 'g')) ?? []).join('\r\n');
+}
+
+interface Attachment {
+  filename: string;
+  mimeType: string;
+  data: Uint8Array;
+}
+
+function buildRaw(to: string, subject: string, html: string, attachments: Attachment[] = []) {
+  const htmlPart = [
     'Content-Type: text/html; charset="UTF-8"',
     'Content-Transfer-Encoding: base64',
     '',
-    btoa(unescape(encodeURIComponent(html))),
+    chunk(btoa(unescape(encodeURIComponent(html)))),
   ].join('\r\n');
+
+  let message: string;
+  if (attachments.length === 0) {
+    message = [
+      `To: ${to}`,
+      `Subject: ${encodeHeader(subject)}`,
+      'MIME-Version: 1.0',
+      htmlPart,
+    ].join('\r\n');
+  } else {
+    const boundary = `bnd_${crypto.randomUUID().replace(/-/g, '')}`;
+    const parts = [
+      `--${boundary}`,
+      htmlPart,
+      ...attachments.flatMap((a) => [
+        `--${boundary}`,
+        `Content-Type: ${a.mimeType}; name="${a.filename}"`,
+        `Content-Disposition: attachment; filename="${a.filename}"`,
+        'Content-Transfer-Encoding: base64',
+        '',
+        chunk(b64(a.data)),
+      ]),
+      `--${boundary}--`,
+      '',
+    ];
+    message = [
+      `To: ${to}`,
+      `Subject: ${encodeHeader(subject)}`,
+      'MIME-Version: 1.0',
+      `Content-Type: multipart/mixed; boundary="${boundary}"`,
+      '',
+      ...parts,
+    ].join('\r\n');
+  }
 
   return btoa(unescape(encodeURIComponent(message)))
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/, '');
 }
+
 
 function esc(s: string) {
   return s.replace(/[&<>"']/g, (c) =>
@@ -166,7 +216,12 @@ Deno.serve(async (req) => {
       `${paragraphs(fill(tpl.admin_intro, vars), 'margin:0 0 16px;color:#334155;font-size:14px;line-height:1.6;')}${tableHtml}`
     );
 
-    const sendMail = async (to: string, subject: string, bodyHtml: string) => {
+    const sendMail = async (
+      to: string,
+      subject: string,
+      bodyHtml: string,
+      attachments: Attachment[] = []
+    ) => {
       const res = await fetch(`${GATEWAY_URL}/users/me/messages/send`, {
         method: 'POST',
         headers: {
@@ -174,7 +229,7 @@ Deno.serve(async (req) => {
           Authorization: `Bearer ${LOVABLE_API_KEY}`,
           'X-Connection-Api-Key': GOOGLE_MAIL_API_KEY,
         },
-        body: JSON.stringify({ raw: buildRaw(to, subject, bodyHtml) }),
+        body: JSON.stringify({ raw: buildRaw(to, subject, bodyHtml, attachments) }),
       });
       if (!res.ok) {
         const errorBody = await res.text();
@@ -183,8 +238,31 @@ Deno.serve(async (req) => {
       return await res.json();
     };
 
+    // Lampiran PDF rincian biaya PPDB (hasil generate dari dokumen pesantren)
+    let attachments: Attachment[] = [];
+    if (data.type === 'pendaftaran') {
+      try {
+        const pdfBytes = await generatePpdbPdf({
+          nama: data.name,
+          nik: data.nik,
+          hp: data.phone,
+          waktu,
+        });
+        const safeName = data.name.replace(/[^\p{L}\p{N} _-]/gu, '').trim().replace(/\s+/g, '-');
+        attachments = [
+          {
+            filename: `Biaya-PPDB-${safeName || 'Calon-Santri'}.pdf`,
+            mimeType: 'application/pdf',
+            data: pdfBytes,
+          },
+        ];
+      } catch (err) {
+        console.error('Gagal membuat lampiran PDF PPDB:', err);
+      }
+    }
+
     // 1) Notifikasi ke pengurus pesantren
-    const result = await sendMail(recipient, fill(tpl.admin_subject, vars), html);
+    const result = await sendMail(recipient, fill(tpl.admin_subject, vars), html, attachments);
 
     // 2) Email konfirmasi otomatis ke calon santri
     let confirmationId: string | null = null;
@@ -195,15 +273,22 @@ Deno.serve(async (req) => {
          ${paragraphs(fill(tpl.confirm_body, vars), 'margin:0 0 16px;color:#334155;font-size:14px;line-height:1.6;')}
          <h2 style="margin:24px 0 8px;font-size:14px;color:#1a5c47;">${esc(fill(tpl.confirm_summary_title, vars))}</h2>
          ${tableHtml}
+         ${attachments.length > 0 ? `<p style="margin:16px 0 0;color:#1a5c47;font-size:13px;">Terlampir file PDF rincian biaya dan alur PPDB.</p>` : ''}
          ${paragraphs(fill(tpl.confirm_footer, vars), 'margin:20px 0 0;color:#64748b;font-size:12px;line-height:1.6;')}`
       );
       try {
-        const confirm = await sendMail(data.email, fill(tpl.confirm_subject, vars), confirmHtml);
+        const confirm = await sendMail(
+          data.email,
+          fill(tpl.confirm_subject, vars),
+          confirmHtml,
+          attachments
+        );
         confirmationId = confirm.id ?? null;
       } catch (err) {
         console.error('Gagal mengirim email konfirmasi ke pendaftar:', err);
       }
     }
+
 
     return new Response(JSON.stringify({ success: true, id: result.id, confirmationId }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

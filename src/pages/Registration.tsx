@@ -46,7 +46,9 @@ const RegistrationForm: React.FC = () => {
             name: data.fullName,
             phone: data.phone,
             email: data.email,
+            nik: data.nik,
             program: data.program,
+
             details: {
               'Sekolah Asal': data.previousSchool,
               'Asal Kota': data.city,
