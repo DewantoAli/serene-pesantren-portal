@@ -1,4 +1,5 @@
 import React from 'react';
+import Seo from '@/components/seo/Seo';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -14,6 +15,7 @@ const SocialMediaGuide: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Seo title="Panduan Media Sosial | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin/social-media-guide" noindex />
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center gap-4">

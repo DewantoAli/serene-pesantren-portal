@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Seo from '@/components/seo/Seo';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -63,6 +64,7 @@ const AdminLogin: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-islamic-navy to-islamic-teal">
+        <Seo title="Login Admin | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin" noindex />
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
       </div>
     );
@@ -70,6 +72,7 @@ const AdminLogin: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-islamic-navy to-islamic-teal p-4">
+      <Seo title="Login Admin | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin" noindex />
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-display text-islamic-navy">Admin Panel</CardTitle>

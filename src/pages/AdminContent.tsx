@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Seo from '@/components/seo/Seo';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -78,6 +79,7 @@ const AdminContent: React.FC = () => {
   if (loading || isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Seo title="Kelola Konten | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin/content" noindex />
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-islamic-teal" />
       </div>
     );
@@ -85,6 +87,7 @@ const AdminContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Seo title="Kelola Konten | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin/content" noindex />
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div>

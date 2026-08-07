@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Seo from '@/components/seo/Seo';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -152,6 +153,7 @@ const AdminInstagramPost: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Seo title="Posting Instagram | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin/instagram-post" noindex />
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-islamic-teal"></div>
       </div>
     );
@@ -159,6 +161,7 @@ const AdminInstagramPost: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Seo title="Posting Instagram | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin/instagram-post" noindex />
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">

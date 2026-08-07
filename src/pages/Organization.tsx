@@ -3,6 +3,7 @@ import React from 'react';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
+import Seo from '@/components/seo/Seo';
 import Footer from '@/components/layout/Footer';
 import { ChevronRight, Users, BookOpen, Calendar, MapPin } from 'lucide-react';
 import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
@@ -89,6 +90,7 @@ const OrganizationInner: React.FC = () => {
 
   return (
     <>
+      <Seo title="Struktur Organisasi | Ponpes Irsyadulhaq Manado" description="Kenali struktur organisasi dan jajaran pengurus Pondok Pesantren Irsyadulhaq Manado, mulai dari yayasan, pembina, mudir, hingga kepala madrasah." path="/organization" />
       <Header />
       <main className="pt-28 pb-20">
         {/* Hero Section */}

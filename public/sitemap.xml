@@ -38,14 +38,23 @@
   </url>
   <url>
     <loc>https://www.irsyadulhaq.or.id/aplikasi-pesantren</loc>
-    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.irsyadulhaq.or.id/status-pembayaran-spp</loc>
-    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://www.irsyadulhaq.or.id/al-quran-murotal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.irsyadulhaq.or.id/panduan-memilih-pesantren</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
+
