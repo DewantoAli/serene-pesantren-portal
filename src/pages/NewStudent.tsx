@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import Header from '@/components/layout/Header';
+import Seo from '@/components/seo/Seo';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Loader2 } from 'lucide-react';
 
@@ -9,6 +10,11 @@ const NewStudent: React.FC = () => {
 
   return (
     <>
+      <Seo
+        title="Pendaftaran Santri Baru 2026 | Ponpes Irsyadulhaq Manado"
+        description="Formulir pendaftaran santri baru Pondok Pesantren Irsyadulhaq Manado. Isi data secara online, cepat dan mudah, untuk program MTs dan tahfidz Al-Quran."
+        path="/new-student"
+      />
       <Header />
       <h1 className="sr-only">Pendaftaran Santri Baru Pondok Pesantren Irsyadulhaq Manado</h1>
       <div className="w-full h-[calc(100vh-80px)] mt-20 relative">
