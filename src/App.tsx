@@ -23,6 +23,7 @@ import AdminInstagramPost from "./pages/AdminInstagramPost";
 import SocialMediaGuide from "./pages/SocialMediaGuide";
 import InstagramSetupGuide from "./pages/InstagramSetupGuide";
 import OAuthConsent from "./pages/OAuthConsent";
+import PanduanMemilihPesantren from "./pages/PanduanMemilihPesantren";
 
 const queryClient = new QueryClient();
 
