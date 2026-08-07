@@ -72,6 +72,7 @@ const AdminLogin: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-islamic-navy to-islamic-teal p-4">
+      <Seo title="Login Admin | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin" noindex />
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-display text-islamic-navy">Admin Panel</CardTitle>

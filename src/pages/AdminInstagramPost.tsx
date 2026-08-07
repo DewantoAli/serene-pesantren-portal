@@ -161,6 +161,7 @@ const AdminInstagramPost: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Seo title="Posting Instagram | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin/instagram-post" noindex />
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
