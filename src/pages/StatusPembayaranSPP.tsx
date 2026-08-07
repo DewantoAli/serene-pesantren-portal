@@ -1,9 +1,15 @@
 import React from 'react';
 import Header from '@/components/layout/Header';
+import Seo from '@/components/seo/Seo';
 
 const StatusPembayaranSPP: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Seo
+        title="Status Pembayaran SPP Santri | Irsyadulhaq Manado"
+        description="Cek status pembayaran SPP santri Pondok Pesantren Irsyadulhaq Manado secara online. Rekap pembayaran publik yang transparan dan diperbarui berkala."
+        path="/status-pembayaran-spp"
+      />
       <Header />
       <div className="flex-1 pt-20">
         <iframe
