@@ -27,6 +27,7 @@ const Seo: React.FC<SeoProps> = ({ title, description, path, image = DEFAULT_IMA
             : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
         }
       />
+      <link rel="canonical" href={url} />
 
 
       <meta property="og:title" content={title} />
