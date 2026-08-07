@@ -1,4 +1,5 @@
 import React from 'react';
+import Seo from '@/components/seo/Seo';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,6 +14,7 @@ const InstagramSetupGuide: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
+      <Seo title="Panduan Instagram | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/panduan-instagram" noindex />
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4 flex items-center gap-4">
