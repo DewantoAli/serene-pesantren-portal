@@ -19,8 +19,15 @@ const Seo: React.FC<SeoProps> = ({ title, description, path, image = DEFAULT_IMA
       <title>{title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
-      <link rel="canonical" href={url} />
+      <meta
+        name="robots"
+        content={
+          noindex
+            ? 'noindex, nofollow'
+            : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+        }
+      />
+
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
