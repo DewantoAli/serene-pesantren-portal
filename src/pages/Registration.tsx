@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from '@/hooks/use-toast';
 import Header from '@/components/layout/Header';
+import Seo from '@/components/seo/Seo';
 import Footer from '@/components/layout/Footer';
 import { FormProvider, useFormContext } from '@/contexts/FormContext';
 import { Form } from "@/components/ui/form";
@@ -143,6 +144,7 @@ const Registration: React.FC = () => {
   
   return (
     <>
+      <Seo title="Formulir Pendaftaran | Ponpes Irsyadulhaq Manado" description="Isi formulir pendaftaran santri Pondok Pesantren Irsyadulhaq Manado secara online. Lengkapi data pribadi, pendidikan, dan program yang dipilih." path="/registration" />
       <Header />
       <main className="pt-28 pb-20">
         <RegistrationHeader />

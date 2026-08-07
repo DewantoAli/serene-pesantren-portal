@@ -5,6 +5,7 @@ import { ChevronRight, BookOpen, Users, GraduationCap, Clock, ArrowRight, Award,
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
 import PatternBackground from '@/components/ui/PatternBackground';
 import Header from '@/components/layout/Header';
+import Seo from '@/components/seo/Seo';
 import Footer from '@/components/layout/Footer';
 import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
 
@@ -46,6 +47,7 @@ const AboutInner: React.FC = () => {
 
   return (
     <>
+      <Seo title="Tentang Kami | Pondok Pesantren Irsyadulhaq Manado" description="Profil, visi misi, dan nilai-nilai Pondok Pesantren Irsyadulhaq Manado dalam mendidik santri dengan ilmu syar’i, akhlak mulia, dan kurikulum terpadu." path="/about" />
       <Header />
       <main className="pt-28 pb-20 overflow-hidden">
         {/* Hero Section */}

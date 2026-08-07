@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar, MapPin, Users, Clock } from 'lucide-react';
 import Header from '@/components/layout/Header';
+import Seo from '@/components/seo/Seo';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AnimatedSectionWrapper from '@/components/ui/AnimatedSectionWrapper';
@@ -44,6 +45,7 @@ const KegiatanSantri: React.FC = () => {
 
   return (
     <>
+      <Seo title="Kegiatan Santri | Pondok Pesantren Irsyadulhaq Manado" description="Dokumentasi kegiatan santri Ponpes Irsyadulhaq Manado: tahfidz, kajian, olahraga, dan acara pesantren lainnya dalam foto dan video terbaru." path="/kegiatan-santri" />
       <Header />
       <main className="pt-20">
         {/* Hero Section */}

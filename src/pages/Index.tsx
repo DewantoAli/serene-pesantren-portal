@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import Header from '@/components/layout/Header';
+import Seo from '@/components/seo/Seo';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
@@ -54,6 +55,7 @@ const IndexInner: React.FC = () => {
 
   return (
     <>
+      <Seo title="Pondok Pesantren Irsyadulhaq Manado | Tahfidz & MTs Islam" description="Pesantren Islam di Manado mencetak generasi Rabbani berlandaskan Al-Quran & As-Sunnah. Program tahfidz, MTs, dan pendidikan karakter. Daftar santri baru sekarang." path="/" />
       <Header />
       <main className="bg-background text-foreground">
         {/* HERO */}
