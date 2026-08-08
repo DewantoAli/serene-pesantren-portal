@@ -17,7 +17,7 @@ const StatusPembayaranSPP: React.FC = () => {
         </h1>
         <iframe
           src="https://irsyadulhaq-administrasi.lovable.app/rekap-spp-publik"
-          className="w-full h-[calc(100vh-5rem)] border-0"
+          className="w-full h-[calc(100vh-9rem)] border-0"
           title="Status Pembayaran SPP"
           allow="fullscreen"
         />
