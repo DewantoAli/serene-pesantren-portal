@@ -10,9 +10,10 @@ interface SeoProps {
   path: string;
   image?: string;
   noindex?: boolean;
+  ogType?: 'website' | 'article';
 }
 
-const Seo: React.FC<SeoProps> = ({ title, description, path, image = DEFAULT_IMAGE, noindex }) => {
+const Seo: React.FC<SeoProps> = ({ title, description, path, image = DEFAULT_IMAGE, noindex, ogType = 'website' }) => {
   const url = `${SITE_URL}${path}`;
   return (
     <Helmet>
@@ -30,6 +31,7 @@ const Seo: React.FC<SeoProps> = ({ title, description, path, image = DEFAULT_IMA
       <link rel="canonical" href={url} />
 
 
+      <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
