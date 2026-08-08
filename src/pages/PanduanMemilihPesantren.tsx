@@ -51,9 +51,10 @@ const PanduanMemilihPesantren: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Seo
-        title="Panduan Memilih Pondok Pesantren yang Tepat"
+        title="Panduan Memilih Pondok Pesantren yang Tepat untuk Anak"
         description="Panduan praktis memilih pondok pesantren untuk anak: kriteria kurikulum, manhaj, fasilitas asrama, rasio pengasuh, biaya, dan langkah survei sebelum mendaftar."
         path="/panduan-memilih-pesantren"
+        ogType="article"
       />
       <Helmet>
         <script type="application/ld+json">
