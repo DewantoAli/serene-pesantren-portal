@@ -12,6 +12,9 @@ const StatusPembayaranSPP: React.FC = () => {
       />
       <Header />
       <div className="flex-1 pt-20">
+        <h1 className="container mx-auto px-4 md:px-6 py-4 font-display text-2xl text-islamic-navy">
+          Status Pembayaran SPP Santri
+        </h1>
         <iframe
           src="https://irsyadulhaq-administrasi.lovable.app/rekap-spp-publik"
           className="w-full h-[calc(100vh-5rem)] border-0"
