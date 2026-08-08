@@ -51,19 +51,49 @@ export const submitToGoogleSheet = async (data: FormValues) => {
       additionalNotes: data.additionalNotes || ""
     };
     
+    // Gunakan mode CORS + Content-Type sederhana (tanpa preflight) agar
+    // respons dari Apps Script bisa dibaca dan pengiriman benar-benar diverifikasi.
     const response = await fetch(googleScriptUrl, {
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'cors',
+      redirect: 'follow',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain;charset=utf-8',
       },
       body: JSON.stringify(spreadsheetData),
     });
-    
-    console.log('Form submitted to Google Sheets');
+
+    if (!response.ok) {
+      throw new Error(`Pengiriman gagal (HTTP ${response.status})`);
+    }
+
+    const raw = (await response.text()).trim();
+
+    // Apps Script biasanya membalas JSON {"result":"success"} atau teks biasa.
+    let ok = raw.length > 0;
+    try {
+      const parsed = JSON.parse(raw);
+      ok =
+        parsed?.result === 'success' ||
+        parsed?.status === 'success' ||
+        parsed?.success === true;
+      if (!ok) {
+        throw new Error(parsed?.message || 'Server menolak data pendaftaran.');
+      }
+    } catch (parseError) {
+      // Bukan JSON: anggap berhasil hanya bila respons tidak kosong dan tidak mengandung error
+      if (parseError instanceof Error && parseError.name !== 'SyntaxError') {
+        throw parseError;
+      }
+      if (!ok || /error|exception/i.test(raw)) {
+        throw new Error('Server tidak mengonfirmasi penerimaan data pendaftaran.');
+      }
+    }
+
     return true;
   } catch (error) {
     console.error('Error submitting form:', error);
     throw error;
   }
 };
+
