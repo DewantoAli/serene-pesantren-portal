@@ -102,7 +102,7 @@ const KegiatanSantri: React.FC = () => {
                             />
                           ) : (
                             <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-                              <span className="text-gray-400">No Image</span>
+                              <span className="text-gray-400">Tidak ada gambar</span>
                             </div>
                           )
                         ) : (

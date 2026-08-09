@@ -544,7 +544,7 @@ const AdminKegiatan: React.FC = () => {
                   />
                 ) : (
                   <div className="w-full h-40 bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400">No Media</span>
+                    <span className="text-gray-400">Tidak ada media</span>
                   </div>
                 )}
                 <div className="absolute top-2 right-2">

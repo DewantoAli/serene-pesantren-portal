@@ -82,12 +82,12 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2 relative group">
           {logoImage ? (
-            <img src={logoImage} alt="Logo" className="w-10 h-10 rounded-full object-cover" />
+            <img src={logoImage} alt="Logo Ponpes Irsyadulhaq Manado" className="w-10 h-10 rounded-full object-cover" />
           ) : (
             <div className="flex items-center">
               <img 
                 src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
-                alt="Irsyadulhaq Logo" 
+                alt="Logo Ponpes Irsyadulhaq Manado" 
                 className="h-14 w-auto object-contain"
                 style={{ objectFit: 'contain', objectPosition: 'center' }}
               />
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
           
           <label htmlFor="logo-upload" className="absolute -bottom-7 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/90 rounded-md px-2 py-1 shadow-sm text-xs flex items-center cursor-pointer">
             <Upload size={12} className="mr-1" />
-            <span>Upload Logo</span>
+            <span>Unggah Logo</span>
             <Input 
               id="logo-upload" 
               type="file" 
@@ -177,7 +177,7 @@ const Header: React.FC = () => {
         <button 
           onClick={toggleMobileMenu}
           className="md:hidden p-2 text-islamic-navy focus:outline-none"
-          aria-label="Toggle menu"
+          aria-label="Buka menu"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
