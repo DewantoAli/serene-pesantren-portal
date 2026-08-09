@@ -167,7 +167,7 @@ const MediaUploader: React.FC<MediaUploaderProps> = ({
                     controls
                     className="w-full h-full object-cover"
                   >
-                    Your browser does not support the video tag.
+                    Browser Anda tidak mendukung pemutar video.
                   </video>
                 )}
               </div>
