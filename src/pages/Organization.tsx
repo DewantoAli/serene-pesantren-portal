@@ -33,58 +33,51 @@ const OrganizationInner: React.FC = () => {
   
   const departments = [
     {
-      name: "Islamic Studies Department",
+      name: "Departemen Studi Islam",
       head: "Ustadz Ibrahim Malik",
-      description: "Focuses on Quranic studies, Hadith, Fiqh, and Islamic history.",
-      programs: ["Quran Memorization", "Hadith Studies", "Islamic Jurisprudence", "History of Islam"]
+      description: "Fokus pada studi Al-Quran, Hadits, Fiqih, dan sejarah Islam.",
+      programs: ["Tahfidz Al-Quran", "Studi Hadits", "Fiqih Islam", "Sejarah Islam"]
     },
     {
-      name: "Academic Department",
+      name: "Departemen Akademik",
       head: "Ustadz",
-      description: "Covers general education subjects following the national curriculum.",
-      programs: ["Mathematics", "Sciences", "Languages", "Social Studies", "Arts"]
+      description: "Mencakup mata pelajaran umum sesuai kurikulum nasional.",
+      programs: ["Matematika", "Ilmu Pengetahuan Alam", "Bahasa", "Ilmu Pengetahuan Sosial", "Seni"]
     },
     {
-      name: "Character Development Department",
+      name: "Departemen Pembinaan Karakter",
       head: "Ustadz",
-      description: "Focuses on developing moral values and leadership skills in students.",
-      programs: ["Islamic Ethics", "Leadership Training", "Community Service", "Personal Development"]
+      description: "Fokus pada pembentukan akhlak dan keterampilan kepemimpinan santri.",
+      programs: ["Adab dan Akhlak Islami", "Pelatihan Kepemimpinan", "Pengabdian Masyarakat", "Pengembangan Diri"]
     },
     {
-      name: "Extracurricular Department",
+      name: "Departemen Ekstrakurikuler",
       head: "Ustadz",
-      description: "Organizes sports, arts, and other extracurricular activities.",
-      programs: ["Sports Activities", "Arts & Crafts", "Debate Club", "Science Competitions"]
-    },
-    {
-      name: "Extracurricular Department",
-      head: "Ustadz",
-      description: "Organizes sports, arts, and other extracurricular activities.",
-      programs: ["Sports Activities", "Arts & Crafts", "Debate Club", "Science Competitions"]
+      description: "Menyelenggarakan kegiatan olahraga, seni, dan ekstrakurikuler lainnya.",
+      programs: ["Kegiatan Olahraga", "Seni dan Keterampilan", "Klub Debat", "Kompetisi Sains"]
     }
-    
   ];
   
   const administrationTeam = [
     {
-      name: "Administration & Finance",
+      name: "Administrasi & Keuangan",
       head: "Dewanto Ali",
-      positions: ["Financial Manager", "Administrative Assistants", "HR Staff", "Accounting Team"]
+      positions: ["Manajer Keuangan", "Staf Administrasi", "Staf Kepegawaian", "Tim Akuntansi"]
     },
     {
-      name: "Facilities & Maintenance",
+      name: "Sarana & Pemeliharaan",
       head: "Andi Frans Maramis",
-      positions: ["Maintenance Supervisors", "Security Team", "Cleaning Staff", "Gardeners"]
+      positions: ["Penanggung Jawab Pemeliharaan", "Tim Keamanan", "Petugas Kebersihan", "Petugas Taman"]
     },
     {
-      name: "Student Services",
+      name: "Layanan Santri",
       head: "Ustadz Abu Sa'id",
-      positions: ["Health Services", "Dining Services", "Dormitory Supervisors", "Transportation Coordinators"]
+      positions: ["Layanan Kesehatan", "Layanan Dapur", "Pengasuh Asrama", "Koordinator Transportasi"]
     },
     {
-      name: "Community Relations",
+      name: "Hubungan Masyarakat",
       head: "Ustadz Rasihan",
-      positions: ["Parent Coordinators", "Alumni Relations", "Event Organizers", "Media Team"]
+      positions: ["Koordinator Wali Santri", "Hubungan Alumni", "Penyelenggara Acara", "Tim Media"]
     }
   ];
 
@@ -101,13 +94,13 @@ const OrganizationInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <AnimatedSectionWrapper className="text-center mb-8">
               <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-gold/20 text-islamic-cream text-sm font-medium">
-                {t('hero_badge', 'Our Organization')}
+                {t('hero_badge', 'Organisasi Kami')}
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
-                {t('hero_title', 'Organizational Structure')}
+                {t('hero_title', 'Struktur Organisasi')}
               </h1>
               <p className="text-islamic-cream/90 max-w-2xl mx-auto">
-                {t('hero_desc', 'Meet the dedicated team of professionals who lead Irsyadulhaq Islamic Boarding School.')}
+                {t('hero_desc', 'Kenali jajaran pengurus yang berdedikasi memimpin Pondok Pesantren Irsyadulhaq.')}
               </p>
             </AnimatedSectionWrapper>
           </div>
@@ -122,7 +115,7 @@ const OrganizationInner: React.FC = () => {
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                {t('leadership_desc', 'Our school is guided by experienced leaders committed to excellence in Islamic education.')}
+                {t('leadership_desc', 'Pesantren kami dibimbing oleh para pengasuh berpengalaman yang berkomitmen pada keunggulan pendidikan Islam.')}
               </p>
             </AnimatedSectionWrapper>
             
@@ -166,11 +159,11 @@ const OrganizationInner: React.FC = () => {
             
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                Academic Departments
+                Departemen Akademik
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Our school is organized into specialized departments, each focused on different aspects of our students' education.
+                Pesantren kami terbagi dalam beberapa departemen khusus yang masing-masing menangani aspek berbeda dari pendidikan santri.
               </p>
             </AnimatedSectionWrapper>
             
@@ -191,14 +184,14 @@ const OrganizationInner: React.FC = () => {
                         {dept.name}
                       </h3>
                       <p className="text-sm text-islamic-teal font-medium mb-3">
-                        Head: {dept.head}
+                        Penanggung Jawab: {dept.head}
                       </p>
                       <p className="text-sm text-islamic-slate mb-4">
                         {dept.description}
                       </p>
                       <div className="p-4 bg-islamic-navy/5 rounded-lg">
                         <h4 className="text-sm font-medium text-islamic-navy mb-2">
-                          Programs & Courses:
+                          Program & Mata Pelajaran:
                         </h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
                           {dept.programs.map((program, idx) => (
@@ -217,11 +210,11 @@ const OrganizationInner: React.FC = () => {
             
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                Administration & Support
+                Administrasi & Pendukung
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Our administrative and support teams ensure the smooth operation of all school functions.
+                Tim administrasi dan pendukung memastikan seluruh kegiatan pesantren berjalan lancar.
               </p>
             </AnimatedSectionWrapper>
             
@@ -242,11 +235,11 @@ const OrganizationInner: React.FC = () => {
                         {team.name}
                       </h3>
                       <p className="text-sm text-islamic-gold font-medium mb-3">
-                        Head: {team.head}
+                        Penanggung Jawab: {team.head}
                       </p>
                       <div className="p-4 bg-islamic-navy/5 rounded-lg">
                         <h4 className="text-sm font-medium text-islamic-navy mb-2">
-                          Key Positions:
+                          Posisi Utama:
                         </h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
                           {team.positions.map((position, idx) => (
@@ -270,11 +263,11 @@ const OrganizationInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                School Information
+                Informasi Pesantren
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Key statistics and information about Irsyadulhaq Islamic Boarding School.
+                Data dan informasi penting tentang Pondok Pesantren Irsyadulhaq.
               </p>
             </AnimatedSectionWrapper>
             
@@ -294,13 +287,13 @@ const OrganizationInner: React.FC = () => {
                     16+
                   </h3>
                   <p className="text-islamic-slate font-medium">
-                    Students Enrolled
+                    Santri Terdaftar
                   </p>
                   <div className="w-16 h-1 bg-islamic-navy/20 mx-auto my-4"></div>
                   <ul className="text-sm text-islamic-slate space-y-2">
-                    <li>60% Male Students</li>
+                    <li>60% Santri Putra</li>
                    
-                    <li>Ages 12-18 years</li>
+                    <li>Usia 12-18 tahun</li>
                 
                   </ul>
                 </div>
@@ -321,14 +314,14 @@ const OrganizationInner: React.FC = () => {
                     100+
                   </h3>
                   <p className="text-islamic-slate font-medium">
-                    Faculty & Staff Members
+                    Pengajar & Staf
                   </p>
                   <div className="w-16 h-1 bg-islamic-emerald/20 mx-auto my-4"></div>
                   <ul className="text-sm text-islamic-slate space-y-2">
-                    <li>Teaching Faculty</li>
-                    <li>Islamic Scholars</li>
-                    <li>Administrative Staff</li>
-                    <li>Support Staff</li>
+                    <li>Tenaga Pengajar</li>
+                    <li>Asatidz</li>
+                    <li>Staf Administrasi</li>
+                    <li>Staf Pendukung</li>
                   </ul>
                 </div>
               </AnimatedSectionWrapper>
@@ -345,17 +338,17 @@ const OrganizationInner: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <h3 className="text-3xl font-serif font-bold text-islamic-navy mb-2">
-                    Since 2021
+                    Sejak 2021
                   </h3>
                   <p className="text-islamic-slate font-medium">
-                    Years of Excellence
+                    Tahun Berkarya
                   </p>
                   <div className="w-16 h-1 bg-islamic-gold/20 mx-auto my-4"></div>
                   <ul className="text-sm text-islamic-slate space-y-2">
-                    <li>3 Years of Operation</li>
+                    <li>3 Tahun Beroperasi</li>
                    
-                    <li>Pesantren Admission Rate</li>
-                    <li>National Awards</li>
+                    <li>Tingkat Penerimaan Santri</li>
+                    <li>Penghargaan Nasional</li>
                   </ul>
                 </div>
               </AnimatedSectionWrapper>
@@ -370,11 +363,11 @@ const OrganizationInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-white mb-4">
-                Campus Facilities
+                Fasilitas Pesantren
               </h2>
               <div className="geometric-divider bg-islamic-gold mx-auto"></div>
               <p className="text-islamic-cream/90 max-w-2xl mx-auto">
-                Our campus provides modern facilities to support both academic and personal development.
+                Pesantren kami menyediakan fasilitas modern untuk mendukung perkembangan akademik dan pribadi santri.
               </p>
             </AnimatedSectionWrapper>
             
@@ -382,68 +375,68 @@ const OrganizationInner: React.FC = () => {
               {[
                 {
                   icon: <MapPin className="text-islamic-gold" />,
-                  title: "Academic Buildings",
+                  title: "Gedung Akademik",
                   items: [
-                    "20 Modern Classrooms",
-                    "Science Laboratories",
-                    "Computer Labs",
-                    "Library with 10,000+ Books",
-                    "Language Learning Center"
+                    "20 Ruang Kelas Modern",
+                    "Laboratorium IPA",
+                    "Laboratorium Komputer",
+                    "Perpustakaan dengan 10.000+ Buku",
+                    "Pusat Pembelajaran Bahasa"
                   ]
                 },
                 {
                   icon: <MapPin className="text-islamic-gold" />,
-                  title: "Islamic Facilities",
+                  title: "Fasilitas Ibadah",
                   items: [
-                    "Grand Mosque",
-                    "Quran Recitation Halls",
-                    "Islamic Studies Center",
-                    "Prayer Rooms in Each Building",
-                    "Wudu Areas"
+                    "Masjid Utama",
+                    "Aula Tahsin & Tahfidz",
+                    "Pusat Kajian Islam",
+                    "Mushola di Setiap Gedung",
+                    "Tempat Wudhu"
                   ]
                 },
                 {
                   icon: <MapPin className="text-islamic-gold" />,
-                  title: "Residential Facilities",
+                  title: "Fasilitas Asrama",
                   items: [
-                    "Separate Dormitories for Boys & Girls",
-                    "Dining Halls",
-                    "Recreation Areas",
-                    "Student Lounges",
-                    "Health Center"
+                    "Asrama Terpisah Putra & Putri",
+                    "Ruang Makan",
+                    "Area Rekreasi",
+                    "Ruang Santai Santri",
+                    "Poliklinik"
                   ]
                 },
                 {
                   icon: <MapPin className="text-islamic-gold" />,
-                  title: "Sports Facilities",
+                  title: "Fasilitas Olahraga",
                   items: [
-                    "Soccer Field",
-                    "Basketball Courts",
-                    "Indoor Sports Hall",
-                    "Swimming Pool",
-                    "Athletics Track"
+                    "Lapangan Sepak Bola",
+                    "Lapangan Basket",
+                    "Aula Olahraga Indoor",
+                    "Kolam Renang",
+                    "Lintasan Atletik"
                   ]
                 },
                 {
                   icon: <MapPin className="text-islamic-gold" />,
-                  title: "Extracurricular Areas",
+                  title: "Area Ekstrakurikuler",
                   items: [
-                    "Arts & Crafts Studio",
-                    "Music Room",
-                    "Debate Club Room",
-                    "Gardening Area",
-                    "Robotics Lab"
+                    "Studio Seni & Keterampilan",
+                    "Ruang Nasyid",
+                    "Ruang Klub Debat",
+                    "Area Berkebun",
+                    "Laboratorium Robotika"
                   ]
                 },
                 {
                   icon: <MapPin className="text-islamic-gold" />,
-                  title: "Support Facilities",
+                  title: "Fasilitas Pendukung",
                   items: [
-                    "Administration Building",
-                    "Counseling Offices",
-                    "Meeting Rooms",
-                    "Visitor Center",
-                    "Parent Lounge"
+                    "Gedung Administrasi",
+                    "Ruang Bimbingan Konseling",
+                    "Ruang Rapat",
+                    "Pusat Informasi Tamu",
+                    "Ruang Tunggu Wali Santri"
                   ]
                 }
               ].map((facility, index) => (
@@ -480,17 +473,17 @@ const OrganizationInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="glass-card max-w-3xl mx-auto p-8 rounded-lg">
               <h2 className="text-2xl font-serif font-bold text-islamic-navy mb-4 text-center">
-                {t('contact_title', 'Would You Like to Visit Our Campus?')}
+                {t('contact_title', 'Ingin Berkunjung ke Pesantren Kami?')}
               </h2>
               <p className="text-islamic-slate mb-6 text-center">
-                {t('contact_desc', 'Schedule a tour to visit our campus and meet with our faculty and staff members.')}
+                {t('contact_desc', 'Jadwalkan kunjungan untuk melihat langsung lingkungan pesantren dan bertemu para pengajar serta pengurus kami.')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#" className="btn-primary">
-                  Schedule a Tour
+                  Jadwalkan Kunjungan
                 </a>
                 <a href="#" className="btn-outline">
-                  Contact Us
+                  Hubungi Kami
                 </a>
               </div>
             </AnimatedSectionWrapper>
