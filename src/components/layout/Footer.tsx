@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
               <div className="flex items-center">
                 <img 
                   src="/lovable-uploads/db67760e-c635-4e65-9a39-90c4444d9ea7.png" 
-                  alt="Irsyadulhaq Logo" 
+                  alt="Logo Ponpes Irsyadulhaq Manado" 
                   className="h-14 w-auto"
                   style={{ objectFit: 'contain', objectPosition: 'center' }}
                 />

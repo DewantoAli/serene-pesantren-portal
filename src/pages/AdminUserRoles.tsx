@@ -199,7 +199,7 @@ const AdminUserRoles: React.FC = () => {
               <strong>Info:</strong> Semua user yang terdaftar ditampilkan di bawah. Klik tombol untuk menambahkan role.
             </p>
             <p className="text-sm text-blue-800 mt-2">
-              <strong>Your User ID:</strong> <code className="bg-blue-100 px-2 py-1 rounded">{user?.id}</code>
+              <strong>ID Pengguna Anda:</strong> <code className="bg-blue-100 px-2 py-1 rounded">{user?.id}</code>
             </p>
           </CardContent>
         </Card>

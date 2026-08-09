@@ -34,7 +34,7 @@ const OAuthConsent: React.FC = () => {
     let active = true;
     (async () => {
       if (!authorizationId) {
-        setError("Missing authorization_id");
+        setError("Parameter authorization_id tidak ditemukan");
         return;
       }
       const { data: sess } = await supabase.auth.getSession();
@@ -74,7 +74,7 @@ const OAuthConsent: React.FC = () => {
     const target = data?.redirect_url ?? data?.redirect_to;
     if (!target) {
       setBusy(false);
-      setError("No redirect returned by the authorization server.");
+      setError("Server otorisasi tidak mengembalikan alamat pengalihan.");
       return;
     }
     window.location.href = target;
