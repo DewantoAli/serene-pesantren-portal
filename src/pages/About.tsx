@@ -15,33 +15,33 @@ const AboutInner: React.FC = () => {
   const coreValues = [
     {
       icon: <BookOpen className="text-islamic-navy" />,
-      title: "Islamic Knowledge",
-      description: "We prioritize the teaching of authentic Islamic knowledge based on Quran and Sunnah."
+      title: "Ilmu Syar'i",
+      description: "Kami mengutamakan pengajaran ilmu Islam yang otentik berlandaskan Al-Quran dan As-Sunnah."
     },
     {
       icon: <GraduationCap className="text-islamic-navy" />,
-      title: "Academic Excellence",
-      description: "We strive for the highest standards of academic achievement across all subjects."
+      title: "Keunggulan Akademik",
+      description: "Kami berupaya mencapai standar prestasi akademik tertinggi pada seluruh mata pelajaran."
     },
     {
       icon: <Users className="text-islamic-navy" />,
-      title: "Character Development",
-      description: "We emphasize the development of Islamic character, morals, and ethics in all students."
+      title: "Pembentukan Karakter",
+      description: "Kami menekankan pembinaan akhlak, adab, dan kepribadian Islami pada setiap santri."
     },
     {
       icon: <Target className="text-islamic-navy" />,
-      title: "Personal Growth",
-      description: "We foster the development of leadership, creativity, and critical thinking skills."
+      title: "Pengembangan Diri",
+      description: "Kami menumbuhkan kemampuan kepemimpinan, kreativitas, dan berpikir kritis."
     },
     {
       icon: <Award className="text-islamic-navy" />,
-      title: "Service & Responsibility",
-      description: "We encourage a spirit of service to community and responsibility toward society."
+      title: "Pengabdian & Tanggung Jawab",
+      description: "Kami menanamkan semangat mengabdi dan rasa tanggung jawab kepada masyarakat."
     },
     {
       icon: <Clock className="text-islamic-navy" />,
-      title: "Lifelong Learning",
-      description: "We instill a passion for continuous learning and personal improvement throughout life."
+      title: "Belajar Sepanjang Hayat",
+      description: "Kami menanamkan kecintaan untuk terus belajar dan memperbaiki diri sepanjang hidup."
     }
   ];
 
@@ -58,13 +58,13 @@ const AboutInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <AnimatedSectionWrapper className="text-center mb-8">
               <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-gold/20 text-islamic-cream text-sm font-medium">
-                {t('hero_badge', 'Our Story')}
+                {t('hero_badge', 'Kisah Kami')}
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
-                {t('hero_title', 'About Irsyadul Haq Manado')}
+                {t('hero_title', 'Tentang Irsyadul Haq Manado')}
               </h1>
               <p className="text-islamic-cream/90 max-w-2xl mx-auto">
-                {t('hero_desc', 'Learn about our journey, mission, and vision in providing exceptional Islamic education.')}
+                {t('hero_desc', 'Kenali perjalanan, misi, dan visi kami dalam menghadirkan pendidikan Islam yang unggul.')}
               </p>
             </AnimatedSectionWrapper>
           </div>
@@ -76,7 +76,7 @@ const AboutInner: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <AnimatedSectionWrapper animation="fade-in-left" className="order-2 lg:order-1">
                 <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-navy/10 text-islamic-navy text-sm font-medium">
-                  Our History
+                  Sejarah Kami
                 </span>
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-islamic-navy mb-4">
                   {t('story_title', 'A Legacy of Islamic Education Excellence')}
@@ -92,7 +92,7 @@ const AboutInner: React.FC = () => {
                   {t('story_p3', 'Selama ini, kami tetap berkomitmen pada prinsip-prinsip dasar kami sambil beradaptasi dengan lanskap pendidikan yang terus berubah. Saat ini, Irsyadulhaq berdiri sebagai bukti dedikasi kami untuk menyediakan pendidikan Islam berkualitas yang mempersiapkan Santri untuk sukses di dunia dan akhirat.')}
                 </p>
                 <Link to="/organization" className="btn-primary inline-flex items-center space-x-2">
-                  <span>Learn About Our Organization</span>
+                  <span>Lihat Struktur Organisasi</span>
                   <ChevronRight size={18} />
                 </Link>
               </AnimatedSectionWrapper>
@@ -102,7 +102,7 @@ const AboutInner: React.FC = () => {
                   <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-elegant">
                     <img
                       src={t('story_image', 'https://ik.imagekit.io/uzuuvayyu/WhatsApp%20Image%202025-02-22%20at%209.56.40%20AM.jpeg?updatedAt=1742526180427')}
-                      alt="Irsyadulhaq Islamic Boarding School Building"
+                      alt="Gedung Pondok Pesantren Irsyadulhaq Manado"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -113,8 +113,8 @@ const AboutInner: React.FC = () => {
                         <Clock size={24} className="text-islamic-navy" />
                       </div>
                       <div>
-                        <p className="text-islamic-navy font-medium">38+ Years</p>
-                        <p className="text-sm text-islamic-navy/70">of Excellence</p>
+                        <p className="text-islamic-navy font-medium">38+ Tahun</p>
+                        <p className="text-sm text-islamic-navy/70">Pengalaman Pendidikan</p>
                       </div>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-1.5">
@@ -132,11 +132,11 @@ const AboutInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                Mission & Vision
+                Misi & Visi
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Our guiding principles and aspirations for the future.
+                Prinsip yang kami pegang dan cita-cita kami untuk masa depan.
               </p>
             </AnimatedSectionWrapper>
             
@@ -152,7 +152,7 @@ const AboutInner: React.FC = () => {
                     </div>
                   </div>
                   <h3 className="text-2xl font-display font-semibold text-islamic-navy mt-4">
-                    Our Mission
+                    Misi Kami
                   </h3>
                 </div>
                
@@ -187,7 +187,7 @@ const AboutInner: React.FC = () => {
                     </div>
                   </div>
                   <h3 className="text-2xl font-display font-semibold text-islamic-navy mt-4">
-                    Our Vision
+                    Visi Kami
                   </h3>
                 </div>
                 <p className="text-islamic-slate text-center mb-6">
@@ -195,11 +195,11 @@ const AboutInner: React.FC = () => {
                 </p>
                 <ul className="space-y-3">
                   {[
-                    "Become a center of excellence in Islamic education",
-                    "Set new standards for integrated Islamic-academic curriculum",
-                    "Develop innovative teaching methods that honor Islamic traditions",
-                    "Establish a global reputation for producing well-rounded graduates",
-                    "Create a model for sustainable, values-based education"
+                    "Menjadi pusat keunggulan dalam pendidikan Islam",
+                    "Menetapkan standar baru kurikulum terpadu Islam dan akademik",
+                    "Mengembangkan metode pengajaran inovatif yang menjaga tradisi keilmuan Islam",
+                    "Membangun reputasi dalam mencetak lulusan yang berilmu dan berakhlak",
+                    "Menjadi model pendidikan berbasis nilai yang berkelanjutan"
                   ].map((item, index) => (
                     <li key={index} className="flex items-start">
                       <div className="w-5 h-5 rounded-full bg-islamic-gold/20 flex items-center justify-center mt-1 mr-3">
@@ -219,11 +219,11 @@ const AboutInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                Our Core Values
+                Nilai-Nilai Utama Kami
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                The fundamental principles that guide our educational approach and community life.
+                Prinsip dasar yang menjadi pedoman pendidikan dan kehidupan di pesantren kami.
               </p>
             </AnimatedSectionWrapper>
             
@@ -255,35 +255,35 @@ const AboutInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="text-center mb-16">
               <span className="inline-block px-4 py-1 mb-4 rounded-full bg-islamic-emerald/10 text-islamic-emerald text-sm font-medium">
-                Testimonials
+                Testimoni
               </span>
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                What Our Community Says
+                Apa Kata Mereka
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate max-w-2xl mx-auto">
-                Hear from our students, parents, and alumni about their experiences at Irsyadul Haq.
+                Simak pengalaman para santri, wali santri, dan alumni Irsyadul Haq.
               </p>
             </AnimatedSectionWrapper>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  quote: "Studying at Irsyadulhaq has been a transformative experience. I've not only gained knowledge but also developed a stronger connection to my faith.",
+                  quote: "Belajar di Irsyadulhaq benar-benar mengubah diri saya. Bukan hanya ilmu yang bertambah, tetapi juga kedekatan saya dengan agama.",
                   name: "Hassan Ahmad",
-                  role: "Current Student, Grade 11",
+                  role: "Santri Kelas 11",
                   photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703"
                 },
                 {
-                  quote: "As a parent, I'm impressed by how the school balances academic excellence with Islamic values. My children have flourished here both in studies and character.",
+                  quote: "Sebagai orang tua, saya kagum bagaimana pesantren ini menyeimbangkan prestasi akademik dengan nilai-nilai Islam. Anak-anak saya berkembang baik dalam ilmu maupun akhlak.",
                   name: "Fatima Rahman",
-                  role: "Parent of Two Students",
+                  role: "Wali dari Dua Santri",
                   photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703"
                 },
                 {
-                  quote: "The values and education I received at Irsyadulhaq have been the foundation of my success. I'm proud to be an alumnus of this prestigious institution.",
+                  quote: "Nilai-nilai dan pendidikan yang saya terima di Irsyadulhaq menjadi fondasi keberhasilan saya. Saya bangga menjadi alumni pesantren ini.",
                   name: "Dr. Yusuf Ibrahim",
-                  role: "Alumni, Class of 2005",
+                  role: "Alumni Angkatan 2005",
                   photo: "https://ik.imagekit.io/uzuuvayyu/250x250%20px.jpg?updatedAt=1742526171703"
                 }
               ].map((testimonial, index) => (
@@ -325,11 +325,11 @@ const AboutInner: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <AnimatedSectionWrapper className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-serif font-bold text-islamic-navy mb-4">
-                Join Our Community
+                Bergabunglah Bersama Kami
               </h2>
               <div className="geometric-divider mx-auto"></div>
               <p className="text-islamic-slate mb-8 max-w-2xl mx-auto">
-                Become part of our growing family at Irsyadulhaq Islamic Boarding School. Applications for the upcoming academic year are now open.
+                Jadilah bagian dari keluarga besar Pondok Pesantren Irsyadulhaq. Pendaftaran untuk tahun ajaran mendatang telah dibuka.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/new-student" className="btn-primary inline-flex items-center space-x-2">
@@ -337,7 +337,7 @@ const AboutInner: React.FC = () => {
                   <ArrowRight size={18} />
                 </Link>
                 <Link to="/organization" className="btn-outline">
-                  Learn More
+                  Selengkapnya
                 </Link>
               </div>
             </AnimatedSectionWrapper>
