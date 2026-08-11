@@ -134,11 +134,11 @@ const IndexInner: React.FC = () => {
                   </div>
                   <div className="absolute -bottom-5 -left-5 md:-bottom-6 md:-left-6 animate-float">
                     <div className="glass-badge flex items-center gap-3 px-4 py-3 md:px-5 md:py-4">
-                      <div className="flex h-9 w-9 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-xl bg-glass-accent text-islamic-gold">
-                        <BookOpen size={18} strokeWidth={2} />
+                      <div className="flex h-9 w-9 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-xl bg-glass-accent text-glass-foreground">
+                        <BookOpen size={18} strokeWidth={2.5} />
                       </div>
-                      <div className="flex flex-col">
-                        <span className="text-sm md:text-base font-semibold leading-tight">Al-Qur'an</span>
+                      <div className="flex flex-col drop-shadow-sm">
+                        <span className="text-sm md:text-base font-semibold leading-tight text-glass-foreground">Al-Qur'an</span>
                         <span className="text-xs md:text-sm text-glass-muted leading-tight">As-Sunnah</span>
                       </div>
                     </div>

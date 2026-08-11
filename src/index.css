@@ -38,11 +38,11 @@
     --ring: 162 55% 22%;
 
     /* Glass / overlay surface for floating badges over imagery */
-    --glass: 165 45% 10% / 0.42;
-    --glass-foreground: 45 50% 97%;
-    --glass-muted: 45 30% 92% / 0.72;
-    --glass-border: 45 50% 97% / 0.12;
-    --glass-accent: 42 70% 55% / 0.22;
+    --glass: 165 45% 10% / 0.58;
+    --glass-foreground: 45 60% 98%;
+    --glass-muted: 45 35% 94% / 0.90;
+    --glass-border: 45 60% 97% / 0.22;
+    --glass-accent: 42 75% 58% / 0.35;
 
     --radius: 0.5rem;
 
