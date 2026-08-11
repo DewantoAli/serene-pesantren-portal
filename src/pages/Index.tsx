@@ -132,10 +132,16 @@ const IndexInner: React.FC = () => {
                       <div className="absolute top-0 -left-1/2 h-full w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-shimmer-sweep" />
                     </div>
                   </div>
-                  <div className="absolute -bottom-6 -left-6 w-36 h-28 md:w-44 md:h-32 bg-islamic-gold flex items-center justify-center rounded-2xl shadow-xl border-4 border-background animate-float px-3 text-center">
-                    <span className="text-background font-serif font-bold text-sm md:text-base leading-tight opacity-90 animate-pulse-soft">
-                      Al-Qur'an<br />As-Sunnah
-                    </span>
+                  <div className="absolute -bottom-5 -left-5 md:-bottom-6 md:-left-6 animate-float">
+                    <div className="flex items-center gap-3 rounded-2xl bg-black/45 backdrop-blur-md border border-white/10 shadow-2xl px-4 py-3 md:px-5 md:py-4">
+                      <div className="flex h-9 w-9 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-xl bg-islamic-gold/20 text-islamic-gold">
+                        <BookOpen size={18} strokeWidth={2} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm md:text-base font-semibold text-white leading-tight">Al-Qur'an</span>
+                        <span className="text-xs md:text-sm text-white/70 leading-tight">As-Sunnah</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
