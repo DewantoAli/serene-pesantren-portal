@@ -51,6 +51,13 @@ export default {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))'
 				},
+				glass: {
+					DEFAULT: 'hsl(var(--glass))',
+					foreground: 'hsl(var(--glass-foreground))',
+					muted: 'hsl(var(--glass-muted))',
+					border: 'hsl(var(--glass-border))',
+					accent: 'hsl(var(--glass-accent))',
+				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'

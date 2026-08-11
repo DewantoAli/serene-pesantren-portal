@@ -133,13 +133,13 @@ const IndexInner: React.FC = () => {
                     </div>
                   </div>
                   <div className="absolute -bottom-5 -left-5 md:-bottom-6 md:-left-6 animate-float">
-                    <div className="flex items-center gap-3 rounded-2xl bg-black/45 backdrop-blur-md border border-white/10 shadow-2xl px-4 py-3 md:px-5 md:py-4">
-                      <div className="flex h-9 w-9 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-xl bg-islamic-gold/20 text-islamic-gold">
+                    <div className="glass-badge flex items-center gap-3 px-4 py-3 md:px-5 md:py-4">
+                      <div className="flex h-9 w-9 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-xl bg-glass-accent text-islamic-gold">
                         <BookOpen size={18} strokeWidth={2} />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-sm md:text-base font-semibold text-white leading-tight">Al-Qur'an</span>
-                        <span className="text-xs md:text-sm text-white/70 leading-tight">As-Sunnah</span>
+                        <span className="text-sm md:text-base font-semibold leading-tight">Al-Qur'an</span>
+                        <span className="text-xs md:text-sm text-glass-muted leading-tight">As-Sunnah</span>
                       </div>
                     </div>
                   </div>
