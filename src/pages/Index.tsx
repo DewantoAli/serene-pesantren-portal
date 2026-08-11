@@ -133,8 +133,10 @@ const IndexInner: React.FC = () => {
                       <div className="absolute top-0 -left-1/2 h-full w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-shimmer-sweep" />
                     </div>
                   </div>
-                  <div className="absolute -bottom-6 -left-6 w-28 h-28 md:w-32 md:h-32 bg-islamic-gold flex items-center justify-center rounded-2xl shadow-xl border-4 border-background animate-float">
-                    <Sparkles className="w-12 h-12 md:w-16 md:h-16 text-background opacity-90 animate-pulse-soft" />
+                  <div className="absolute -bottom-6 -left-6 w-36 h-28 md:w-44 md:h-32 bg-islamic-gold flex items-center justify-center rounded-2xl shadow-xl border-4 border-background animate-float px-3 text-center">
+                    <span className="text-background font-serif font-bold text-sm md:text-base leading-tight opacity-90 animate-pulse-soft">
+                      Al-Qur'an<br />As-Sunnah
+                    </span>
                   </div>
                 </div>
               </div>
