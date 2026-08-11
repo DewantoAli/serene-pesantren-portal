@@ -37,6 +37,13 @@
     --input: 45 25% 84%;
     --ring: 162 55% 22%;
 
+    /* Glass / overlay surface for floating badges over imagery */
+    --glass: 165 45% 10% / 0.42;
+    --glass-foreground: 45 50% 97%;
+    --glass-muted: 45 30% 92% / 0.72;
+    --glass-border: 45 50% 97% / 0.12;
+    --glass-accent: 42 70% 55% / 0.22;
+
     --radius: 0.5rem;
 
     --sidebar-background: 165 50% 10%;
@@ -70,6 +77,10 @@
 @layer components {
   .glass-card {
     @apply bg-white/80 backdrop-blur-sm border border-white/50 shadow-soft;
+  }
+
+  .glass-badge {
+    @apply bg-glass backdrop-blur-md border border-glass-border shadow-2xl rounded-2xl text-glass-foreground;
   }
   
   .pattern-bg {
