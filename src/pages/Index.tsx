@@ -8,7 +8,6 @@ import {
   GraduationCap,
   Calendar,
   MapPin,
-  Sparkles,
 } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Seo from '@/components/seo/Seo';
