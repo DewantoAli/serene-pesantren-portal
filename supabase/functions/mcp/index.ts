@@ -3,10 +3,10 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.23.0";
+import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.28.0";
 
 // src/lib/mcp/tools/whoami.ts
-import { defineTool } from "npm:@lovable.dev/mcp-js@0.23.0";
+import { defineTool } from "npm:@lovable.dev/mcp-js@0.28.0";
 var whoami_default = defineTool({
   name: "whoami",
   title: "Who am I",
@@ -30,11 +30,11 @@ var whoami_default = defineTool({
 });
 
 // src/lib/mcp/tools/list-activities.ts
-import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.23.0";
+import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.28.0";
 import { z } from "npm:zod@^3.23.8";
 
 // src/lib/mcp/supabase.ts
-import { createClient } from "npm:@supabase/supabase-js@^2.90.1";
+import { createClient } from "npm:@supabase/supabase-js@^2.112.4";
 function supabaseForUser(ctx) {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
@@ -73,7 +73,7 @@ var list_activities_default = defineTool2({
 });
 
 // src/lib/mcp/tools/create-activity.ts
-import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.23.0";
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.28.0";
 import { z as z2 } from "npm:zod@^3.23.8";
 var create_activity_default = defineTool3({
   name: "create_activity",
@@ -108,7 +108,7 @@ var create_activity_default = defineTool3({
 });
 
 // src/lib/mcp/tools/update-activity.ts
-import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.23.0";
+import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.28.0";
 import { z as z3 } from "npm:zod@^3.23.8";
 var update_activity_default = defineTool4({
   name: "update_activity",
@@ -150,7 +150,7 @@ var update_activity_default = defineTool4({
 });
 
 // src/lib/mcp/tools/delete-activity.ts
-import { defineTool as defineTool5 } from "npm:@lovable.dev/mcp-js@0.23.0";
+import { defineTool as defineTool5 } from "npm:@lovable.dev/mcp-js@0.28.0";
 import { z as z4 } from "npm:zod@^3.23.8";
 var delete_activity_default = defineTool5({
   name: "delete_activity",
@@ -191,5 +191,5 @@ var mcp_default = defineMcp({
 });
 
 // lovable-mcp-supabase-entry.ts
-import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.23.0/stacks/supabase";
+import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.28.0/stacks/supabase";
 Deno.serve(createSupabaseHandler(mcp_default, { functionName: "mcp" }));
