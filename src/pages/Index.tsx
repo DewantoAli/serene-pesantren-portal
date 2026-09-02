@@ -298,31 +298,33 @@ const IndexInner: React.FC = () => {
         {/* CTA */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="relative overflow-hidden rounded-[3rem] bg-foreground text-background p-10 md:p-16 lg:p-20 shadow-2xl">
-              <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none text-islamic-gold">
+            <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-primary via-primary to-[hsl(165_50%_14%)] text-primary-foreground p-10 md:p-16 lg:p-20 shadow-elegant ring-1 ring-secondary/25">
+              <div className="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none text-secondary">
                 <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                   <path d="M0,50 Q25,0 50,50 T100,50 T150,50" fill="none" stroke="currentColor" strokeWidth="0.5" />
                   <path d="M0,60 Q25,10 50,60 T100,60 T150,60" fill="none" stroke="currentColor" strokeWidth="0.5" />
                 </svg>
               </div>
+              <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-secondary/10 blur-3xl pointer-events-none" />
 
               <div className="relative z-10 flex flex-col items-center text-center gap-8">
                 <div className="max-w-3xl">
-                  <p className="text-xs uppercase tracking-[0.2em] text-islamic-gold mb-4">Pendaftaran Dibuka</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-secondary mb-4">Pendaftaran Dibuka</p>
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
                     {t('cta_title', 'Mulai perjalanan santri anda bersama Irsyadul Haq.')}
                   </h2>
-                  <p className="mt-5 text-background/70 max-w-xl mx-auto">
+                  <div className="geometric-divider mx-auto opacity-80" />
+                  <p className="mt-5 text-primary-foreground/75 max-w-xl mx-auto">
                     {t('cta_desc', 'Bergabunglah dengan komunitas pendidikan yang mendidik hati, akal, dan akhlak di atas bimbingan Al-Qur’an dan As-Sunnah.')}
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <Button asChild size="lg" className="rounded-full px-7 bg-islamic-gold text-foreground hover:bg-islamic-gold/90 hover:-translate-y-0.5 transition-all cta-gold-glow">
+                  <Button asChild size="lg" className="rounded-full px-7 bg-secondary text-secondary-foreground hover:bg-secondary/90 hover:-translate-y-0.5 transition-all cta-gold-glow">
                     <Link to="/new-student">
                       Daftar Sekarang <ArrowRight size={18} className="ml-1" />
                     </Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="rounded-full px-7 border-background/30 text-background hover:bg-background/10">
+                  <Button asChild size="lg" variant="outline" className="rounded-full px-7 bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
                     <Link to="/about">Pelajari Lebih Lanjut</Link>
                   </Button>
                 </div>
