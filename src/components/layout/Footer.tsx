@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, ExternalLink } from 'lucide-react';
-import VisitorAnalytics from '@/components/analytics/VisitorAnalytics';
 
 const Footer: React.FC = () => {
   return (
