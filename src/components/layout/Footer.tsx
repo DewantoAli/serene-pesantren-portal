@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, ExternalLink } from 'lucide-react';
-import VisitorAnalytics from '@/components/analytics/VisitorAnalytics';
 
 const Footer: React.FC = () => {
   return (
@@ -163,9 +162,23 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        {/* Visitor Analytics Section */}
-        <VisitorAnalytics />
-        
+        {/* Embedded Map */}
+        <div className="mt-12">
+          <h3 className="font-display text-lg font-medium mb-4 text-islamic-gold text-center md:text-left">Lokasi Kami</h3>
+          <div className="rounded-lg overflow-hidden shadow-lg border border-islamic-gold/20">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4949.136917544473!2d124.90682217584694!3d1.5323224609603368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3287a1847a6b2bdb%3A0x32a59ea9216a0b70!2sPESANTREN%20IRSYADUL%20HAQ!5e1!3m2!1sen!2sid!4v1788840202923!5m2!1sen!2sid"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Lokasi Pondok Pesantren Irsyadul Haq"
+            />
+          </div>
+        </div>
+
         <div className="border-t border-islamic-navy/40 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-islamic-sand/60">
