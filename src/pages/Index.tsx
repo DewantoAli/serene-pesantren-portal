@@ -12,6 +12,7 @@ import {
 import Header from '@/components/layout/Header';
 import Seo from '@/components/seo/Seo';
 import Footer from '@/components/layout/Footer';
+import KegiatanPreview from '@/components/home/KegiatanPreview';
 import { Button } from '@/components/ui/button';
 import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
 
