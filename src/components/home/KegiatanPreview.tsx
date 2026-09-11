@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, MapPin } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Play } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
 interface Activity {
@@ -11,6 +11,25 @@ interface Activity {
   location: string | null;
   media_type: string | null;
   media_url: string | null;
+}
+
+/** Extract a YouTube video ID from any common YouTube URL form. */
+function youtubeId(url: string): string | null {
+  const m = url.match(/(?:youtube\.com\/(?:embed\/|watch\?v=|v\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+/** Resolve a thumbnail image URL for an activity. */
+function thumbUrl(a: Activity): string | null {
+  if (a.media_type === 'image' || !a.media_type) {
+    return a.media_url || null;
+  }
+  // video: try YouTube thumbnail
+  if (a.media_url) {
+    const ytId = youtubeId(a.media_url);
+    if (ytId) return `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+  }
+  return null;
 }
 
 const KegiatanPreview: React.FC = () => {
