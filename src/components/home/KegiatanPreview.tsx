@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, MapPin } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Play } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
 interface Activity {
@@ -11,6 +11,25 @@ interface Activity {
   location: string | null;
   media_type: string | null;
   media_url: string | null;
+}
+
+/** Extract a YouTube video ID from any common YouTube URL form. */
+function youtubeId(url: string): string | null {
+  const m = url.match(/(?:youtube\.com\/(?:embed\/|watch\?v=|v\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+/** Resolve a thumbnail image URL for an activity. */
+function thumbUrl(a: Activity): string | null {
+  if (a.media_type === 'image' || !a.media_type) {
+    return a.media_url || null;
+  }
+  // video: try YouTube thumbnail
+  if (a.media_url) {
+    const ytId = youtubeId(a.media_url);
+    if (ytId) return `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+  }
+  return null;
 }
 
 const KegiatanPreview: React.FC = () => {
@@ -66,24 +85,30 @@ const KegiatanPreview: React.FC = () => {
                 className="group block bg-card border border-border rounded-2xl overflow-hidden hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="relative aspect-[3/2] overflow-hidden">
-                  {a.media_type === 'image' || !a.media_type ? (
-                    a.media_url ? (
-                      <img
-                        src={a.media_url}
-                        alt={a.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
+                  {(() => {
+                    const thumb = thumbUrl(a);
+                    return thumb ? (
+                      <>
+                        <img
+                          src={thumb}
+                          alt={a.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        {a.media_type === 'video' && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 group-hover:scale-110 transition-transform">
+                              <Play size={20} className="text-foreground ml-0.5" fill="currentColor" />
+                            </div>
+                          </div>
+                        )}
+                      </>
                     ) : (
                       <div className="w-full h-full bg-muted flex items-center justify-center">
                         <Calendar className="text-muted-foreground/40" size={32} />
                       </div>
-                    )
-                  ) : (
-                    <div className="w-full h-full bg-black flex items-center justify-center">
-                      <span className="text-white/60 text-sm">▶ Video</span>
-                    </div>
-                  )}
+                    );
+                  })()}
                   <div className="absolute top-3 left-3 inline-flex items-center gap-1 bg-foreground/70 backdrop-blur-sm text-background px-3 py-1 rounded-full text-xs font-medium">
                     <Calendar size={12} />
                     {a.date}
