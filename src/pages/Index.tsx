@@ -150,24 +150,24 @@ const IndexInner: React.FC = () => {
           </div>
         </section>
 
-        {/* PPDB — disembunyikan sementara, akan diganti
-        <section className="py-16 md:py-24">
+        {/* PPDB */}
+        <section className="py-10 md:py-16">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center bg-muted/60 rounded-3xl p-6 md:p-12 border border-border">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-muted/60 rounded-3xl p-5 md:p-10 border border-border">
               <div className="lg:col-span-5 order-2 lg:order-1">
-                <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4">Pengumuman</p>
-                <h2 className="font-serif text-4xl md:text-5xl leading-tight text-foreground">
+                <p className="text-xs uppercase tracking-[0.2em] text-primary mb-3">Pengumuman</p>
+                <h2 className="font-serif text-3xl md:text-4xl leading-tight text-foreground">
                   {t('ppdb_title', 'Penerimaan Murid Baru 2026/2027')}
                 </h2>
-                <p className="mt-5 text-muted-foreground leading-relaxed">
+                <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
                   {t('ppdb_desc', 'Sistem Penerimaan Murid Baru (SPMB) Pondok Pesantren Irsyadul Haq telah dibuka. Bergabung dan mulai perjalanan menuntut ilmu bersama kami.')}
                 </p>
-                <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="rounded-full px-6">
+                <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                  <Button asChild className="rounded-full px-5">
                     <Link to="/new-student">Daftar Sekarang</Link>
                   </Button>
-                  <Button asChild variant="outline" className="rounded-full px-6 border-foreground/20">
-                    <a href={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/brosur%20pesantren%20PPDB%2026%20-%2027.png')} target="_blank" rel="noreferrer">
+                  <Button asChild variant="outline" className="rounded-full px-5 border-foreground/20">
+                    <a href={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/brosur%20pesantren%20PPDB%2026%20-%2027.png')} target="_blank" rel="noreferrer" download>
                       Unduh Brosur <ArrowUpRight size={16} className="ml-1" />
                     </a>
                   </Button>
@@ -186,7 +186,6 @@ const IndexInner: React.FC = () => {
             </div>
           </div>
         </section>
-        */}
 
         {/* KEGIATAN SANTRI PREVIEW */}
         <KegiatanPreview />
