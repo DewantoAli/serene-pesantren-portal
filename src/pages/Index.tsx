@@ -15,7 +15,6 @@ import Footer from '@/components/layout/Footer';
 import KegiatanPreview from '@/components/home/KegiatanPreview';
 import { Button } from '@/components/ui/button';
 import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
-import ppdbFlyerAsset from '@/assets/flayer-irsyadul-haq.jpg.asset.json';
 
 const externalPpdbFlyer = 'https://ik.imagekit.io/uzuuvayyu/Flayer%20Irsyadul%20Haq.jpg';
 
