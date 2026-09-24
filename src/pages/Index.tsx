@@ -174,7 +174,7 @@ const IndexInner: React.FC = () => {
                 </div>
               </div>
               <div className="lg:col-span-7 order-1 lg:order-2">
-                <div className="rounded-2xl overflow-hidden shadow-elegant ring-1 ring-border">
+                <div className="w-[70%] mx-auto rounded-2xl overflow-hidden shadow-elegant ring-1 ring-border">
                   <img
                     src={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/Flayer%20Irsyadul%20Haq.jpg')}
                     alt="Brosur Penerimaan Murid Baru"
