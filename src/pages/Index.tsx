@@ -15,7 +15,6 @@ import Footer from '@/components/layout/Footer';
 import KegiatanPreview from '@/components/home/KegiatanPreview';
 import { Button } from '@/components/ui/button';
 import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
-import ppdbFlyerAsset from '@/assets/flayer-irsyadul-haq.jpg.asset.json';
 
 const externalPpdbFlyer = 'https://ik.imagekit.io/uzuuvayyu/Flayer%20Irsyadul%20Haq.jpg';
 
@@ -43,9 +42,7 @@ const events = [
 const IndexInner: React.FC = () => {
   const { t } = usePageContent();
   const configuredPpdbImage = t('ppdb_image', externalPpdbFlyer);
-  const ppdbImage = configuredPpdbImage === externalPpdbFlyer
-    ? ppdbFlyerAsset.url
-    : configuredPpdbImage;
+  const ppdbImage = configuredPpdbImage || externalPpdbFlyer;
 
   const stats = [
     { value: t('stat1_value', '2021'), label: t('stat1_label', 'Tahun Didirikan') },
@@ -188,8 +185,8 @@ const IndexInner: React.FC = () => {
                     className="w-full h-auto"
                     loading="lazy"
                     onError={(event) => {
-                      if (event.currentTarget.src !== new URL(ppdbFlyerAsset.url, window.location.origin).href) {
-                        event.currentTarget.src = ppdbFlyerAsset.url;
+                      if (event.currentTarget.src !== externalPpdbFlyer) {
+                        event.currentTarget.src = externalPpdbFlyer;
                       }
                     }}
                   />
