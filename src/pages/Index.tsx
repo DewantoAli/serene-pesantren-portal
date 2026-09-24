@@ -15,6 +15,9 @@ import Footer from '@/components/layout/Footer';
 import KegiatanPreview from '@/components/home/KegiatanPreview';
 import { Button } from '@/components/ui/button';
 import { PageContentProvider, usePageContent } from '@/hooks/usePageContent';
+import ppdbFlyerAsset from '@/assets/flayer-irsyadul-haq.jpg.asset.json';
+
+const externalPpdbFlyer = 'https://ik.imagekit.io/uzuuvayyu/Flayer%20Irsyadul%20Haq.jpg';
 
 const events = [
   {
@@ -39,6 +42,10 @@ const events = [
 
 const IndexInner: React.FC = () => {
   const { t } = usePageContent();
+  const configuredPpdbImage = t('ppdb_image', externalPpdbFlyer);
+  const ppdbImage = configuredPpdbImage === externalPpdbFlyer
+    ? ppdbFlyerAsset.url
+    : configuredPpdbImage;
 
   const stats = [
     { value: t('stat1_value', '2021'), label: t('stat1_label', 'Tahun Didirikan') },
@@ -176,10 +183,15 @@ const IndexInner: React.FC = () => {
               <div className="lg:col-span-7 order-1 lg:order-2">
                 <div className="w-[70%] mx-auto rounded-2xl overflow-hidden shadow-elegant ring-1 ring-border">
                   <img
-                    src={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/Flayer%20Irsyadul%20Haq.jpg')}
+                    src={ppdbImage}
                     alt="Brosur Penerimaan Murid Baru"
                     className="w-full h-auto"
                     loading="lazy"
+                    onError={(event) => {
+                      if (event.currentTarget.src !== new URL(ppdbFlyerAsset.url, window.location.origin).href) {
+                        event.currentTarget.src = ppdbFlyerAsset.url;
+                      }
+                    }}
                   />
                 </div>
               </div>
