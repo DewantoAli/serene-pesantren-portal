@@ -167,7 +167,7 @@ const IndexInner: React.FC = () => {
                     <Link to="/new-student">Daftar Sekarang</Link>
                   </Button>
                   <Button asChild variant="outline" className="rounded-full px-5 border-foreground/20">
-                    <a href={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/Flayer%20Irsyadul%20Haq.jpg')} target="_blank" rel="noreferrer" download>
+                    <a href={t('ppdb_brosur_pdf', 'https://ik.imagekit.io/uzuuvayyu/Brosur%20Irsyadul%20Haq.pdf')} target="_blank" rel="noreferrer" download>
                       Unduh Brosur <ArrowUpRight size={16} className="ml-1" />
                     </a>
                   </Button>
@@ -176,7 +176,7 @@ const IndexInner: React.FC = () => {
               <div className="lg:col-span-7 order-1 lg:order-2">
                 <div className="rounded-2xl overflow-hidden shadow-elegant ring-1 ring-border">
                   <img
-                    src={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/brosur%20pesantren%20PPDB%2026%20-%2027.png?updatedAt=1762378813879')}
+                    src={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/Flayer%20Irsyadul%20Haq.jpg')}
                     alt="Brosur Penerimaan Murid Baru"
                     className="w-full h-auto"
                     loading="lazy"
