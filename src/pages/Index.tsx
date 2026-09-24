@@ -167,7 +167,7 @@ const IndexInner: React.FC = () => {
                     <Link to="/new-student">Daftar Sekarang</Link>
                   </Button>
                   <Button asChild variant="outline" className="rounded-full px-5 border-foreground/20">
-                    <a href={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/brosur%20pesantren%20PPDB%2026%20-%2027.png')} target="_blank" rel="noreferrer" download>
+                    <a href={t('ppdb_image', 'https://ik.imagekit.io/uzuuvayyu/Flayer%20Irsyadul%20Haq.jpg')} target="_blank" rel="noreferrer" download>
                       Unduh Brosur <ArrowUpRight size={16} className="ml-1" />
                     </a>
                   </Button>
