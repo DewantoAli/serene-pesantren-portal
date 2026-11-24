@@ -24,6 +24,8 @@ import SocialMediaGuide from "./pages/SocialMediaGuide";
 import InstagramSetupGuide from "./pages/InstagramSetupGuide";
 import OAuthConsent from "./pages/OAuthConsent";
 import PanduanMemilihPesantren from "./pages/PanduanMemilihPesantren";
+import TanyaPesantren from "./pages/TanyaPesantren";
+import PesantrenAssistantLauncher from "@/components/chat/PesantrenAssistantLauncher";
 
 const queryClient = new QueryClient();
 
@@ -53,9 +55,11 @@ const App = () => (
             <Route path="/admin/social-media-guide" element={<SocialMediaGuide />} />
             <Route path="/panduan-instagram" element={<InstagramSetupGuide />} />
             <Route path="/panduan-social-media" element={<SocialMediaGuide />} />
+            <Route path="/tanya-pesantren" element={<TanyaPesantren />} />
             <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <PesantrenAssistantLauncher />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { DefaultChatTransport, type UIMessage } from 'ai';
 import { useChat } from '@ai-sdk/react';
-import { BookOpen, Loader2, MessageCircle, RotateCcw, Trash2 } from 'lucide-react';
+import { BookOpen, Loader2, MessageCircle, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useAuth } from '@/contexts/AuthContext';
@@ -38,15 +38,16 @@ import {
 
 const CHAT_FUNCTION_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pesantren-chat`;
 
-function isStoredMessageArray(value: Json | null | undefined): value is UIMessage[] {
-  if (!Array.isArray(value)) return false;
-  return value.every((entry) => {
+function parseStoredMessageArray(value: Json | null | undefined): UIMessage[] | null {
+  if (!Array.isArray(value)) return null;
+  const isValid = value.every((entry) => {
     if (typeof entry !== 'object' || entry === null || Array.isArray(entry)) return false;
     const candidate = entry as Record<string, Json | undefined>;
     return typeof candidate.id === 'string' &&
       (candidate.role === 'user' || candidate.role === 'assistant') &&
       Array.isArray(candidate.parts);
   });
+  return isValid ? value as unknown as UIMessage[] : null;
 }
 
 const suggestedQuestions = [
@@ -83,7 +84,7 @@ const PesantrenChat: React.FC = () => {
         setHistoryError(true);
         setInitialMessages([]);
       } else {
-        setInitialMessages(isStoredMessageArray(data?.messages) ? data.messages : []);
+        setInitialMessages(parseStoredMessageArray(data?.messages) ?? []);
       }
       setIsLoadingHistory(false);
     };
@@ -150,6 +151,15 @@ const PesantrenChat: React.FC = () => {
 const AssistantConversation: React.FC<{
   userId: string;
   initialMessages: UIMessage[];
+}> = (props) => (
+  <PromptInputProvider>
+    <AssistantConversationContent {...props} />
+  </PromptInputProvider>
+);
+
+const AssistantConversationContent: React.FC<{
+  userId: string;
+  initialMessages: UIMessage[];
 }> = ({ userId, initialMessages }) => {
   const { textInput } = usePromptInputController();
   const lastSubmittedText = useRef('');
@@ -180,6 +190,7 @@ const AssistantConversation: React.FC<{
     },
     onFinish: async ({ messages: completedMessages }) => {
       if (completedMessages.length === 0) return;
+      lastSubmittedText.current = '';
       const { error } = await supabase
         .from('assistant_conversations')
         .upsert({
@@ -190,8 +201,6 @@ const AssistantConversation: React.FC<{
 
       if (error) {
         toast.error('Jawaban diterima, tetapi riwayat belum tersimpan.');
-      } else {
-        lastSubmittedText.current = '';
       }
     },
   });
@@ -221,7 +230,6 @@ const AssistantConversation: React.FC<{
   };
 
   return (
-    <PromptInputProvider>
       <Card className="overflow-hidden border-border bg-card shadow-sm">
         <div className="flex items-center justify-between gap-3 px-4 py-4 sm:px-6">
           <div className="flex min-w-0 items-center gap-3">
@@ -256,12 +264,7 @@ const AssistantConversation: React.FC<{
         <Conversation className="h-[min(68vh,720px)] min-h-[360px] bg-background">
           <ConversationContent className="mx-auto w-full max-w-3xl gap-6 px-4 py-6 sm:px-6">
             {messages.length === 0 ? (
-              <ConversationEmptyState
-                icon={<BookOpen className="h-8 w-8 text-primary" aria-hidden="true" />}
-                title="Assalamu’alaikum, ada yang ingin ditanyakan?"
-                description="Tanyakan tentang pendaftaran, program belajar, atau kegiatan santri."
-                className="gap-4"
-              >
+              <ConversationEmptyState className="gap-4">
                 <div className="flex flex-col items-center gap-4 text-center">
                   <BookOpen className="h-8 w-8 text-primary" aria-hidden="true" />
                   <div className="space-y-1">
@@ -331,7 +334,6 @@ const AssistantConversation: React.FC<{
           </p>
         </div>
       </Card>
-    </PromptInputProvider>
   );
 };
 

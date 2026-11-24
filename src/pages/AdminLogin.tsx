@@ -20,6 +20,7 @@ const AdminLogin: React.FC = () => {
   const rawNext = searchParams.get('next');
   // Only accept same-origin relative paths.
   const next = rawNext && rawNext.startsWith('/') && !rawNext.startsWith('//') ? rawNext : null;
+  const initialTab = searchParams.get('tab') === 'register' ? 'register' : 'login';
 
   useEffect(() => {
     if (!loading && user) {
@@ -55,7 +56,7 @@ const AdminLogin: React.FC = () => {
     if (error) {
       toast.error('Registrasi gagal: ' + error.message);
     } else {
-      toast.success('Registrasi berhasil! Silakan tunggu admin untuk memberikan akses.');
+      toast.success('Akun berhasil didaftarkan. Verifikasi email jika diminta, lalu masuk untuk melanjutkan.');
     }
 
     setIsLoading(false);
@@ -75,14 +76,14 @@ const AdminLogin: React.FC = () => {
       <Seo title="Login Admin | Ponpes Irsyadulhaq Manado" description="Halaman internal Pondok Pesantren Irsyadulhaq Manado." path="/admin" noindex />
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-display text-islamic-navy">Admin Panel</CardTitle>
-          <CardDescription>Kelola Kegiatan Santri</CardDescription>
+        <CardTitle className="text-2xl font-display text-islamic-navy">Akun Website</CardTitle>
+        <CardDescription>Masuk ke panel pengelola atau buat akun calon santri.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="login">
+          <Tabs defaultValue={initialTab}>
             <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="login">Masuk</TabsTrigger>
-              <TabsTrigger value="register">Daftar</TabsTrigger>
+            <TabsTrigger value="register">Buat Akun</TabsTrigger>
             </TabsList>
 
             <TabsContent value="login">
@@ -160,7 +161,7 @@ const AdminLogin: React.FC = () => {
                   {isLoading ? 'Memproses...' : 'Daftar'}
                 </Button>
                 <p className="text-sm text-muted-foreground text-center">
-                  Setelah mendaftar, hubungi admin untuk mendapatkan akses editor.
+                  Akun calon santri dapat menyimpan riwayat asisten, tanpa peran admin atau editor.
                 </p>
               </form>
             </TabsContent>
