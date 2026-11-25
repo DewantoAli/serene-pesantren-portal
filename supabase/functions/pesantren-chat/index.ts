@@ -1,7 +1,7 @@
 import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { convertToModelMessages, validateUIMessages, type UIMessage } from "npm:ai";
-import { z } from "npm:zod@3.23.8";
+import { z } from "npm:zod@3.25.76";
 import { createResponsesCall } from "../_shared/responses.ts";
 
 const MODEL = "openai/gpt-6-astra";

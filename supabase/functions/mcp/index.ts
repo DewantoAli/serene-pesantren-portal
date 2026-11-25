@@ -31,7 +31,7 @@ var whoami_default = defineTool({
 
 // src/lib/mcp/tools/list-activities.ts
 import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.28.0";
-import { z } from "npm:zod@^3.23.8";
+import { z } from "npm:zod@^3.25.76";
 
 // src/lib/mcp/supabase.ts
 import { createClient } from "npm:@supabase/supabase-js@^2.112.4";
@@ -74,7 +74,7 @@ var list_activities_default = defineTool2({
 
 // src/lib/mcp/tools/create-activity.ts
 import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.28.0";
-import { z as z2 } from "npm:zod@^3.23.8";
+import { z as z2 } from "npm:zod@^3.25.76";
 var create_activity_default = defineTool3({
   name: "create_activity",
   title: "Create santri activity",
@@ -109,7 +109,7 @@ var create_activity_default = defineTool3({
 
 // src/lib/mcp/tools/update-activity.ts
 import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.28.0";
-import { z as z3 } from "npm:zod@^3.23.8";
+import { z as z3 } from "npm:zod@^3.25.76";
 var update_activity_default = defineTool4({
   name: "update_activity",
   title: "Update santri activity",
@@ -151,7 +151,7 @@ var update_activity_default = defineTool4({
 
 // src/lib/mcp/tools/delete-activity.ts
 import { defineTool as defineTool5 } from "npm:@lovable.dev/mcp-js@0.28.0";
-import { z as z4 } from "npm:zod@^3.23.8";
+import { z as z4 } from "npm:zod@^3.25.76";
 var delete_activity_default = defineTool5({
   name: "delete_activity",
   title: "Delete santri activity",
